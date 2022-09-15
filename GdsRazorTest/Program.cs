@@ -11,5 +11,5 @@ public class Program
 
     private static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
         WebHost.CreateDefaultBuilder(args)
-            .UseStartup<GdsRazorTest.Startup>();
+            .UseStartup<Startup>();
 }

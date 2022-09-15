@@ -31,7 +31,6 @@ public class Startup
         app.UseStatusCodePagesWithReExecute("/error/{0}");
         app.UseHttpsRedirection();
         app.UseResponseCaching();
-        app.UseStaticFiles();
         app.UseRouting();
         app.UseAuthentication();
         app.UseAuthorization();

@@ -1,0 +1,6 @@
+@using GdsRazor.Models
+
+@await Html.PartialAsync("GdsBackLink", new BackLinkModel("#") {
+  Content = (HTML) (@<b>Back to home</b>),
+  Attributes = new Dictionary<string, string?> {{"data-test", "attribute"}, {"aria-label", "Back to home"}}
+})

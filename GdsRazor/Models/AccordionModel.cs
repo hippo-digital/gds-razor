@@ -15,12 +15,16 @@ public class AccordionModel : GdsViewModel
     public string? ShowAllSectionsText { get; set; }
     public string? ShowSectionText { get; set; }
 
+    public AccordionModel()
+    {
+    }
+
     public AccordionModel(string id, List<ItemModel> items) : base(id)
     {
         Items = items;
     }
 
-    public AccordionModel(string id = "accordion-default", params ItemModel[] items) : this(id, items.ToList())
+    public AccordionModel(string id, params ItemModel[] items) : this(id, items.ToList())
     {
     }
 

@@ -7,7 +7,7 @@ public class AccordionController : Controller
 {
     private static class Examples
     {
-        public static readonly AccordionModel Classes = new AccordionModel(
+        public static readonly AccordionModel Classes = new(
             "accordion-classes",
             new AccordionModel.ItemModel(
                 "Section A",
@@ -17,7 +17,7 @@ public class AccordionController : Controller
             Classes = "myClass"
         };
 
-        public static readonly AccordionModel Attributes = new AccordionModel(
+        public static readonly AccordionModel Attributes = new(
             "accordion-attributes",
             new AccordionModel.ItemModel(
                 "Section A",
@@ -27,7 +27,7 @@ public class AccordionController : Controller
             Attributes = new Dictionary<string, string?> {{"data-attribute", "value"}}
         };
 
-        public static readonly AccordionModel CustomHeadingLevel = new AccordionModel(
+        public static readonly AccordionModel CustomHeadingLevel = new(
             "accordion-heading",
             new AccordionModel.ItemModel(
                 "Section A",

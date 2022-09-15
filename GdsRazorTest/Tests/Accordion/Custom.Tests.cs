@@ -1,3 +1,4 @@
+using AngleSharp.Html.Dom;
 using GdsRazorTest.Tests.Internal;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Xunit;
@@ -32,6 +33,7 @@ public class CustomTests : GdsTestBase
         var response = await Navigate("/Accordion/CustomHeadingLevel");
         var componentHeading = response.QuerySelector(".govuk-accordion__section-heading");
 
+        Assert.IsAssignableFrom<IHtmlHeadingElement>(componentHeading);
         Assert.Equal("H3", componentHeading.TagName);
     }
 
