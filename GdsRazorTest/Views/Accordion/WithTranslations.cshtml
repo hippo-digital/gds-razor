@@ -1,0 +1,21 @@
+@using GdsRazor.Models
+
+@await Html.PartialAsync("GdsAccordion", new AccordionModel(
+  "with-translations",
+  new AccordionModel.ItemModel(
+    "Section A",
+    "We need to know your nationality so we can work out which elections you’re entitled to vote in. " +
+      "If you cannot provide your nationality, you’ll have to send copies of identity documents through the post."
+  ),
+  new AccordionModel.ItemModel(
+    "Section B",
+    (HTML)(@<ul class="govuk-list govuk-list--bullet">
+             <li>Example item 2</li>
+           </ul>)
+  )
+) {
+  HideAllSectionsText = "Collapse all sections",
+  ShowAllSectionsText = "Expand all sections",
+  HideSectionText = "Collapse <span class=\"govuk-visually-hidden\">this section</span>",
+  ShowSectionText = "Expand <span class=\"govuk-visually-hidden\">this section</span>"
+})

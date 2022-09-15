@@ -1,0 +1,55 @@
+﻿@model GdsRazor.Models.TableModel
+
+<table id="@Model.Id" class="govuk-table @Model.Classes" @Html.Raw(Model.ExpandAttributes())>
+  @if (Model.Caption != null)
+  {
+    <caption class="govuk-table__caption @Model.CaptionClasses">@Model.Caption</caption>
+  }
+  @if (Model.Head != null)
+  {
+    <thead class="govuk-table__head">
+      <tr id="@Model.Head.Id" class="govuk-table__row @Model.Head.Classes" @Html.Raw(Model.Head.ExpandAttributes())>
+        @if (Model.Head.Cells != null)
+        {
+          foreach (var cell in Model.Head.Cells)
+          {
+            <th id="@cell.Id" scope="col" class="govuk-table__header @(cell.Format != null ? $"govuk-table__header--{cell.Format}" : "") @cell.Classes"
+                colspan="@cell.Colspan" rowspan="@cell.Rowspan" @Html.Raw(cell.ExpandAttributes())>
+              @await Html.PartialAsync("GdsContent", cell.Content)
+            </th>
+          }
+        }
+      </tr>
+    </thead>
+  }
+  <tbody class="govuk-table__body">
+    @if (Model.Rows != null)
+    {
+      foreach (var row in Model.Rows)
+      {
+        <tr id="@row.Id" class="govuk-table__row @row.Classes" @Html.Raw(row.ExpandAttributes())>
+          @if (row.Cells != null)
+          {
+            foreach (var (cell, idx) in row.Cells.Select((v, i) => (v, i)))
+            {
+              if (Model.FirstCellIsHeader && idx == 0)
+              {
+                <th id="@cell.Id" scope="row" class="govuk-table__header @(cell.Format != null ? $"govuk-table__header--{cell.Format}" : "") @cell.Classes"
+                    colspan="@cell.Colspan" rowspan="@cell.Rowspan" @Html.Raw(cell.ExpandAttributes())>
+                  @await Html.PartialAsync("GdsContent", cell.Content)
+                </th>
+              }
+              else
+              {
+                <td id="@cell.Id" class="govuk-table__cell @(cell.Format != null ? $"govuk-table__cell--{cell.Format}" : "") @cell.Classes"
+                    colspan="@cell.Colspan" rowspan="@cell.Rowspan" @Html.Raw(cell.ExpandAttributes())>
+                  @await Html.PartialAsync("GdsContent", cell.Content)
+                </td>
+              }
+            }
+          }
+        </tr>
+      }
+    }
+  </tbody>
+</table>

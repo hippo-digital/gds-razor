@@ -1,0 +1,126 @@
+@using GdsRazor.Models
+
+@{
+    ViewData["Title"] = "Tabs Demo";
+    Layout = "../Layout";
+}
+
+<h1 class="govuk-heading-l">Tabs</h1>
+<h2 class="govuk-heading-s">Default:</h2>
+<div class="demo">
+    @await Html.PartialAsync("GdsTabs", new TabsModel())
+</div>
+
+<h2 class="govuk-heading-s">Custom:</h2>
+<div class="demo">
+    @await Html.PartialAsync("GdsTabs", new TabsModel(
+        new TabsModel.ItemModel(
+            "past-day",
+            "Past day",
+            Html.PartialAsync("GdsTable", new TableModel(
+                new TableModel.RowModel(
+                    "David Francis",
+                    "3",
+                    "0"
+                ),
+                new TableModel.RowModel(
+                    "Paul Farmer",
+                    "1",
+                    "0"
+                ),
+                new TableModel.RowModel(
+                    "Rita Patel",
+                    "2",
+                    "0"
+                )
+            ) {
+                Head = new TableModel.RowModel(
+                    "Case manager",
+                    "Cases opened",
+                    "Cases closed"
+                )
+            })
+        ),
+        new TabsModel.ItemModel(
+            "past-week",
+            "Past week",
+            Html.PartialAsync("GdsTable", new TableModel(
+                new TableModel.RowModel(
+                    "David Francis",
+                    "24",
+                    "18"
+                    ),
+                new TableModel.RowModel(
+                    "Paul Farmer",
+                    "16",
+                    "20"
+                    ),
+                new TableModel.RowModel(
+                    "Rita Patel",
+                    "24",
+                    "27"
+                    )
+                ) {
+                    Head = new TableModel.RowModel(
+                        "Case manager",
+                        "Cases opened",
+                        "Cases closed"
+                        )
+                })
+            ),
+        new TabsModel.ItemModel(
+            "past-month",
+            "Past month",
+            Html.PartialAsync("GdsTable", new TableModel(
+                new TableModel.RowModel(
+                    "David Francis",
+                    "98",
+                    "95"
+                ),
+                new TableModel.RowModel(
+                    "Paul Farmer",
+                    "122",
+                    "131"
+                ),
+                new TableModel.RowModel(
+                    "Rita Patel",
+                    "126",
+                    "142"
+                )
+            ) {
+                Head = new TableModel.RowModel(
+                    "Case manager",
+                    "Cases opened",
+                    "Cases closed"
+                )
+            })
+        ),
+        new TabsModel.ItemModel(
+            "past-year",
+            "Past year",
+            Html.PartialAsync("GdsTable", new TableModel(
+                new TableModel.RowModel(
+                    "David Francis",
+                    "1380",
+                    "1472"
+                ),
+                new TableModel.RowModel(
+                    "Paul Farmer",
+                    "1129",
+                    "1083"
+                ),
+                new TableModel.RowModel(
+                    "Rita Patel",
+                    "1539",
+                    "1265"
+                )
+            ) {
+                Head = new TableModel.RowModel(
+                    "Case manager",
+                    "Cases opened",
+                    "Cases closed"
+                )
+            })
+        )
+    ))
+</div>

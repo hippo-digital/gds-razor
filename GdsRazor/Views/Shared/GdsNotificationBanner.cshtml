@@ -1,0 +1,19 @@
+﻿@using GdsRazor.Models
+@model GdsRazor.Models.NotificationBannerModel
+
+<div id="@Model.Id" class="govuk-notification-banner @(Model.Type == "success" ? "govuk-notification-banner--success" : "") @Model.Classes" role="@Model.Role"
+     aria-labelledby="@(Model.TitleId ?? "govuk-notification-banner-title")" data-module="govuk-notification-banner"
+     @if (Model.DisableAutoFocus) { <text>data-disable-auto-focus="true"</text> } @Html.Raw(Model.ExpandAttributes())>
+  <div class="govuk-notification-banner__header">
+    @await Html.PartialAsync("GdsHeading", new HeadingModel
+              {
+                HeadingLevel = Model.TitleHeadingLevel ?? 2,
+                Classes = "govuk-notification-banner__title",
+                Id = Model.TitleId ?? "govuk-notification-banner-title",
+                Content = Model.Title != null ? Html.PartialAsync("GdsContent", Model.Title) : (Model.Type == "success" ? "Success" : "Important")
+              })
+  </div>
+  <div class="govuk-notification-banner__content">
+    @await Html.PartialAsync("GdsContent", Model.Content?.WrapIfText(content => @<p class="govuk-notification-banner__heading">@content</p>))
+  </div>
+</div>

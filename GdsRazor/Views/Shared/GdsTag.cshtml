@@ -1,0 +1,5 @@
+﻿@model GdsRazor.Models.TagModel
+
+<strong id="@Model.Id" class="govuk-tag @Model.Classes" @Html.Raw(Model.ExpandAttributes())>
+  @await Html.PartialAsync("GdsContent", Model.Content)
+</strong>

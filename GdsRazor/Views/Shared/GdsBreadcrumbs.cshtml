@@ -1,0 +1,26 @@
+﻿@model GdsRazor.Models.BreadcrumbsModel
+
+<div id="@Model.Id" class="govuk-breadcrumbs @Model.Classes @(Model.CollapseOnMobile ? "govuk-breadcrumbs--collapse-on-mobile" : "")" @Html.Raw(Model.ExpandAttributes())>
+  <ol class="govuk-breadcrumbs__list">
+    @if (Model.Items?.Any() == true)
+    {
+      @foreach (var breadcrumbsItem in Model.Items)
+      {
+        if (!string.IsNullOrEmpty(breadcrumbsItem.Href))
+        {
+          <li class="govuk-breadcrumbs__list-item">
+            <a class="govuk-breadcrumbs__link" href="@breadcrumbsItem.Href" id="@breadcrumbsItem.Id" @Html.Raw(breadcrumbsItem.ExpandAttributes())>
+              @await Html.PartialAsync("GdsContent", breadcrumbsItem.Content)
+            </a>
+          </li>
+        }
+        else
+        {
+          <li class="govuk-breadcrumbs__list-item" aria-current="page" id="@breadcrumbsItem.Id" @Html.Raw(breadcrumbsItem.ExpandAttributes())>
+            @await Html.PartialAsync("GdsContent", breadcrumbsItem.Content)
+          </li>
+        }
+      }
+    }
+  </ol>
+</div>

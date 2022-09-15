@@ -1,0 +1,70 @@
+@using GdsRazor.Models
+@model GdsRazor.Models.RadiosModel
+
+@if (Model.Hint != null)
+{
+  @await Html.PartialAsync("GdsHint", new HintModel
+  {
+    Id = Model.IdPrefix + "-hint",
+    Content = Model.Hint.Content,
+    Classes = Model.Hint.Classes,
+    Attributes = Model.Hint.Attributes
+  })
+}
+@if (Model.ErrorMessage != null)
+{
+  @await Html.PartialAsync("GdsErrorMessage", new ErrorMessageModel
+  {
+    Id = Model.IdPrefix + "-error",
+    Content = Model.ErrorMessage.Content,
+    Classes = Model.ErrorMessage.Classes,
+    Attributes = Model.ErrorMessage.Attributes,
+    VisuallyHiddenText = Model.ErrorMessage.VisuallyHiddenText
+  })
+}
+
+<div id="@Model.Id" class="govuk-radios @Model.Classes" @Html.Raw(Model.ExpandAttributes()) data-module="govuk-radios">
+  @if (Model.Items != null)
+  {
+    foreach (var (obj, idx) in Model.Items.Select((v, i) => (v, i)))
+    {
+      if (obj is RadiosModel.DividerModel divider)
+      {
+        <div class="govuk-radios__divider">@divider.Divider</div>
+      }
+      else if (obj is RadiosModel.ItemModel item)
+      {
+        var id = item.Id ?? (idx == 0 ? Model.IdPrefix : $"{Model.IdPrefix}-{idx}");
+        <div class="govuk-radios__item">
+          <input id="@id" class="govuk-radios__input" name="@Model.Name" type="radio" value="@item.Value"
+                 @if (item.Checked || (Model.Value != null && Model.Value == item.Value)) { <text>checked</text> }
+                 @if (item.Disabled) { <text>disabled</text> } data-aria-controls="@(item.ConditionalContent != null ? $"conditional-{id}" : null)"
+                 aria-describedby="@(Model.Hint != null ? $"{id}-item-hint" : "")" @Html.Raw(item.ExpandAttributes()) />
+          @await Html.PartialAsync("GdsLabel", new LabelModel
+          {
+            Content = item.Content,
+            Classes = "govuk-radios__label " + (item.Label?.Classes ?? ""),
+            Attributes = item.Label?.Attributes,
+            For = id
+          })
+          @if (item.Hint != null)
+          {
+            @await Html.PartialAsync("GdsHint", new HintModel
+            {
+              Id = id + "-item-hint",
+              Content = item.Hint.Content,
+              Classes = "govuk-radios__hint " + (item.Hint.Classes ?? ""),
+              Attributes = item.Hint.Attributes
+            })
+          }
+        </div>
+        @if (item.ConditionalContent != null)
+        {
+          <div class="govuk-radios__conditional @(item.Checked || (Model.Value != null && Model.Value == item.Value) ? "" : "govuk-checkboxes__conditional--hidden")" id="conditional-@id">
+            @await Html.PartialAsync("GdsContent", item.ConditionalContent)
+          </div>
+        }
+      }
+    }
+  }
+</div>

@@ -1,0 +1,54 @@
+@using GdsRazor.Models
+
+@{
+    ViewData["Title"] = "Checkboxes Demo";
+    Layout = "../Layout";
+}
+
+<h1 class="govuk-heading-l">Checkboxes</h1>
+<h2 class="govuk-heading-s">Default:</h2>
+<div class="demo">
+    @await Html.PartialAsync("GdsCheckboxes", new CheckboxesModel())
+</div>
+
+<h2 class="govuk-heading-s">Customised:</h2>
+<div class="demo">
+    @await Html.PartialAsync("GdsCheckboxes", new CheckboxesModel(
+        "waste",
+        new CheckboxesModel.ItemModel("carcasses", "Waste from animal carcasses"),
+        new CheckboxesModel.ItemModel("mines", "Waste from mines or quarries"),
+        new CheckboxesModel.DividerModel(),
+        new CheckboxesModel.ItemModel("farm", "Waste from agricultural waste")
+    ) {
+        IdPrefix = "waste",
+        Fieldset = new FieldsetModel
+        {
+            Legend = new FieldsetModel.LegendModel("Which types of waste do you transport?")
+            {
+                IsPageHeading = true,
+                Classes = FieldsetModel.LegendModel.Sizes.Large
+            }
+        },
+        Hint = "Select all that apply.",
+        Values = new List<bool> { true, false, true } // Not actually long enough
+    })
+</div>
+
+<h2 class="govuk-heading-s">Error:</h2>
+<div class="demo">
+    @await Html.PartialAsync("GdsCheckboxes", new CheckboxesModel(
+        "waste-error",
+        new CheckboxesModel.ItemModel("carcasses", "Waste from animal carcasses"),
+        new CheckboxesModel.ItemModel("mines", "Waste from mines or quarries"),
+        new CheckboxesModel.DividerModel(),
+        new CheckboxesModel.ItemModel("farm", "Waste from agricultural waste")
+    ) {
+        IdPrefix = "waste-error",
+        Fieldset = new FieldsetModel
+        {
+            Legend = "Which types of waste do you transport?"
+        },
+        Hint = "Select all that apply.",
+        ErrorMessage = "Please choose at least one"
+    })
+</div>

@@ -1,0 +1,52 @@
+@using GdsRazor.Models
+@using GdsRazor.Models.Content
+
+@{
+    ViewData["Title"] = "Fieldset Demo";
+    Layout = "../Layout";
+}
+
+<h1 class="govuk-heading-l">Fieldset</h1>
+<h2 class="govuk-heading-s">Default:</h2>
+<div class="demo">
+    @await Html.PartialAsync("GdsFieldset", new FieldsetModel())
+</div>
+
+<h2 class="govuk-heading-s">Customised:</h2>
+<div class="demo">
+    @await Html.PartialAsync("GdsFieldset", new FieldsetModel
+    {
+        Legend = new FieldsetModel.LegendModel("What is your address?")
+        {
+            Classes = FieldsetModel.LegendModel.Sizes.Large,
+            IsPageHeading = true
+        },
+        Content = (GdsHtml) Html.PartialAsync("GdsInput", new InputModel
+        {
+            Label = "Address line 1",
+            Id = "address-line-1",
+            Name = "address-line-1",
+            Autocomplete = "address-line1"
+        }) + Html.PartialAsync("GdsInput", new InputModel
+        {
+            Label = "Address line 2 (optional)",
+            Id = "address-line-2",
+            Name = "address-line-2",
+            Autocomplete = "address-line2"
+        }) + Html.PartialAsync("GdsInput", new InputModel
+        {
+            Label = "Town or city",
+            Classes = "govuk-!-width-two-thirds",
+            Id = "address-town",
+            Name = "address-town",
+            Autocomplete = "address-level2"
+        }) + Html.PartialAsync("GdsInput", new InputModel
+        {
+            Label = "Postcode",
+            Classes = InputModel.Width.Width10,
+            Id = "address-postcode",
+            Name = "address-postcode",
+            Autocomplete = "postal-code"
+        })
+    })
+</div>

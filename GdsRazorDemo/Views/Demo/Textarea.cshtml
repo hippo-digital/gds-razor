@@ -1,0 +1,47 @@
+@using GdsRazor.Models
+
+@{
+    ViewData["Title"] = "Textarea Demo";
+    Layout = "../Layout";
+}
+
+<h1 class="govuk-heading-l">Textarea</h1>
+<h2 class="govuk-heading-s">Default:</h2>
+<div class="demo">
+    @await Html.PartialAsync("GdsTextarea", new TextareaModel())
+</div>
+
+<h2 class="govuk-heading-s">Custom:</h2>
+<div class="demo">
+    @await Html.PartialAsync("GdsTextarea", new TextareaModel(
+        "more-detail",
+        "more-detail",
+        new LabelModel
+        {
+            Content = "Can you provide more detail?",
+            Classes = LabelModel.Size.Large,
+            IsPageHeading = true
+        }
+    ) {
+        Rows = 3,
+        Hint = "Do not include personal or financial information, like your National Insurance number or credit card details."
+    })
+</div>
+
+<h2 class="govuk-heading-s">Error:</h2>
+<div class="demo">
+    @await Html.PartialAsync("GdsTextarea", new TextareaModel(
+        "more-detail-2",
+        "more-detail-2",
+        new LabelModel
+        {
+            Content = "Can you provide more detail?",
+            Classes = LabelModel.Size.Large,
+            IsPageHeading = true
+        }
+    ) {
+        Rows = 3,
+        Hint = "Do not include personal or financial information, like your National Insurance number or credit card details.",
+        ErrorMessage = "Enter more detail"
+    })
+</div>

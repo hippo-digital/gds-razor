@@ -1,0 +1,38 @@
+﻿@model GdsRazor.Models.SummaryListModel
+
+<dl id="@Model.Id" class="govuk-summary-list @Model.Classes" @Html.Raw(Model.ExpandAttributes())>
+  @if (Model.Rows != null)
+  {
+    foreach (var row in Model.Rows)
+    {
+      <div id="@row.Id" class="govuk-summary-list__row @(row.Actions?.Any() == true ? "" : "govuk-summary-list__row--no-actions") @row.Classes" @Html.Raw(row.ExpandAttributes())>
+        <dt id="@row.Key?.Id" class="govuk-summary-list__key @row.Key?.Classes" @Html.Raw(row.Key?.ExpandAttributes())>
+          @await Html.PartialAsync("GdsContent", row.Key?.Content)
+        </dt>
+        <dd id="@row.Value?.Id" class="govuk-summary-list__value @row.Value?.Classes" @Html.Raw(row.Value?.ExpandAttributes())>
+          @await Html.PartialAsync("GdsContent", row.Value?.Content)
+        </dd>
+        @if (row.Actions != null)
+        {
+          <dd class="govuk-summary-list__actions @row.ActionsClasses">
+            @if (row.Actions.Count == 1)
+            {
+              @await Html.PartialAsync("GdsLink", row.Actions.First())
+            }
+            else
+            {
+              <ul class="govuk-summary-list__actions-list">
+                @foreach (var action in row.Actions)
+                {
+                  <li class="govuk-summary-list__actions-list-item">
+                    @await Html.PartialAsync("GdsLink", action)
+                  </li>
+                }
+              </ul>
+            }
+          </dd>
+        }
+      </div>
+    }
+  }
+</dl>

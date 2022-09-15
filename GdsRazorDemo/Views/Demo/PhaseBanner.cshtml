@@ -1,0 +1,33 @@
+@using GdsRazor.Models
+
+@{
+    ViewData["Title"] = "PhaseBanner Demo";
+    Layout = "../Layout";
+}
+
+<h1 class="govuk-heading-l">PhaseBanner</h1>
+<h2 class="govuk-heading-s">Default:</h2>
+<div class="demo">
+    @await Html.PartialAsync("GdsPhaseBanner", new PhaseBannerModel())
+</div>
+
+<h2 class="govuk-heading-s">Custom:</h2>
+<div class="demo">
+    @await Html.PartialAsync("GdsPhaseBanner", new PhaseBannerModel(
+        (HTML) (@<text>This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.</text>)
+    ) {
+        Tag = "Alpha"
+    })
+</div>
+
+<h2 class="govuk-heading-s">Colour:</h2>
+<div class="demo">
+    @await Html.PartialAsync("GdsPhaseBanner", new PhaseBannerModel(
+        (HTML) (@<text>This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.</text>)
+    ) {
+        Tag = new TagModel("Beta")
+        {
+            Classes = TagModel.Colors.Pink
+        }
+    })
+</div>

@@ -1,0 +1,34 @@
+@using GdsRazor.Models
+
+@{
+    ViewData["Title"] = "Button Demo";
+    Layout = "../Layout";
+}
+
+<h1 class="govuk-heading-l">Button</h1>
+<h2 class="govuk-heading-s">Default:</h2>
+<div class="demo">
+    @await Html.PartialAsync("GdsButton", new ButtonModel())
+</div>
+
+<h2 class="govuk-heading-s">Customised:</h2>
+<div class="demo">
+    @await Html.PartialAsync("GdsButton", new ButtonModel("Start now")
+    {
+        Href = "#",
+        IsStartButton = true
+    })
+</div>
+
+<h2 class="govuk-heading-s">More:</h2>
+<div class="demo">
+    @await Html.PartialAsync("GdsButton", new ButtonModel("Delete account")
+    {
+        Classes = ButtonModel.Colors.Warning,
+        Disabled = true
+    })
+    @await Html.PartialAsync("GdsButton", new ButtonModel("Find address")
+    {
+        Classes = ButtonModel.Colors.Secondary
+    })
+</div>

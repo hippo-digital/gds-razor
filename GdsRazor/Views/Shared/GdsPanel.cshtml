@@ -1,0 +1,17 @@
+﻿@using GdsRazor.Models
+@model GdsRazor.Models.PanelModel
+
+<div id="@Model.Id" class="govuk-panel govuk-panel--confirmation @Model.Classes" @Html.Raw(Model.ExpandAttributes())>
+  @await Html.PartialAsync("GdsHeading", new HeadingModel
+  {
+    HeadingLevel = Model.HeadingLevel ?? 1,
+    Classes = "govuk-panel__title",
+    Content = Model.Title
+  })
+  @if (Model.Content != null)
+  {
+    <div class="govuk-panel__body">
+      @await Html.PartialAsync("GdsContent", Model.Content)
+    </div>
+  }
+</div>

@@ -1,0 +1,51 @@
+@using GdsRazor.Models
+
+@{
+    ViewData["Title"] = "Pagination Demo";
+    Layout = "../Layout";
+}
+
+<h1 class="govuk-heading-l">Pagination</h1>
+<h2 class="govuk-heading-s">Default:</h2>
+<div class="demo">
+    @await Html.PartialAsync("GdsPagination", new PaginationModel())
+</div>
+
+<h2 class="govuk-heading-s">Custom:</h2>
+<div class="demo">
+    @await Html.PartialAsync("GdsPagination", new PaginationModel
+    {
+        Previous = "#",
+        Next = "#",
+        Items = new List<PaginationModel.IItemModel>
+        {
+            new PaginationModel.ItemModel("#", "1"),
+            new PaginationModel.ItemModel("#", "2") { Current = true },
+            new PaginationModel.EllipsisModel(),
+            new PaginationModel.ItemModel("#", "4")
+        }
+    })
+</div>
+
+<h2 class="govuk-heading-s">Small:</h2>
+<div class="demo">
+    @await Html.PartialAsync("GdsPagination", new PaginationModel
+    {
+        Previous = new PaginationModel.LinkModel("#") { LabelText = "1 of 3" },
+        Next = new PaginationModel.LinkModel("#") { LabelText = "3 of 3" }
+    })
+</div>
+
+<h2 class="govuk-heading-s">First:</h2>
+<div class="demo">
+    @await Html.PartialAsync("GdsPagination", new PaginationModel
+    {
+        Next = "#",
+        Items = new List<PaginationModel.IItemModel>
+        {
+            new PaginationModel.ItemModel("#", "1") { Current = true },
+            new PaginationModel.ItemModel("#", "2"),
+            new PaginationModel.ItemModel("#", "3")
+        }
+    })
+</div>

@@ -1,0 +1,59 @@
+@using GdsRazor.Models
+
+@{
+    ViewData["Title"] = "Radios Demo";
+    Layout = "../Layout";
+}
+
+<h1 class="govuk-heading-l">Radios</h1>
+<h2 class="govuk-heading-s">Default:</h2>
+<div class="demo">
+    @await Html.PartialAsync("GdsRadios", new RadiosModel())
+</div>
+
+<h2 class="govuk-heading-s">Customised:</h2>
+<div class="demo">
+    @await Html.PartialAsync("GdsRadios", new RadiosModel(
+        "where-do-you-live",
+        new RadiosModel.ItemModel("england", "England"),
+        new RadiosModel.ItemModel("scotland", "Scotland"),
+        new RadiosModel.ItemModel("wales", "Wales"),
+        new RadiosModel.DividerModel { Divider = "or" },
+        new RadiosModel.ItemModel("northern-ireland", "Northern Ireland")
+    ) {
+        IdPrefix = "where-do-you-live",
+        Fieldset = new FieldsetModel
+        {
+            Legend = new FieldsetModel.LegendModel("Where do you live?")
+            {
+                IsPageHeading = true,
+                Classes = FieldsetModel.LegendModel.Sizes.Large
+            }
+        }
+    })
+</div>
+
+<h2 class="govuk-heading-s">Error:</h2>
+<div class="demo">
+    @await Html.PartialAsync("GdsRadios", new RadiosModel(
+        "where-do-you-live-error",
+        new RadiosModel.ItemModel("england", "England"),
+        new RadiosModel.ItemModel("scotland", "Scotland"),
+        new RadiosModel.ItemModel("wales", "Wales"),
+        new RadiosModel.DividerModel { Divider = "or" },
+        new RadiosModel.ItemModel("northern-ireland", "Northern Ireland")
+    ) {
+        IdPrefix = "where-do-you-live-error",
+        Fieldset = new FieldsetModel
+        {
+            Legend = new FieldsetModel.LegendModel
+            {
+                Content = "Where do you live?",
+                IsPageHeading = true,
+                Classes = FieldsetModel.LegendModel.Sizes.Large
+            }
+        },
+        Value = "northern-ireland",
+        ErrorMessage = "Please choose at least one"
+    })
+</div>

@@ -1,0 +1,31 @@
+@using GdsRazor.Models
+
+@{
+    ViewData["Title"] = "Header Demo";
+    Layout = "../Layout";
+}
+
+<h1 class="govuk-heading-l">Header</h1>
+<h2 class="govuk-heading-s">Default:</h2>
+<div class="demo">
+    @await Html.PartialAsync("GdsHeader", new HeaderModel())
+</div>
+
+<h2 class="govuk-heading-s">Customised:</h2>
+<div class="demo">
+    @await Html.PartialAsync("GdsHeader", new HeaderModel
+    {
+        ProductName = "Pay",
+        ServiceName = "Pay for things",
+        ServiceUrl = "/Header",
+        Navigation = new List<HeaderModel.ItemModel>
+        {
+            new("First")
+            {
+                Active = true,
+                Href = "/1"
+            },
+            ("/2", "Second")
+        }
+    })
+</div>

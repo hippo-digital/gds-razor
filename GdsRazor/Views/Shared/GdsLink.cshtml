@@ -1,0 +1,9 @@
+﻿@model GdsRazor.Models.LinkModel
+
+<a id="@Model.Id" class="govuk-link @Model.Classes" href="@Model.Href" @Html.Raw(Model.ExpandAttributes())>
+  @await Html.PartialAsync("GdsContent", Model.Content)
+  @if (!string.IsNullOrEmpty(Model.VisuallyHiddenText))
+  {
+    <span class="govuk-visually-hidden">@Model.VisuallyHiddenText</span>
+  }
+</a>

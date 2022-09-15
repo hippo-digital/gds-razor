@@ -1,0 +1,12 @@
+﻿@model GdsRazor.Models.DetailsModel
+
+<details id="@Model.Id" class="govuk-details @Model.Classes" data-module="govuk-details" @Html.Raw(Model.ExpandAttributes()) @if (Model.Open) { <text>open</text> }>
+  <summary class="govuk-details__summary">
+    <span class="govuk-details__summary-text">
+      @await Html.PartialAsync("GdsContent", Model.Summary)
+    </span>
+  </summary>
+  <div class="govuk-details__text">
+    @await Html.PartialAsync("GdsContent", Model.Content)
+  </div>
+</details>
