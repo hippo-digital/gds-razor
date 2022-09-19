@@ -8,6 +8,11 @@ using Xunit;
 
 namespace GdsRazorTest.Tests.Internal;
 
+[CollectionDefinition("GDS")]
+public class GdsCollection : ICollectionFixture<CustomWebApplicationFactory<Startup>>, ICollectionFixture<SeleniumBase>
+{
+}
+
 [Collection("GDS")]
 public abstract class ClientBase<TStartup> where TStartup : class
 {

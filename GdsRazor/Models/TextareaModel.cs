@@ -12,7 +12,7 @@ public class TextareaModel : GdsViewModel
     /// <summary>
     /// Optional field to enable or disable the spellcheck attribute on the textarea.
     /// </summary>
-    public bool Spellcheck { get; set; }
+    public bool? Spellcheck { get; set; }
 
     /// <summary>
     /// Optional number of textarea rows.
