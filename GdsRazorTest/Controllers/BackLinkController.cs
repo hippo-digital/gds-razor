@@ -19,4 +19,5 @@ public class BackLinkController : Controller
     public IActionResult HtmlAsText() => PartialView("GdsBackLink", Examples.HtmlAsText);
     public IActionResult Html() => View();
     public IActionResult Attributes() => View();
+    public IActionResult Axe() => View(Examples.Default);
 }

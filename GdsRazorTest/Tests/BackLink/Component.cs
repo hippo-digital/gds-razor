@@ -1,13 +1,22 @@
 using AngleSharp.Html.Dom;
 using GdsRazorTest.Tests.Internal;
-using Microsoft.AspNetCore.Mvc.Testing;
 using Xunit;
 
 namespace GdsRazorTest.Tests.BackLink;
 
-public class ComponentTests : GdsTestBase
+public class ComponentTests : ClientBase<Startup>
 {
-    public ComponentTests(WebApplicationFactory<Startup> factory) : base(factory) { }
+    public ComponentTests(CustomWebApplicationFactory<Startup> factory, SeleniumBase seleniumBase) : base(factory, seleniumBase.Driver)
+    {
+    }
+
+    [Fact]
+    public void PassesAccessibilityTests()
+    {
+        var axeResult = AxeResults("BackLink");
+
+        Assert.Empty(axeResult.Violations);
+    }
 
     [Fact]
     public async void RendersTheDefaultExampleWithAnAnchorHrefAndTextCorrectly()

@@ -1,15 +1,8 @@
-using Microsoft.AspNetCore.Mvc.Testing;
 using Xunit;
 
 namespace GdsRazorTest.Tests.Internal;
 
-public abstract class GdsTestBase : ClientBase<Startup>, IClassFixture<WebApplicationFactory<Startup>>
+[CollectionDefinition("GDS")]
+public class GdsCollection : ICollectionFixture<CustomWebApplicationFactory<Startup>>, ICollectionFixture<SeleniumBase>
 {
-    protected GdsTestBase(WebApplicationFactory<Startup> factory) : base(factory)
-    {
-    }
-
-    protected override void Configure(IServiceCollection services)
-    {
-    }
 }

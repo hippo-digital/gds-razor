@@ -1,12 +1,21 @@
 using GdsRazorTest.Tests.Internal;
-using Microsoft.AspNetCore.Mvc.Testing;
 using Xunit;
 
 namespace GdsRazorTest.Tests.Accordion;
 
-public class DefaultTests : GdsTestBase
+public class DefaultTests : ClientBase<Startup>
 {
-    public DefaultTests(WebApplicationFactory<Startup> factory) : base(factory) { }
+    public DefaultTests(CustomWebApplicationFactory<Startup> factory, SeleniumBase seleniumBase) : base(factory, seleniumBase.Driver)
+    {
+    }
+
+    [Fact]
+    public void PassesAccessibilityTests()
+    {
+        var axeResult = AxeResults("Accordion");
+
+        Assert.Empty(axeResult.Violations);
+    }
 
     [Fact]
     public async void RendersWithHeadingButtonText()

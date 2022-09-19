@@ -46,4 +46,5 @@ public class AccordionController : Controller
     public IActionResult WithOneSectionOpen() => View();
     public IActionResult WithAdditionalDescriptions() => View();
     public IActionResult WithTranslations() => View();
+    public IActionResult Axe() => View();
 }

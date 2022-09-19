@@ -34,4 +34,5 @@ public class BreadcrumbsController : Controller
     public IActionResult Html() => View();
     public IActionResult WithLastBreadcrumbAsCurrentPage() => PartialView("GdsBreadcrumbs", Examples.WithLastBreadcrumbAsCurrentPage);
     public IActionResult WithCollapseOnMobile() => PartialView("GdsBreadcrumbs", Examples.WithCollapseOnMobile);
+    public IActionResult Axe() => View(Examples.Default);
 }

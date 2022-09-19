@@ -1,13 +1,11 @@
-using AngleSharp.Html.Dom;
 using GdsRazorTest.Tests.Internal;
-using Microsoft.AspNetCore.Mvc.Testing;
 using Xunit;
 
 namespace GdsRazorTest.Tests.Breadcrumbs;
 
-public class CustomTests : GdsTestBase
+public class CustomTests : ClientBase<Startup>
 {
-    public CustomTests(WebApplicationFactory<Startup> factory) : base(factory) { }
+    public CustomTests(CustomWebApplicationFactory<Startup> factory) : base(factory) { }
 
     [Fact]
     public async void RendersItemWithText()
