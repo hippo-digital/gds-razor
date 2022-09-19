@@ -5,6 +5,17 @@
         <TargetFramework>net6.0</TargetFramework>
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <PackageVersion>0.0.1</PackageVersion>
+        <Title>GdsRazor</Title>
+        <Authors>Hippo Digital UK</Authors>
+        <RepositoryUrl>https://github.com/hippo-digital/gds-razor</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+        <PackageId>Hippo.GdsRazor</PackageId>
+        <Copyright>Hippo Digital UK</Copyright>
+        <PackageLicenseUrl>https://licenses.nuget.org/MIT</PackageLicenseUrl>
+        <Description>Components from govuk-frontend packaged as ASP.NET partial views.</Description>
+        <IsPackable>true</IsPackable>
     </PropertyGroup>
 
     <ItemGroup>
