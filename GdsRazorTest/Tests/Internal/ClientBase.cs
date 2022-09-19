@@ -2,6 +2,11 @@ using AngleSharp;
 using AngleSharp.Dom;
 using AngleSharp.Html.Dom;
 using AngleSharp.Io;
+using AutoFixture;
+using AutoFixture.Kernel;
+using AutoFixture.Xunit2;
+using GdsRazor.Models;
+using GdsRazor.Models.Content;
 using OpenQA.Selenium;
 using Selenium.Axe;
 using Xunit;
@@ -11,6 +16,20 @@ namespace GdsRazorTest.Tests.Internal;
 [CollectionDefinition("GDS")]
 public class GdsCollection : ICollectionFixture<CustomWebApplicationFactory<Startup>>, ICollectionFixture<SeleniumBase>
 {
+    public static (string, object?) Model = ("", null);
+}
+
+public class GdsAutoDataAttribute : AutoDataAttribute
+{
+    public GdsAutoDataAttribute()
+        : base(() =>
+        {
+            var fixture = new Fixture();
+            fixture.Customizations.Add(new TypeRelay(typeof(GdsContent), typeof(GdsPlain)));
+            return fixture;
+        })
+    {
+    }
 }
 
 [Collection("GDS")]

@@ -1,7 +1,20 @@
-﻿namespace GdsRazorTest;
+﻿using GdsRazorTest.Tests.Internal;
+
+namespace GdsRazorTest;
+
+public interface IModelProvider
+{
+    public (string, object?) GetModel();
+}
+
 
 public class Startup
 {
+    private class ModelProvider : IModelProvider
+    {
+        public (string, object?) GetModel() => GdsCollection.Model;
+    }
+
     public Startup(IConfiguration configuration, IWebHostEnvironment env)
     {
         Configuration = configuration;
@@ -17,6 +30,8 @@ public class Startup
         services.AddResponseCaching();
         services.AddAuthorization();
         services.AddServerSideBlazor();
+
+        services.AddSingleton<IModelProvider>(new ModelProvider());
 
         services.AddControllersWithViews().AddRazorRuntimeCompilation();
     }
