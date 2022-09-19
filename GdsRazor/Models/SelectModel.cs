@@ -4,10 +4,26 @@ namespace GdsRazor.Models;
 
 public class SelectModel : GdsViewModel
 {
+    /// <summary>
+    /// Name property for the select.
+    /// </summary>
     public string? Name { get; set; }
+
+    /// <summary>
+    /// Array of option items for the select.
+    /// </summary>
     public List<ItemModel>? Items { get; set; }
+
+    /// <summary>
+    /// Value for the option which should be selected.
+    /// Use this as an alternative to setting the selected option on each individual item.
+    /// </summary>
     public string? Value { get; set; }
+
     private string? _describedBy;
+    /// <summary>
+    /// One or more element IDs to add to the input aria-describedby attribute without a fieldset, used to provide additional descriptive information for screenreader users.
+    /// </summary>
     public string? DescribedBy
     {
         get
@@ -19,9 +35,14 @@ public class SelectModel : GdsViewModel
         }
         set => _describedBy = value;
     }
+
     public LabelModel? Label { get; set; }
     public HintModel? Hint { get; set; }
     public ErrorMessageModel? ErrorMessage { get; set; }
+
+    /// <summary>
+    /// Classes to add to the form group (for example to show error state for the whole group).
+    /// </summary>
     public string? FormGroupClasses { get; set; }
 
     public SelectModel()
@@ -40,9 +61,24 @@ public class SelectModel : GdsViewModel
 
     public class ItemModel : GdsAttributes
     {
+        /// <summary>
+        /// Value for the option item.
+        /// </summary>
         public string? Value { get; set; }
+
+        /// <summary>
+        /// Text for the option item.
+        /// </summary>
         public string? Text { get; set; }
+
+        /// <summary>
+        /// Whether the option should be selected when the page loads. Takes precedence over the top-level value option.
+        /// </summary>
         public bool Selected { get; set; }
+
+        /// <summary>
+        /// Sets the option item as disabled.
+        /// </summary>
         public bool Disabled { get; set; }
 
         public ItemModel()

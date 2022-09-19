@@ -4,6 +4,9 @@ namespace GdsRazor.Models.Base;
 
 public abstract class GdsAttributes
 {
+    /// <summary>
+    /// HTML attributes (for example data attributes) to add to the element
+    /// </summary>
     public Dictionary<string, string?>? Attributes { get; set; }
 
     protected virtual IEnumerable<KeyValuePair<string, string?>> GetAllAttributes() => Attributes ?? Enumerable.Empty<KeyValuePair<string, string?>>();

@@ -3,10 +3,16 @@ using GdsRazor.Models.Content;
 
 namespace GdsRazor.Models;
 
+/// <summary>
+/// Use the summary list to summarise information, for example, a user’s responses at the end of a form.
+/// </summary>
 public class SummaryListModel : GdsViewModel
 {
     public const string NoBorder = "govuk-summary-list--no-border";
 
+    /// <summary>
+    /// Array of row item objects.
+    /// </summary>
     public List<RowModel>? Rows { get; set; }
 
     public SummaryListModel()
@@ -26,7 +32,15 @@ public class SummaryListModel : GdsViewModel
     {
         public ItemModel? Key { get; set; }
         public ItemModel? Value { get; set; }
+
+        /// <summary>
+        /// Classes to add to the actions wrapper.
+        /// </summary>
         public string? ActionsClasses { get; set; }
+
+        /// <summary>
+        /// Array of action item objects.
+        /// </summary>
         public List<ActionModel>? Actions { get; set; }
 
         public RowModel()

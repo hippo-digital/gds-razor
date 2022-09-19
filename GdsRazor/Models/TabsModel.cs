@@ -4,10 +4,24 @@ using Microsoft.AspNetCore.Html;
 
 namespace GdsRazor.Models;
 
+/// <summary>
+/// The tabs component lets users navigate between related sections of content, displaying one section at a time.
+/// </summary>
 public class TabsModel : GdsViewModel
 {
+    /// <summary>
+    /// String to prefix id for each tab item if no id is specified on each item.
+    /// </summary>
     public string? IdPrefix { get; set; }
+
+    /// <summary>
+    /// Title for the tabs table of contents.
+    /// </summary>
     public string? Title { get; set; }
+
+    /// <summary>
+    /// Array of tab items.
+    /// </summary>
     public List<ItemModel>? Items { get; set; }
 
     public TabsModel()
@@ -25,7 +39,14 @@ public class TabsModel : GdsViewModel
 
     public class ItemModel : GdsViewModel
     {
+        /// <summary>
+        /// The text label of a tab item.
+        /// </summary>
         public string? Label { get; set; }
+
+        /// <summary>
+        /// Content for the panel.
+        /// </summary>
         public PanelModel? Panel { get; set; }
 
         public ItemModel()

@@ -2,10 +2,19 @@ using GdsRazor.Models.Base;
 
 namespace GdsRazor.Models;
 
+/// <summary>
+/// The breadcrumbs component helps users to understand where they are within a website’s structure and move between levels.
+/// </summary>
 public class BreadcrumbsModel : GdsViewModel
 {
+    /// <summary>
+    /// Array of breadcrumbs item objects.
+    /// </summary>
     public List<LinkModel>? Items { get; set; }
 
+    /// <summary>
+    /// When true, the breadcrumbs will collapse to the first and last item only on tablet breakpoint and below.
+    /// </summary>
     public bool CollapseOnMobile { get; set; }
 
     public BreadcrumbsModel()

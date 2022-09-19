@@ -3,6 +3,9 @@ using GdsRazor.Models.Content;
 
 namespace GdsRazor.Models;
 
+/// <summary>
+/// Use the tag component to show users the status of something.
+/// </summary>
 public class TagModel : GdsWithContent
 {
     public TagModel()

@@ -2,7 +2,14 @@
 
 public abstract class GdsViewModel : GdsAttributes
 {
+    /// <summary>
+    /// Set the id of the element
+    /// </summary>
     public string? Id { get; set; }
+
+    /// <summary>
+    /// Classes to add to the element
+    /// </summary>
     public string? Classes { get; set; }
 
 

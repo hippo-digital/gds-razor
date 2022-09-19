@@ -5,6 +5,9 @@ namespace GdsRazor.Models;
 
 public class LinkModel : GdsWithHref
 {
+    /// <summary>
+    /// A visually hidden prefix used before the error message.
+    /// </summary>
     public string? VisuallyHiddenText { get; set; }
 
     public LinkModel()

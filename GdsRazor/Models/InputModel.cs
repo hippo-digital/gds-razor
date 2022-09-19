@@ -5,12 +5,27 @@ namespace GdsRazor.Models;
 
 public class InputModel : GdsViewModel
 {
+    /// <summary>
+    /// The name of the input, which is submitted with the form data.
+    /// </summary>
     public string? Name { get; set; }
+
+    /// <summary>
+    /// Type of input control to render, for example, a password input control.
+    /// </summary>
     public string? Type { get; set; }
+
     public string? Inputmode { get; set; }
+
+    /// <summary>
+    /// Optional initial value of the input.
+    /// </summary>
     public string? Value { get; set; }
 
     private string? _describedBy;
+    /// <summary>
+    /// One or more element IDs to add to the aria-describedby attribute, used to provide additional descriptive information for screenreader users.
+    /// </summary>
     public string? DescribedBy
     {
         get
@@ -28,9 +43,25 @@ public class InputModel : GdsViewModel
     public ErrorMessageModel? ErrorMessage { get; set; }
     public AffixModel? Prefix { get; set; }
     public AffixModel? Suffix { get; set; }
+
+    /// <summary>
+    /// Classes to add to the form group (for example to show error state for the whole group).
+    /// </summary>
     public string? FormGroupClasses { get; set; }
+
+    /// <summary>
+    /// Attribute to identify input purpose, for instance "postal-code" or "username".
+    /// </summary>
     public string? Autocomplete { get; set; }
+
+    /// <summary>
+    /// Attribute to provide a regular expression pattern, used to match allowed character combinations for the input value.
+    /// </summary>
     public string? Pattern { get; set; }
+
+    /// <summary>
+    /// Optional field to enable or disable the spellcheck attribute on the input.
+    /// </summary>
     public bool Spellcheck { get; set; }
 
     public InputModel()
