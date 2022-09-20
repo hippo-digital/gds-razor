@@ -30,4 +30,5 @@ public class TagModel : GdsWithContent
     }
 
     public static implicit operator TagModel(string s) => new(s);
+    public static implicit operator TagModel(HTML h) => new(h);
 }

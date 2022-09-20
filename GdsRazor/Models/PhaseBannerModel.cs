@@ -17,4 +17,6 @@ public class PhaseBannerModel : GdsWithContent
     public PhaseBannerModel(GdsContent content) : base(content)
     {
     }
+
+    public static implicit operator PhaseBannerModel(string s) => new(s);
 }
