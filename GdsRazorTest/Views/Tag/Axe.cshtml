@@ -1,0 +1,9 @@
+@using GdsRazor.Models
+@model TagModel
+
+@{
+    ViewData["Title"] = "Tag Axe";
+    Layout = "../Axe";
+}
+
+@await Html.PartialAsync("GdsTag", Model)

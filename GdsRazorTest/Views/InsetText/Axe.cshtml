@@ -1,0 +1,9 @@
+@using GdsRazor.Models
+@model InsetTextModel
+
+@{
+    ViewData["Title"] = "InsetText Axe";
+    Layout = "../Axe";
+}
+
+@await Html.PartialAsync("GdsInsetText", Model)

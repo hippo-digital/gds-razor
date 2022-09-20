@@ -15,4 +15,6 @@ public class SkipLinkModel : GdsWithHref
     public SkipLinkModel(GdsContent content) : base(content)
     {
     }
+
+    public static implicit operator SkipLinkModel(string s) => new(s);
 }
