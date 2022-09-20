@@ -15,7 +15,7 @@ public class ExplicitTests : ClientBase<Startup>
         var component = response.QuerySelector(".govuk-button");
 
         Assert.IsAssignableFrom<IHtmlInputElement>(component);
-        Assert.Equal("submit", ((IHtmlInputElement) component).Type);
+        Assert.Equal("submit", ((IHtmlInputElement) component!).Type);
     }
 
     [Fact]
@@ -24,8 +24,8 @@ public class ExplicitTests : ClientBase<Startup>
         var response = await Navigate("/Button/InputAttributes");
         var component = response.QuerySelector(".govuk-button");
 
-        Assert.Equal("example-id", component.Attributes["aria-controls"].Value);
-        Assert.Equal("123", component.Attributes["data-tracking-dimension"].Value);
+        Assert.Equal("example-id", component!.Attributes["aria-controls"]?.Value);
+        Assert.Equal("123", component.Attributes["data-tracking-dimension"]?.Value);
     }
 
     [Fact]
@@ -34,7 +34,7 @@ public class ExplicitTests : ClientBase<Startup>
         var response = await Navigate("/Button/InputClasses");
         var component = response.QuerySelector(".govuk-button");
 
-        Assert.Contains("app-button--custom-modifier", component.ClassList);
+        Assert.Contains("app-button--custom-modifier", component!.ClassList);
     }
 
     [Fact]
@@ -43,7 +43,7 @@ public class ExplicitTests : ClientBase<Startup>
         var response = await Navigate("/Button/InputDisabled");
         var component = response.QuerySelector(".govuk-button");
 
-        Assert.Equal("true", component.Attributes["aria-disabled"].Value);
+        Assert.Equal("true", component!.Attributes["aria-disabled"]?.Value);
         Assert.True(((IHtmlInputElement) component).IsDisabled);
         Assert.Contains("govuk-button--disabled", component.ClassList);
     }
@@ -54,7 +54,7 @@ public class ExplicitTests : ClientBase<Startup>
         var response = await Navigate("/Button/Input");
         var component = response.QuerySelector(".govuk-button");
 
-        Assert.Equal("start-now", ((IHtmlInputElement) component).Name);
+        Assert.Equal("start-now", ((IHtmlInputElement) component!).Name);
     }
 
     [Fact]
@@ -64,6 +64,6 @@ public class ExplicitTests : ClientBase<Startup>
         var component = response.QuerySelector(".govuk-button");
 
         Assert.IsAssignableFrom<IHtmlInputElement>(component);
-        Assert.Equal("button", ((IHtmlInputElement) component).Type);
+        Assert.Equal("button", ((IHtmlInputElement) component!).Type);
     }
 }

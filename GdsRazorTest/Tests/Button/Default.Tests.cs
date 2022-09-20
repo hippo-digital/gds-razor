@@ -25,6 +25,6 @@ public class DefaultTests : ClientBase<Startup>
         var component = response.QuerySelector(".govuk-button");
 
         Assert.IsAssignableFrom<IHtmlButtonElement>(component);
-        Assert.Equal("Save and continue", component.TextContent.Trim());
+        Assert.Equal("Save and continue", component!.TextContent.Trim());
     }
 }

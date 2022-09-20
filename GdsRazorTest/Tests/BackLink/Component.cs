@@ -25,7 +25,7 @@ public class ComponentTests : ClientBase<Startup>
         var component = response.QuerySelector(".govuk-back-link");
 
         Assert.IsAssignableFrom<IHtmlAnchorElement>(component);
-        Assert.Equal("#", component.Attributes["href"].Value);
+        Assert.Equal("#", component!.Attributes["href"]?.Value);
         Assert.Equal("Back", component.TextContent.Trim());
     }
 
@@ -35,7 +35,7 @@ public class ComponentTests : ClientBase<Startup>
         var response = await Navigate("/BackLink/Classes");
         var component = response.QuerySelector(".govuk-back-link");
 
-        Assert.Contains("app-back-link--custom-class", component.ClassList);
+        Assert.Contains("app-back-link--custom-class", component!.ClassList);
     }
 
     [Fact]
@@ -44,7 +44,7 @@ public class ComponentTests : ClientBase<Startup>
         var response = await Navigate("/BackLink/CustomText");
         var component = response.QuerySelector(".govuk-back-link");
 
-        Assert.Equal("Back to home", component.InnerHtml.Trim());
+        Assert.Equal("Back to home", component!.InnerHtml.Trim());
     }
 
     [Fact]
@@ -53,7 +53,7 @@ public class ComponentTests : ClientBase<Startup>
         var response = await Navigate("/BackLink/HtmlAsText");
         var component = response.QuerySelector(".govuk-back-link");
 
-        Assert.Equal("&lt;b&gt;Home&lt;/b&gt;", component.InnerHtml.Trim());
+        Assert.Equal("&lt;b&gt;Home&lt;/b&gt;", component!.InnerHtml.Trim());
     }
 
     [Fact]
@@ -62,7 +62,7 @@ public class ComponentTests : ClientBase<Startup>
         var response = await Navigate("/BackLink/Html");
         var component = response.QuerySelector(".govuk-back-link");
 
-        Assert.Equal("<b>Back</b>", component.InnerHtml.Trim());
+        Assert.Equal("<b>Back</b>", component!.InnerHtml.Trim());
     }
 
     [Fact]
@@ -71,7 +71,7 @@ public class ComponentTests : ClientBase<Startup>
         var response = await Navigate("/BackLink/Attributes");
         var component = response.QuerySelector(".govuk-back-link");
 
-        Assert.Equal("attribute", component.Attributes["data-test"].Value);
-        Assert.Equal("Back to home", component.Attributes["aria-label"].Value);
+        Assert.Equal("attribute", component!.Attributes["data-test"]?.Value);
+        Assert.Equal("Back to home", component.Attributes["aria-label"]?.Value);
     }
 }

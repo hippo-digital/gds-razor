@@ -22,7 +22,7 @@ public class CustomTests : ClientBase<Startup>
         var response = await Navigate("/Breadcrumbs/HtmlAsText");
         var item = response.QuerySelector(".govuk-breadcrumbs__list-item");
 
-        Assert.Equal("&lt;span&gt;Section 1&lt;/span&gt;", item.InnerHtml.Trim());
+        Assert.Equal("&lt;span&gt;Section 1&lt;/span&gt;", item!.InnerHtml.Trim());
     }
 
     [Fact]
@@ -31,7 +31,7 @@ public class CustomTests : ClientBase<Startup>
         var response = await Navigate("/Breadcrumbs/Html");
         var item = response.QuerySelector(".govuk-breadcrumbs__list-item");
 
-        Assert.Equal("<em>Section 1</em>", item.InnerHtml.Trim());
+        Assert.Equal("<em>Section 1</em>", item!.InnerHtml.Trim());
     }
 
     [Fact]
@@ -49,8 +49,8 @@ public class CustomTests : ClientBase<Startup>
         var response = await Navigate("/Breadcrumbs/ItemAttributes");
         var breadcrumbLink = response.QuerySelector(".govuk-breadcrumbs__link");
 
-        Assert.Equal("my-attribute", breadcrumbLink.Attributes["data-attribute"].Value);
-        Assert.Equal("my-attribute-2", breadcrumbLink.Attributes["data-attribute-2"].Value);
+        Assert.Equal("my-attribute", breadcrumbLink!.Attributes["data-attribute"]?.Value);
+        Assert.Equal("my-attribute-2", breadcrumbLink.Attributes["data-attribute-2"]?.Value);
     }
 
     [Fact]
@@ -59,7 +59,7 @@ public class CustomTests : ClientBase<Startup>
         var response = await Navigate("/Breadcrumbs/Classes");
         var component = response.QuerySelector(".govuk-breadcrumbs");
 
-        Assert.Contains("app-breadcrumbs--custom-modifier", component.ClassList);
+        Assert.Contains("app-breadcrumbs--custom-modifier", component!.ClassList);
     }
 
     [Fact]
@@ -68,8 +68,8 @@ public class CustomTests : ClientBase<Startup>
         var response = await Navigate("/Breadcrumbs/Attributes");
         var component = response.QuerySelector(".govuk-breadcrumbs");
 
-        Assert.Equal("my-navigation", component.Id);
-        Assert.Equal("navigation", component.Attributes["role"].Value);
+        Assert.Equal("my-navigation", component!.Id);
+        Assert.Equal("navigation", component.Attributes["role"]?.Value);
     }
 
     [Fact]
@@ -78,7 +78,7 @@ public class CustomTests : ClientBase<Startup>
         var response = await Navigate("/Breadcrumbs/WithCollapseOnMobile");
         var component = response.QuerySelector(".govuk-breadcrumbs");
 
-        Assert.Contains("govuk-breadcrumbs--collapse-on-mobile", component.ClassList);
+        Assert.Contains("govuk-breadcrumbs--collapse-on-mobile", component!.ClassList);
 
     }
 }

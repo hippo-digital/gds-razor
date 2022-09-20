@@ -71,23 +71,15 @@ public class HttpClientRequester : BaseRequester
     /// <returns>
     /// The task that will eventually give the response data.
     /// </returns>
-    protected override async Task<IResponse> PerformRequestAsync(Request request, CancellationToken cancel)
+    protected override async Task<IResponse?> PerformRequestAsync(Request request, CancellationToken cancel)
     {
         // create the request message
         var method = new HttpMethod(request.Method.ToString().ToUpperInvariant());
         Console.WriteLine($"Requested {request.Address}");
         var requestMessage = new HttpRequestMessage(method, request.Address);
-        var contentHeaders = new List<KeyValuePair<String, String>>();
-
-        foreach (var header in request.Headers)
-        {
-            // Source:
-            // https://github.com/aspnet/Mvc/blob/02c36a1c4824936682b26b6c133d11bebee822a2/src/Microsoft.AspNet.Mvc.WebApiCompatShim/HttpRequestMessage/HttpRequestMessageFeature.cs
-            if (!requestMessage.Headers.TryAddWithoutValidation(header.Key, header.Value))
-            {
-                contentHeaders.Add(new KeyValuePair<String, String>(header.Key, header.Value));
-            }
-        }
+        var contentHeaders = request.Headers
+            .Where(header => !requestMessage.Headers.TryAddWithoutValidation(header.Key, header.Value))
+            .Select(header => (header.Key, header.Value)).ToList();
 
         // set up the content
         if (request.Content != null && method != HttpMethod.Get && method != HttpMethod.Head)
@@ -109,26 +101,23 @@ public class HttpClientRequester : BaseRequester
             var response = new DefaultResponse
             {
                 Headers = responseMessage.Headers.ToDictionary(p => p.Key, p => String.Join(", ", p.Value)),
-                Address = Url.Convert(responseMessage.RequestMessage.RequestUri),
+                Address = Url.Convert(responseMessage.RequestMessage!.RequestUri!),
                 StatusCode = responseMessage.StatusCode
             };
 
             // get the anticipated content
             var content = responseMessage.Content;
 
-            if (content != null)
-            {
-                response.Content = await content.ReadAsStreamAsync().ConfigureAwait(false);
+            response.Content = await content.ReadAsStreamAsync(cancel).ConfigureAwait(false);
 
-                foreach (var pair in content.Headers)
-                {
-                    response.Headers[pair.Key] = String.Join(", ", pair.Value);
-                }
+            foreach (var pair in content.Headers)
+            {
+                response.Headers[pair.Key] = string.Join(", ", pair.Value);
             }
 
             if (IsRedirected(response) && !response.Headers.ContainsKey(HeaderNames.SetCookie))
             {
-                response.Headers[HeaderNames.SetCookie] = String.Empty;
+                response.Headers[HeaderNames.SetCookie] = string.Empty;
             }
 
             return response;
@@ -148,9 +137,8 @@ public class HttpClientRequester : BaseRequester
     {
         var status = response.StatusCode;
 
-        return status == HttpStatusCode.Redirect || status == HttpStatusCode.RedirectKeepVerb ||
-               status == HttpStatusCode.RedirectMethod || status == HttpStatusCode.TemporaryRedirect ||
-               status == HttpStatusCode.MovedPermanently || status == HttpStatusCode.MultipleChoices;
+        return status is HttpStatusCode.Redirect or HttpStatusCode.RedirectKeepVerb or HttpStatusCode.RedirectMethod or HttpStatusCode.TemporaryRedirect or
+            HttpStatusCode.MovedPermanently or HttpStatusCode.MultipleChoices;
     }
 
     #endregion
