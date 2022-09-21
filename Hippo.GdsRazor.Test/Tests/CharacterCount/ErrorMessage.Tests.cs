@@ -15,11 +15,11 @@ public class ErrorMessageTests : ClientBase<Startup>
     public async void RendersWithErrorMessage()
     {
         var response = await Navigate("CharacterCount" ,nameof(CharacterCountController.WithDefaultValueExceedingLimit));
-        var component = response.QuerySelector(".govuk-error-message");
+        var html = HtmlWithClassName(response, "govuk-error-message");
 
-        const string expected = "<p id=\"exceeding-characters-error\" class=\"govuk-error-message \">\n  \nPlease do not exceed the maximum allowed limit\n</p>";
+        const string expected = "<p id=\"exceeding-characters-error\" class=\"govuk-error-message \">\n    \n  \nPlease do not exceed the maximum allowed limit\n</p>";
 
-        Assert.Equal(expected, component!.OuterHtml);
+        Assert.Equal(expected, html);
     }
 
     [Fact]

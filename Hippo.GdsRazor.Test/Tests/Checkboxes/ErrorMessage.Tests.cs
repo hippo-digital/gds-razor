@@ -15,11 +15,11 @@ public class ErrorMessageTests : ClientBase<Startup>
     public async void RendersTheErrorMessage()
     {
         var response = await Navigate("Checkboxes" ,nameof(CheckboxesController.WithErrorMessage));
-        var component = response.QuerySelector(".govuk-error-message");
+        var html = HtmlWithClassName(response, "govuk-error-message");
 
-        const string expected = "<p id=\"waste-error\" class=\"govuk-error-message \">\n  \nPlease select an option\n</p>";
+        const string expected = "<p id=\"waste-error\" class=\"govuk-error-message \">\n    \n  \nPlease select an option\n</p>";
 
-        Assert.Equal(expected, component!.OuterHtml);
+        Assert.Equal(expected, html);
     }
 
     [Fact]

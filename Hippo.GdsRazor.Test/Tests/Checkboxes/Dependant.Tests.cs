@@ -35,13 +35,12 @@ public class DependantTests : ClientBase<Startup>
     public async void PassesThroughFieldsetParamsWithoutBreaking()
     {
         var response = await Navigate("Checkboxes" ,nameof(CheckboxesController.FieldsetParams));
-        var fieldset = response.QuerySelector(".govuk-fieldset");
-        foreach (var element in fieldset!.QuerySelectorAll("[class]:not([class^=govuk-fieldset])")) element.Remove();
+        var html = HtmlWithClassName(response, "govuk-fieldset");
 
         const string expected = "<fieldset class=\"govuk-fieldset app-fieldset--custom-modifier\" aria-describedby=\" example-name-error\" data-attribute=\"value\" " +
                                 "data-second-attribute=\"second-value\">\n    <legend class=\"govuk-fieldset__legend \">\n\nWhat is your nationality?    </legend>\n  \n\n\n\n\n\n\n</fieldset>";
 
-        Assert.Equal(expected, fieldset.OuterHtml);
+        Assert.Equal(expected, html);
     }
 
     [Fact]

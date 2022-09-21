@@ -1,4 +1,5 @@
 using AngleSharp;
+using AngleSharp.Dom;
 using AngleSharp.Html.Dom;
 using AngleSharp.Io;
 using AutoFixture;
@@ -68,5 +69,21 @@ public abstract class ClientBase<TStartup> where TStartup : class
         GdsCollection.Model = ($"Gds{type}", model);
         var document = await Context.OpenAsync($"{BaseInternalAddress}/Custom", CancellationToken.None);
         return ((IHtmlDocument) document).ToHtml();
+    }
+
+    /// <summary>
+    /// Get the raw HTML representation of a component, and remove any other
+    /// child elements that do not match the component.
+    /// Relies on B.E.M naming ensuring that child components relating to a component
+    /// are namespaced.
+    /// </summary>
+    /// <param name="parentNode">the parent element</param>
+    /// <param name="className">the top level class 'Block' in B.E.M terminology</param>
+    /// <returns>HTML</returns>
+    protected string HtmlWithClassName(IParentNode parentNode, string className)
+    {
+        var outerElement = parentNode.QuerySelector($".{className}");
+        foreach (var element in outerElement!.QuerySelectorAll($"[class]:not([class^={className}])")) element.Remove();
+        return outerElement.OuterHtml;
     }
 }
