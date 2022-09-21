@@ -26,7 +26,7 @@ public class DependantTests : ClientBase<Startup>
         var response = await Navigate("CharacterCount" ,nameof(CharacterCountController.Default));
         var label = response.QuerySelector(".govuk-label");
 
-        const string expected = "<label class=\"govuk-label \" for=\"more-detail\">\n    \nCan you provide more detail?\n  </label>";
+        const string expected = "<label class=\"govuk-label \" for=\"more-detail\">\n      \nCan you provide more detail?\n    </label>";
 
         Assert.Equal(expected, label!.OuterHtml);
     }

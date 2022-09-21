@@ -26,7 +26,7 @@ public class DependantTests : ClientBase<Startup>
         var label = response.QuerySelector(".govuk-checkboxes__label");
 
         const string expected = "<label class=\"govuk-label govuk-checkboxes__label \" for=\"example-name\" data-attribute=\"value\" " +
-                                "data-second-attribute=\"second-value\">\n    \n<b>Option 1</b>\n  </label>";
+                                "data-second-attribute=\"second-value\">\n      \n<b>Option 1</b>\n    </label>";
 
         Assert.Equal(expected, label!.OuterHtml);
     }
