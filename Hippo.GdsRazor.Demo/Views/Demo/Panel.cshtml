@@ -1,0 +1,20 @@
+@using Hippo.GdsRazor.Models
+
+@{
+    ViewData["Title"] = "Panel Demo";
+    Layout = "../Layout";
+}
+
+<h1 class="govuk-heading-l">Panel</h1>
+<h2 class="govuk-heading-s">Default:</h2>
+<div class="demo">
+    @await Html.PartialAsync("GdsPanel", new PanelModel())
+</div>
+
+<h2 class="govuk-heading-s">Custom:</h2>
+<div class="demo">
+    @await Html.PartialAsync("GdsPanel", new PanelModel(
+        "Application complete",
+        (HTML) (@<text>Your reference number<br><strong>HDJ2123F</strong></text>)
+    ))
+</div>

@@ -1,9 +1,0 @@
-﻿@model GdsRazor.Models.ErrorMessageModel
-
-<p id="@Model.Id" class="govuk-error-message @Model.Classes" @Html.Raw(Model.ExpandAttributes())>
-  @if (!string.IsNullOrEmpty(Model.VisuallyHiddenText))
-  {
-    <span class="govuk-visually-hidden">@Model.VisuallyHiddenText</span>
-  }
-  @await Html.PartialAsync("GdsContent", Model.Content)
-</p>

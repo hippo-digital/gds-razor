@@ -1,9 +1,0 @@
-@using GdsRazor.Models
-
-@await Html.PartialAsync("GdsAccordion", new AccordionModel(
-  "accordion-heading-html",
-  new AccordionModel.ItemModel(
-    (HTML) (@<span class="myClass">Section A</span>),
-    "Some content"
-  )
-))

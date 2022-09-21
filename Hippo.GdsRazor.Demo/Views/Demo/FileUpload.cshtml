@@ -1,0 +1,32 @@
+@using Hippo.GdsRazor.Models
+
+@{
+    ViewData["Title"] = "FileUpload Demo";
+    Layout = "../Layout";
+}
+
+<h1 class="govuk-heading-l">FileUpload</h1>
+<h2 class="govuk-heading-s">Default:</h2>
+<div class="demo">
+    @await Html.PartialAsync("GdsFileUpload", new FileUploadModel())
+</div>
+
+<h2 class="govuk-heading-s">Customised:</h2>
+<div class="demo">
+    @await Html.PartialAsync("GdsFileUpload", new FileUploadModel(
+        "file-upload-1",
+        "file-upload-1",
+        "Upload a file"
+    ))
+</div>
+
+<h2 class="govuk-heading-s">Error:</h2>
+<div class="demo">
+    @await Html.PartialAsync("GdsFileUpload", new FileUploadModel(
+        "file-upload-2",
+        "file-upload-2",
+        "Upload a file"
+    ) {
+        ErrorMessage = "The CSV must be smaller than 2MB"
+    })
+</div>

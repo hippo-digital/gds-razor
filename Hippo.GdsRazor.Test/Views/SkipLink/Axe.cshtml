@@ -1,0 +1,9 @@
+@using Hippo.GdsRazor.Models
+@model SkipLinkModel
+
+@{
+    ViewData["Title"] = "SkipLink Axe";
+    Layout = "../Axe";
+}
+
+@await Html.PartialAsync("GdsSkipLink", Model)

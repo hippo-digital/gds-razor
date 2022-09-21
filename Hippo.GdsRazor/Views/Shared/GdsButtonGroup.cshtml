@@ -1,0 +1,11 @@
+﻿@model Hippo.GdsRazor.Models.ButtonGroupModel
+
+<div id="@Model.Id" class="govuk-button-group @Model.Classes" @Html.Raw(Model.ExpandAttributes())>
+  @if (Model.Buttons != null)
+  {
+    foreach (var button in Model.Buttons)
+    {
+      @await Html.PartialAsync("GdsButton", button)
+    }
+  }
+</div>

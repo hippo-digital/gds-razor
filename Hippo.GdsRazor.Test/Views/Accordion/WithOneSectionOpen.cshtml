@@ -1,0 +1,13 @@
+@using Hippo.GdsRazor.Models
+
+@await Html.PartialAsync("GdsAccordion", new AccordionModel(
+  "one-section-open-example",
+  new AccordionModel.ItemModel(
+    "Section A",
+    (HTML) (@<ul class="govuk-list govuk-list--bullet"><li>Example item 1</li></ul>)
+  ) { Expanded = true },
+  new AccordionModel.ItemModel(
+    "Section B",
+    (HTML) (@<ul class="govuk-list govuk-list--bullet"><li>Example item 2</li></ul>)
+  )
+))

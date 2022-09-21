@@ -1,0 +1,6 @@
+@using Hippo.GdsRazor.Models
+
+@await Html.PartialAsync("GdsBreadcrumbs", new BreadcrumbsModel(
+  (HTML) (@<em>Section 1</em>),
+  new LinkModel((HTML) (@<em>Section 2</em>)) { Href = "/section-2" }
+))

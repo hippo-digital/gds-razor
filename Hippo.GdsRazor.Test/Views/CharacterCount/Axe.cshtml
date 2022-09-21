@@ -1,0 +1,9 @@
+@using Hippo.GdsRazor.Models
+@model CharacterCountModel
+
+@{
+    ViewData["Title"] = "CharacterCount Axe";
+    Layout = "../Axe";
+}
+
+@await Html.PartialAsync("GdsCharacterCount", Model)

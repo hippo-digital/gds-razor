@@ -1,0 +1,100 @@
+@using Hippo.GdsRazor.Models
+
+@{
+    ViewData["Title"] = "Footer Demo";
+    Layout = "../Layout";
+}
+
+<h1 class="govuk-heading-l">Footer</h1>
+<h2 class="govuk-heading-s">Default:</h2>
+<div class="demo">
+    @await Html.PartialAsync("GdsFooter", new FooterModel())
+</div>
+
+<h2 class="govuk-heading-s">Customised:</h2>
+<div class="demo">
+    @await Html.PartialAsync("GdsFooter", new FooterModel
+    {
+        ShowOglLicenseSvg = false,
+        Meta = new FooterModel.MetaModel
+        {
+            VisuallyHiddenTitle = "Support links",
+            Items = new List<FooterModel.ItemModel>
+            {
+                ("/Test/Cookies", "Cookies"),
+                ("/Test/Contact", "Contact"),
+                ("/Test/Accessibility", "Accessibility statement"),
+                ("/Test/Privacy", "Privacy notice")
+            },
+            Content = (HTML) (@<text>Built by the <a href="https://www.gov.uk/government/organisations/government-digital-service" class="govuk-footer__link">Government Digital Service</a></text>)
+        },
+        ContentLicense = (HTML) (@<text>© Queen’s Printer and Controller of HMSO. Content not available under the <a class="govuk-footer__link no-link-print" href="@FooterModel.LicenseHref" rel="license">Open Government Licence</a>.</text>),
+        Copyright = (HTML) (@<div class="govuk-footer__sta-logo no-link-print"></div>)
+    })
+</div>
+
+<h2 class="govuk-heading-s">Navigation:</h2>
+<div class="demo">
+    @await Html.PartialAsync("GdsFooter", new FooterModel
+    {
+        Navigation = new List<FooterModel.NavigationModel>
+        {
+            new("Services and information")
+            {
+                Width = FooterModel.NavigationModel.ColumnWidth.TwoThirds,
+                Columns = 2,
+                Items = new List<FooterModel.ItemModel>
+                {
+                    ("#", "Benefits"),
+                    ("#", "Births, deaths, marriages and care"),
+                    ("#", "Business and self-employed"),
+                    ("#", "Childcare and parenting"),
+                    ("#", "Citizenship and living in the UK"),
+                    ("#", "Crime, justice and the law"),
+                    ("#", "Disabled people"),
+                    ("#", "Driving and transport"),
+                    ("#", "Education and learning"),
+                    ("#", "Employing people"),
+                    ("#", "Environment and countryside"),
+                    ("#", "Housing and local services"),
+                    ("#", "Money and tax"),
+                    ("#", "Passports, travel and living abroad"),
+                    ("#", "Visas and immigration"),
+                    ("#", "Working, jobs and pensions")
+                }
+            },
+            new("Departments and policy")
+            {
+                Width = FooterModel.NavigationModel.ColumnWidth.OneThird,
+                Items = new List<FooterModel.ItemModel>
+                {
+                    ("#", "How government works"),
+                    ("#", "Departments"),
+                    ("#", "Worldwide"),
+                    ("#", "Policies"),
+                    ("#", "Publications"),
+                    ("#", "Announcements")
+                }
+            }
+        },
+        Meta = new FooterModel.MetaModel
+        {
+            Items = new List<FooterModel.ItemModel>
+            {
+                ("#", "Help"),
+                ("#", "Cookies"),
+                ("#", "Contact"),
+                ("#", "Terms and conditions"),
+                new("#", "Rhestr o Wasanaethau Cymraeg")
+                {
+                    Attributes = new Dictionary<string, string?>
+                    {
+                        {"lang", "cy"},
+                        {"hreflang", "cy"}
+                    }
+                }
+            },
+            Content = (HTML) (@<text>Built by the <a href="#" class="govuk-footer__link">Government Digital Service</a></text>)
+        }
+    })
+</div>

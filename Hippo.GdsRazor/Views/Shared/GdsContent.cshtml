@@ -1,0 +1,18 @@
+﻿@using Hippo.GdsRazor.Models.Content
+@model Hippo.GdsRazor.Models.Content.GdsContent
+
+@{
+  void Render(GdsContent content)
+  {
+    if (content is GdsHtml gdsHtml) {
+      @gdsHtml.Html()
+    } else if (content is GdsPlain gdsPlain) {
+      @gdsPlain.Text
+    } else if (content is GdsMulti gdsMulti) {
+      Render(gdsMulti.Left);
+      Render(gdsMulti.Right);
+    }
+  }
+
+  Render(Model);
+}

@@ -1,0 +1,23 @@
+@using Hippo.GdsRazor.Models
+
+@{
+    ViewData["Title"] = "Breadcrumbs Demo";
+    Layout = "../Layout";
+}
+
+<h1 class="govuk-heading-l">Input</h1>
+<h2 class="govuk-heading-s">Default:</h2>
+<div class="demo">
+    @await Html.PartialAsync("GdsBreadcrumbs", new BreadcrumbsModel())
+</div>
+
+<h2 class="govuk-heading-s">Customised:</h2>
+<div class="demo">
+    @await Html.PartialAsync("GdsBreadcrumbs", new BreadcrumbsModel(
+        ("/1", "First"),
+        ("/2", "Second"),
+        "Third"
+    ) {
+        CollapseOnMobile = true
+    })
+</div>

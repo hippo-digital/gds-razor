@@ -1,0 +1,5 @@
+@using Hippo.GdsRazor.Models
+
+@await Html.PartialAsync("GdsBackLink", new BackLinkModel("#") {
+  Content = (HTML) (@<b>Back</b>)
+})

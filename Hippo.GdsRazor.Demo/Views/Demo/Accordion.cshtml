@@ -1,0 +1,35 @@
+@using Hippo.GdsRazor.Models
+
+@{
+    ViewData["Title"] = "Accordion Demo";
+    Layout = "../Layout";
+}
+
+<h1 class="govuk-heading-l">Accordion</h1>
+<h2 class="govuk-heading-s">Default:</h2>
+<div class="demo">
+    @await Html.PartialAsync("GdsAccordion", new AccordionModel())
+</div>
+
+<h2 class="govuk-heading-s">Customised:</h2>
+<div class="demo">
+    @await Html.PartialAsync("GdsAccordion", new AccordionModel(
+        "accordion-default",
+        new AccordionModel.ItemModel(
+            "Writing well for the web",
+            (HTML) (@<p class="govuk-body">This is the content for Writing well for the web.</p>)
+        ),
+        new AccordionModel.ItemModel(
+            "Writing well for specialists",
+            (HTML) (@<p class="govuk-body">This is the content for Writing well for specialists.</p>)
+        ),
+        new AccordionModel.ItemModel(
+            "Know your audience",
+            (HTML) (@<p class="govuk-body">This is the content for Know your audience.</p>)
+        ),
+        new AccordionModel.ItemModel(
+            "How people read",
+            (HTML) (@<p class="govuk-body">This is the content for How people read.</p>)
+        )
+    ))
+</div>

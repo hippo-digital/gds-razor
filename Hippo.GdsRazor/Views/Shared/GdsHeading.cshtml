@@ -1,0 +1,5 @@
+@model Hippo.GdsRazor.Models.HeadingModel
+
+<@("h" + (Model.HeadingLevel ?? 2)) class="@Model.Classes" id="@Model.Id" @Html.Raw(Model.ExpandAttributes())>
+  @await Html.PartialAsync("GdsContent", Model.Content)
+@Html.Raw("</h" + (Model.HeadingLevel ?? 2) + ">")

@@ -1,0 +1,5 @@
+@using Hippo.GdsRazor.Models
+
+@await Html.PartialAsync("GdsPhaseBanner", new PhaseBannerModel("This is a new service – your feedback will help us to improve it") {
+  Tag = (HTML) (@<em>alpha</em>)
+})

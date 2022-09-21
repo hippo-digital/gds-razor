@@ -1,0 +1,9 @@
+﻿@model Hippo.GdsRazor.Models.WarningTextModel
+
+<div id="@Model.Id" class="govuk-warning-text @Model.Classes" @Html.Raw(Model.ExpandAttributes())>
+  <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+  <strong class="govuk-warning-text__text">
+    <span class="govuk-warning-text__assistive">@Model.IconFallbackText</span>
+    @await Html.PartialAsync("GdsContent", Model.Content)
+  </strong>
+</div>

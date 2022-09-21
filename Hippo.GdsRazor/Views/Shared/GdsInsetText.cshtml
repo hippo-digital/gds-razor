@@ -1,0 +1,5 @@
+﻿@model Hippo.GdsRazor.Models.InsetTextModel
+
+<div id="@Model.Id" class="govuk-inset-text @Model.Classes" @Html.Raw(Model.ExpandAttributes())>
+  @await Html.PartialAsync("GdsContent", Model.Content)
+</div>

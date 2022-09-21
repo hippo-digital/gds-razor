@@ -1,0 +1,9 @@
+@using Hippo.GdsRazor.Models
+@model ButtonModel
+
+@{
+    ViewData["Title"] = "Button Axe";
+    Layout = "../Axe";
+}
+
+@await Html.PartialAsync("GdsButton", Model)

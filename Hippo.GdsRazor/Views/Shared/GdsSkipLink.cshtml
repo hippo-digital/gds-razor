@@ -1,0 +1,5 @@
+﻿@model Hippo.GdsRazor.Models.SkipLinkModel
+
+<a id="@Model.Id" href="@(Model.Href ?? "#content")" class="govuk-skip-link @Model.Classes" data-module="govuk-skip-link" @Html.Raw(Model.ExpandAttributes())>
+  @await Html.PartialAsync("GdsContent", Model.Content)
+</a>

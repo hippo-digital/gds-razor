@@ -1,0 +1,97 @@
+@using Hippo.GdsRazor.Models
+
+@{
+    ViewData["Title"] = "SummaryList Demo";
+    Layout = "../Layout";
+}
+
+<h1 class="govuk-heading-l">SummaryList</h1>
+<h2 class="govuk-heading-s">Default:</h2>
+<div class="demo">
+    @await Html.PartialAsync("GdsSummaryList", new SummaryListModel())
+</div>
+
+<h2 class="govuk-heading-s">Custom:</h2>
+<div class="demo">
+    @await Html.PartialAsync("GdsSummaryList", new SummaryListModel(
+        new SummaryListModel.RowModel(
+            "Name",
+            "Sarah Philips"
+        ) {
+            Actions = new List<SummaryListModel.ActionModel>
+            {
+                new("#", "Change")
+                {
+                    VisuallyHiddenText = "name"
+                }
+            }
+        },
+        new SummaryListModel.RowModel(
+            "Date of birth",
+            "5 January 1978"
+        ) {
+            Actions = new List<SummaryListModel.ActionModel>
+            {
+                new("#", "Change")
+                {
+                    VisuallyHiddenText = "date of birth"
+                }
+            }
+        },
+        new SummaryListModel.RowModel(
+            "Address",
+            "72 Guild Street<br>London<br>SE23 6FH"
+        ) {
+            Actions = new List<SummaryListModel.ActionModel>
+            {
+                new("#", "Change")
+                {
+                    VisuallyHiddenText = "address"
+                }
+            }
+        },
+        new SummaryListModel.RowModel(
+            "Contact details",
+            (HTML) (@<text><p class="govuk-body">07700 900457</p><p class="govuk-body">sarah.phillips@example.com</p></text>)
+        ) {
+            Actions = new List<SummaryListModel.ActionModel>
+            {
+                new("#", "Change")
+                {
+                    VisuallyHiddenText = "contact details"
+                }
+            }
+        }
+    ))
+</div>
+
+<h2 class="govuk-heading-s">No border or links:</h2>
+<div class="demo">
+    @await Html.PartialAsync("GdsSummaryList", new SummaryListModel
+    {
+        Classes = SummaryListModel.NoBorder,
+        Rows = new List<SummaryListModel.RowModel>
+        {
+            new()
+            {
+                Key = "Name",
+                Value = "Sarah Philips"
+            },
+            new()
+            {
+                Key = "Date of birth",
+                Value = "5 January 1978"
+            },
+            new()
+            {
+                Key = "Address",
+                Value = "72 Guild Street<br>London<br>SE23 6FH"
+            },
+            new()
+            {
+                Key = "Contact details",
+                Value = (HTML) (@<text><p class="govuk-body">07700 900457</p><p class="govuk-body">sarah.phillips@example.com</p></text>),
+            }
+        }
+    })
+</div>

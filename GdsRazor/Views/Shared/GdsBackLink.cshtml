@@ -1,5 +1,0 @@
-﻿@model GdsRazor.Models.BackLinkModel
-
-<a id="@Model.Id" href="@(Model.Href ?? "#")" class="govuk-back-link @Model.Classes" @Html.Raw(Model.ExpandAttributes())>
-  @await Html.PartialAsync("GdsContent", Model.Content)
-</a>

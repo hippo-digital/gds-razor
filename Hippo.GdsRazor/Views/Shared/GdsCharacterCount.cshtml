@@ -1,0 +1,36 @@
+﻿@using Hippo.GdsRazor.Models
+@model Hippo.GdsRazor.Models.CharacterCountModel
+
+<div class="govuk-character-count" data-module="govuk-character-count" data-maxlength="@Model.MaxLength" data-threshold="@Model.Threshold" data-maxwords="@Model.MaxWords">
+  @await Html.PartialAsync("GdsTextarea", new TextareaModel
+  {
+    Id = Model.Id,
+    Name = Model.Name,
+    DescribedBy = $"{Model.Id}-info",
+    Rows = Model.Rows,
+    Spellcheck = Model.Spellcheck,
+    Autocomplete = Model.Autocomplete,
+    Value = Model.Value,
+    FormGroupClasses = Model.FormGroupClasses,
+    Classes = "govuk-js-character-count " + (Model.Classes ?? ""),
+    Label = new()
+    {
+      Id = Model.Label?.Id,
+      Content = Model.Label?.Content,
+      Classes = Model.Label?.Classes,
+      IsPageHeading = Model.Label?.IsPageHeading == true,
+      Attributes = Model.Label?.Attributes,
+      For = Model.Id
+    },
+    Hint = Model.Hint,
+    ErrorMessage = Model.ErrorMessage,
+    Attributes = Model.Attributes
+  })
+  @await Html.PartialAsync("GdsHint", new HintModel()
+  {
+    Content = (Model.FallbackHintText ?? ("You can enter up to %{count} " + (Model.MaxWords.HasValue ? "words" : "characters")))
+      .Replace("%{count}", $"{Model.MaxWords ?? Model.MaxLength ?? 0}"),
+    Id = $"{Model.Id}-info",
+    Classes = "govuk-character-count__message " + (Model.CountMessageClasses ?? "")
+  })
+</div>

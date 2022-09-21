@@ -1,0 +1,43 @@
+@using Hippo.GdsRazor.Models
+
+@{
+    ViewData["Title"] = "NotificationBanner Demo";
+    Layout = "../Layout";
+}
+
+<h1 class="govuk-heading-l">NotificationBanner</h1>
+<h2 class="govuk-heading-s">Default:</h2>
+<div class="demo">
+    @await Html.PartialAsync("GdsNotificationBanner", new NotificationBannerModel())
+</div>
+
+<h2 class="govuk-heading-s">Important:</h2>
+<div class="demo">
+    @await Html.PartialAsync("GdsNotificationBanner", new NotificationBannerModel(
+        (HTML) (@<p class="govuk-notification-banner__heading">
+                    You have 7 days left to send your application.
+                    <a class="govuk-notification-banner__link" href="#">View application</a>.
+                </p>)
+    ))
+</div>
+
+<h2 class="govuk-heading-s">Success:</h2>
+<div class="demo">
+    @await Html.PartialAsync("GdsNotificationBanner", new NotificationBannerModel(
+        (HTML) (@<text>
+                    <h3 class="govuk-notification-banner__heading">Training outcome recorded and trainee withdrawn</h3>
+                    <p class="govuk-body">Contact <a class="govuk-notification-banner__link" href="#">example@department.gov.uk</a> if you think there's a problem.</p>
+                 </text>)
+    ) {
+        Type = "success"
+    })
+</div>
+
+<h2 class="govuk-heading-s">Custom:</h2>
+<div class="demo">
+    @await Html.PartialAsync("GdsNotificationBanner", new NotificationBannerModel(
+        "There may be a delay in processing your application because of the coronavirus outbreak."
+        ) {
+            Title = "Custom"
+        })
+</div>

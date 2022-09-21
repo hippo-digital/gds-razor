@@ -1,0 +1,23 @@
+@using Hippo.GdsRazor.Models
+
+@{
+    ViewData["Title"] = "Button Demo";
+    Layout = "../Layout";
+}
+
+<h1 class="govuk-heading-l">Button</h1>
+<h2 class="govuk-heading-s">Default:</h2>
+<div class="demo">
+    @await Html.PartialAsync("GdsButtonGroup", new ButtonGroupModel())
+</div>
+
+<h2 class="govuk-heading-s">Customised:</h2>
+<div class="demo">
+    @await Html.PartialAsync("GdsButtonGroup", new ButtonGroupModel(
+        new ButtonModel("Save and continue"),
+        new ButtonModel("Save as draft")
+        {
+            Classes = ButtonModel.Colors.Secondary
+        }
+    ))
+</div>

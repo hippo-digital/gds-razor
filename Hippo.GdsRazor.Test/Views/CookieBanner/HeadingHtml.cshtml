@@ -1,0 +1,7 @@
+@using Hippo.GdsRazor.Models
+
+@await Html.PartialAsync("GdsCookieBanner", new CookieBannerModel(
+  new CookieBannerModel.MessageModel {
+    Heading = (HTML) (@<text>Cookies on <span>my service</span></text>)
+  }
+))

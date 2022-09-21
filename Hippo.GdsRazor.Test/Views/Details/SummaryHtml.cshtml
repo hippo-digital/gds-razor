@@ -1,0 +1,6 @@
+@using Hippo.GdsRazor.Models
+
+@await Html.PartialAsync("GdsDetails", new DetailsModel(
+  (HTML) (@<text>Use <b>bold text</b> sparingly</text>),
+  "Here are some more details"
+))

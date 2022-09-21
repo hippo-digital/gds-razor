@@ -1,0 +1,26 @@
+@using Hippo.GdsRazor.Models
+
+@await Html.PartialAsync("GdsAccordion", new AccordionModel(
+  "with-descriptions",
+  new AccordionModel.ItemModel(
+    "Test",
+    (HTML) (@<text>
+             <p class="govuk-body">
+               We need to know your nationality so we can work out which elections you’re entitled to vote in. If you cannot provide your nationality, you’ll have to send copies of identity documents through the post.
+             </p>
+             <ul class="govuk-list govuk-list--bullet">
+               <li>Example item 1</li>
+             </ul>
+            </text>)
+  ) {
+    Summary = "Additional description"
+  },
+  new AccordionModel.ItemModel(
+    "Test 2",
+    (HTML)(@<ul class="govuk-list govuk-list--bullet">
+             <li>Example item 2</li>
+           </ul>)
+  ) {
+    Summary = (HTML) (@<span class="govuk-!-font-weight-regular">Additional description (wrapped in span)</span>)
+  }
+))

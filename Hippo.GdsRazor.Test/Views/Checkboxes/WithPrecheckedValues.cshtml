@@ -1,0 +1,17 @@
+@using Hippo.GdsRazor.Models
+
+@await Html.PartialAsync("GdsCheckboxes", new CheckboxesModel(
+  "nationality",
+  new CheckboxesModel.ItemModel("british", "British"),
+  new CheckboxesModel.ItemModel("irish", "Irish"),
+  new CheckboxesModel.ItemModel("other", "Citizen of another country") {
+    ConditionalContent = (HTML) (@<div class="govuk-form-group">
+                                   <label class="govuk-label" for="input-example">
+                                     Country
+                                   </label>
+                                   <input class="govuk-input" id="other-country" name="other-country" type="text" value="Ravka">
+                                 </div>)
+  }
+) {
+  Values = new List<string> {"british", "other"}
+})

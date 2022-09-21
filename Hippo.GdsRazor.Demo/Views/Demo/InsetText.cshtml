@@ -1,0 +1,19 @@
+@using Hippo.GdsRazor.Models
+
+@{
+    ViewData["Title"] = "InsetText Demo";
+    Layout = "../Layout";
+}
+
+<h1 class="govuk-heading-l">InsetText</h1>
+<h2 class="govuk-heading-s">Default:</h2>
+<div class="demo">
+    @await Html.PartialAsync("GdsInsetText", new InsetTextModel())
+</div>
+
+<h2 class="govuk-heading-s">Customised:</h2>
+<div class="demo">
+    @await Html.PartialAsync("GdsInsetText", new InsetTextModel(
+        "It can take up to 8 weeks to register a lasting power of attorney if there are no mistakes in the application."
+    ))
+</div>

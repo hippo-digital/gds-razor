@@ -1,0 +1,9 @@
+@using Hippo.GdsRazor.Models
+@model BreadcrumbsModel
+
+@{
+    ViewData["Title"] = "Breadcrumbs Axe";
+    Layout = "../Axe";
+}
+
+@await Html.PartialAsync("GdsBreadcrumbs", Model)

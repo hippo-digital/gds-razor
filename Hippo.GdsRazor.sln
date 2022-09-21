@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hippo.GdsRazor", "Hippo.GdsRazor\Hippo.GdsRazor.csproj", "{8ECBEAC1-159A-4489-BB54-8C1CA483C600}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hippo.GdsRazor.Test", "Hippo.GdsRazor.Test\Hippo.GdsRazor.Test.csproj", "{AE784238-73C9-400F-8613-542D52B004D8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hippo.GdsRazor.Demo", "Hippo.GdsRazor.Demo\Hippo.GdsRazor.Demo.csproj", "{BC1822AC-3FC4-483C-932D-C59C7AF84123}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8ECBEAC1-159A-4489-BB54-8C1CA483C600}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8ECBEAC1-159A-4489-BB54-8C1CA483C600}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8ECBEAC1-159A-4489-BB54-8C1CA483C600}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8ECBEAC1-159A-4489-BB54-8C1CA483C600}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE784238-73C9-400F-8613-542D52B004D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE784238-73C9-400F-8613-542D52B004D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE784238-73C9-400F-8613-542D52B004D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE784238-73C9-400F-8613-542D52B004D8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BC1822AC-3FC4-483C-932D-C59C7AF84123}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC1822AC-3FC4-483C-932D-C59C7AF84123}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC1822AC-3FC4-483C-932D-C59C7AF84123}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC1822AC-3FC4-483C-932D-C59C7AF84123}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

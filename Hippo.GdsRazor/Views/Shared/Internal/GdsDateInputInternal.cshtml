@@ -1,0 +1,50 @@
+@using System.Globalization
+@using Hippo.GdsRazor.Models
+@model Hippo.GdsRazor.Models.DateInputModel
+
+@if (Model.Hint != null)
+{
+  @await Html.PartialAsync("GdsHint", new HintModel
+  {
+    Id = Model.Id + "-hint",
+    Content = Model.Hint.Content,
+    Classes = Model.Hint.Classes,
+    Attributes = Model.Hint.Attributes
+  })
+}
+@if (Model.ErrorMessage != null)
+{
+  @await Html.PartialAsync("GdsErrorMessage", new ErrorMessageModel
+  {
+    Id = Model.Id + "-error",
+    Content = Model.ErrorMessage.Content,
+    Classes = Model.ErrorMessage.Classes,
+    Attributes = Model.ErrorMessage.Attributes,
+    VisuallyHiddenText = Model.ErrorMessage.VisuallyHiddenText
+  })
+}
+
+<div id="@Model.Id" class="govuk-date-input @Model.Classes" @Html.Raw(Model.ExpandAttributes())>
+  @foreach (var item in Model.Items)
+  {
+    <div class="govuk-date-input__item">
+      @await Html.PartialAsync("GdsInput", new InputModel
+        {
+          Label = new LabelModel
+          {
+            Content = item.Label ?? CultureInfo.InvariantCulture.TextInfo.ToTitleCase(item.Name ?? ""),
+            Classes = "govuk-date-input__label"
+          },
+          Id = item.Id ?? (Model.Id + "-" + item.Name),
+          Classes = "govuk-date-input__input " + (item.Classes ?? ""),
+          Name = (Model.NamePrefix != null ? (Model.NamePrefix + "-") : "") + item.Name,
+          Value = item.Value,
+          Type = "text",
+          Inputmode = item.Inputmode ?? "numeric",
+          Autocomplete = item.Autocomplete,
+          Pattern = item.Pattern,
+          Attributes = item.Attributes
+        })
+    </div>
+  }
+</div>

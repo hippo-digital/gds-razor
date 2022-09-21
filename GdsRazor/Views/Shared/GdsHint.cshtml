@@ -1,5 +1,0 @@
-﻿@model GdsRazor.Models.HintModel
-
-<div id="@Model.Id" class="govuk-hint @Model.Classes" @Html.Raw(Model.ExpandAttributes())>
-  @await Html.PartialAsync("GdsContent", Model.Content)
-</div>

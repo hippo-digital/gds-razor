@@ -1,0 +1,47 @@
+@using Hippo.GdsRazor.Models
+
+@{
+    ViewData["Title"] = "DateInput Demo";
+    Layout = "../Layout";
+}
+
+<h1 class="govuk-heading-l">DateInput</h1>
+<h2 class="govuk-heading-s">Default:</h2>
+<div class="demo">
+    @await Html.PartialAsync("GdsDateInput", new DateInputModel())
+</div>
+
+<h2 class="govuk-heading-s">Customised:</h2>
+<div class="demo">
+    @await Html.PartialAsync("GdsDateInput", new DateInputModel("passport-issued")
+    {
+        NamePrefix = "passport-issued",
+        Fieldset = new FieldsetModel
+        {
+            Legend = new FieldsetModel.LegendModel
+            {
+                Content = "When was your passport issued?",
+                IsPageHeading = true,
+                Classes = FieldsetModel.LegendModel.Sizes.Large
+            }
+        },
+        Hint = "For example, 27 3 2007"
+    })
+</div>
+
+<h2 class="govuk-heading-s">Error:</h2>
+<div class="demo">
+    @await Html.PartialAsync("GdsDateInput", new DateInputModel("passport-issued-2")
+    {
+        NamePrefix = "passport-issued-2",
+        Fieldset = new FieldsetModel
+        {
+            Legend = new FieldsetModel.LegendModel
+            {
+                Content = "When was your passport issued?"
+            }
+        },
+        Hint = "For example, 27 3 2007",
+        ErrorMessage = "The date your passport was issued must include a year"
+    })
+</div>

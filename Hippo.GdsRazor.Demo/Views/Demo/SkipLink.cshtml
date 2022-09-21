@@ -1,0 +1,18 @@
+@using Hippo.GdsRazor.Models
+
+@{
+    ViewData["Title"] = "SkipLink Demo";
+    Layout = "../Layout";
+}
+
+<h1 class="govuk-heading-l">SkipLink</h1>
+<h2 class="govuk-heading-s">Default:</h2>
+<div class="demo">
+    @await Html.PartialAsync("GdsSkipLink", new SkipLinkModel())
+</div>
+
+<h2 class="govuk-heading-s">Custom:</h2>
+<div class="demo">
+    <p class="govuk-body">To view the skip link component tab to this example, or click inside this example and press tab.</p>
+    @await Html.PartialAsync("GdsSkipLink", new SkipLinkModel("Skip to main content"))
+</div>

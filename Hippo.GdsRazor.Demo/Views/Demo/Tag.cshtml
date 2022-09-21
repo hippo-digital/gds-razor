@@ -1,0 +1,30 @@
+@using Hippo.GdsRazor.Models
+
+@{
+    ViewData["Title"] = "Tag Demo";
+    Layout = "../Layout";
+}
+
+<h1 class="govuk-heading-l">Tag</h1>
+<h2 class="govuk-heading-s">Default:</h2>
+<div class="demo">
+    @await Html.PartialAsync("GdsTag", new TagModel())
+</div>
+
+<h2 class="govuk-heading-s">Custom:</h2>
+<div class="demo">
+    @await Html.PartialAsync("GdsTag", new TagModel("completed"))
+</div>
+
+<h2 class="govuk-heading-s">More:</h2>
+<div class="demo">
+    @await Html.PartialAsync("GdsTag", new TagModel("Inactive") { Classes = TagModel.Colors.Grey })
+    @await Html.PartialAsync("GdsTag", new TagModel("Received") { Classes = TagModel.Colors.Purple })
+    @await Html.PartialAsync("GdsTag", new TagModel("Active") { Classes = TagModel.Colors.Turquoise })
+    @await Html.PartialAsync("GdsTag", new TagModel("Pending") { Classes = TagModel.Colors.Blue })
+    @await Html.PartialAsync("GdsTag", new TagModel("Delayed") { Classes = TagModel.Colors.Yellow })
+    @await Html.PartialAsync("GdsTag", new TagModel("Declined") { Classes = TagModel.Colors.Orange })
+    @await Html.PartialAsync("GdsTag", new TagModel("Rejected") { Classes = TagModel.Colors.Red })
+    @await Html.PartialAsync("GdsTag", new TagModel("Sent") { Classes = TagModel.Colors.Pink })
+    @await Html.PartialAsync("GdsTag", new TagModel("New") { Classes = TagModel.Colors.Green })
+</div>

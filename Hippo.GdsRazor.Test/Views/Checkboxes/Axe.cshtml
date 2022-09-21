@@ -1,0 +1,9 @@
+@using Hippo.GdsRazor.Models
+@model CheckboxesModel
+
+@{
+    ViewData["Title"] = "Checkboxes Axe";
+    Layout = "../Axe";
+}
+
+@await Html.PartialAsync("GdsCheckboxes", Model)

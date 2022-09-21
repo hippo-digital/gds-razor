@@ -1,0 +1,21 @@
+﻿@using Hippo.GdsRazor.Models
+@model Hippo.GdsRazor.Models.RadiosModel
+
+<div class="govuk-form-group @(Model.ErrorMessage != null ? "govuk-form-group--error" : "") @Model.FormGroupClasses">
+  @if (Model.Fieldset != null)
+  {
+    @await Html.PartialAsync("GdsFieldset", new FieldsetModel
+    {
+      DescribedBy = Model.DescribedBy,
+      Classes = Model.Fieldset.Classes,
+      Role = Model.Fieldset.Role,
+      Attributes = Model.Fieldset.Attributes,
+      Legend = Model.Fieldset.Legend,
+      Content = Html.PartialAsync("Internal/GdsRadiosInternal", Model)
+    })
+  }
+  else
+  {
+    @await Html.PartialAsync("Internal/GdsRadiosInternal", Model)
+  }
+</div>

@@ -1,0 +1,9 @@
+@using Hippo.GdsRazor.Models
+@model BackLinkModel
+
+@{
+    ViewData["Title"] = "BackLink Axe";
+    Layout = "../Axe";
+}
+
+@await Html.PartialAsync("GdsBackLink", Model)

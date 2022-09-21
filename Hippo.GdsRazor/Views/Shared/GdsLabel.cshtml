@@ -1,0 +1,16 @@
+﻿@model Hippo.GdsRazor.Models.LabelModel
+
+@if (Model.IsPageHeading)
+{
+  <h1 class="govuk-label-wrapper">
+    <label id="@Model.Id" class="govuk-label @Model.Classes" for="@Model.For" @Html.Raw(Model.ExpandAttributes())>
+      @await Html.PartialAsync("GdsContent", Model.Content)
+    </label>
+  </h1>
+}
+else
+{
+  <label id="@Model.Id" class="govuk-label @Model.Classes" for="@Model.For" @Html.Raw(Model.ExpandAttributes())>
+    @await Html.PartialAsync("GdsContent", Model.Content)
+  </label>
+}

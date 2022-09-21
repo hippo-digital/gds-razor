@@ -1,0 +1,48 @@
+﻿@using Hippo.GdsRazor.Models
+@using Microsoft.AspNetCore.Mvc.Rendering
+@model Hippo.GdsRazor.Models.SelectModel
+
+<div class="govuk-form-group @(Model.ErrorMessage != null ? "govuk-form-group--error" : "") @Model.FormGroupClasses">
+  @if (Model.Label != null)
+  {
+    @await Html.PartialAsync("GdsLabel", new LabelModel
+    {
+      Content = Model.Label.Content,
+      Classes = Model.Label.Classes,
+      Attributes = Model.Label.Attributes,
+      IsPageHeading = Model.Label.IsPageHeading,
+      For = Model.Id
+    })
+  }
+  @if (Model.Hint != null)
+  {
+    @await Html.PartialAsync("GdsHint", new HintModel
+    {
+      Id = Model.Id + "-hint",
+      Content = Model.Hint.Content,
+      Classes = Model.Hint.Classes,
+      Attributes = Model.Hint.Attributes
+    })
+  }
+  @if (Model.ErrorMessage != null)
+  {
+    @await Html.PartialAsync("GdsErrorMessage", new ErrorMessageModel
+    {
+      Id = Model.Id + "-error",
+      Content = Model.ErrorMessage.Content,
+      Classes = Model.ErrorMessage.Classes,
+      Attributes = Model.ErrorMessage.Attributes,
+      VisuallyHiddenText = Model.ErrorMessage.VisuallyHiddenText
+    })
+  }
+  <select id="@Model.Id" class="govuk-select @Model.Classes @(Model.ErrorMessage != null ? "govuk-select--error" : "")" name="@Model.Name" aria-describedby="@Model.DescribedBy" @Html.Raw(Model.ExpandAttributes())>
+    @if (Model.Items != null)
+    {
+      foreach (var item in Model.Items)
+      {
+        <option value="@item.Value" @if (item.Disabled) { <text>disabled</text> } @if (item.Selected || (Model.Value != null && Model.Value == item.Value)) { <text>selected</text> }
+                @Html.Raw(item.ExpandAttributes())>@item.Text</option>
+      }
+    }
+  </select>
+</div>
