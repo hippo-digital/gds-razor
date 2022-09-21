@@ -43,5 +43,6 @@ public class FieldsetModel : GdsWithContent
         }
 
         public static implicit operator LegendModel(string s) => new(s);
+        public static implicit operator LegendModel(HTML s) => new(s);
     }
 }

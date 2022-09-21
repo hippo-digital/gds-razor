@@ -1,0 +1,9 @@
+@using GdsRazor.Models
+@model CookieBannerModel
+
+@{
+    ViewData["Title"] = "CookieBanner Axe";
+    Layout = "../Axe";
+}
+
+@await Html.PartialAsync("GdsCookieBanner", Model)

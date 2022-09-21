@@ -35,11 +35,13 @@
       else if (obj is RadiosModel.ItemModel item)
       {
         var id = item.Id ?? (idx == 0 ? Model.IdPrefix : $"{Model.IdPrefix}-{idx}");
+        var conditionalId = item.ConditionalContent != null ? $"conditional-{id}" : null;
+        var describedBy = Model.Hint != null ? $"{id}-item-hint" : "";
         <div class="govuk-radios__item">
           <input id="@id" class="govuk-radios__input" name="@Model.Name" type="radio" value="@item.Value"
                  @if (item.Checked || (Model.Value != null && Model.Value == item.Value)) { <text>checked</text> }
-                 @if (item.Disabled) { <text>disabled</text> } data-aria-controls="@(item.ConditionalContent != null ? $"conditional-{id}" : null)"
-                 aria-describedby="@(Model.Hint != null ? $"{id}-item-hint" : "")" @Html.Raw(item.ExpandAttributes()) />
+                 @if (item.Disabled) { <text>disabled</text> } @if (conditionalId != null) { <text>data-aria-controls="@conditionalId"</text> }
+                 @if (!string.IsNullOrWhiteSpace(describedBy)) { <text>aria-describedby="@describedBy"</text> } @Html.Raw(item.ExpandAttributes()) />
           @await Html.PartialAsync("GdsLabel", new LabelModel
           {
             Content = item.Content,

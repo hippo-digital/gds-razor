@@ -3,7 +3,7 @@
 <fieldset id="@Model.Id" class="govuk-fieldset @Model.Classes" role="@Model.Role" aria-describedby="@Model.DescribedBy" @Html.Raw(Model.ExpandAttributes())>
   @if (Model.Legend != null)
   {
-    <legend id="@Model.Legend.Id" class="govuk-fieldset__legend @Model.Legend.Classes">
+    <legend id="@Model.Legend.Id" class="govuk-fieldset__legend @Model.Legend.Classes" @Html.Raw(Model.Legend.ExpandAttributes())>
       @if (Model.Legend.IsPageHeading)
       {
         <h1 class="govuk-fieldset__heading">

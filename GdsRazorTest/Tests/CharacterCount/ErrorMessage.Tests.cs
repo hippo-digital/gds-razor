@@ -28,7 +28,7 @@ public class ErrorMessageTests : ClientBase<Startup>
         var textarea = response.QuerySelector(".govuk-js-character-count");
         var errorMessage = response.QuerySelector(".govuk-error-message");
 
-        Assert.Matches(new Regex($"\\b{errorMessage!.Id}\\b"), textarea!.Attributes["aria-describedby"]?.Value ?? "");
+        Assert.Matches(new Regex($"\\b{errorMessage!.Id}\\b"), textarea!.Attributes[AriaDescribedBy]?.Value ?? "");
     }
 
     [Fact]

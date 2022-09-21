@@ -26,15 +26,15 @@ public class GdsAutoDataAttribute : AutoDataAttribute
         {
             var fixture = new Fixture();
             fixture.Customizations.Add(new TypeRelay(typeof(GdsContent), typeof(GdsPlain)));
+            fixture.Customizations.Add(new TypeRelay(typeof(CheckboxesModel.IItemModel), typeof(CheckboxesModel.ItemModel)));
             return fixture;
-        })
-    {
-    }
+        }) { }
 }
 
 [Collection("GDS")]
 public abstract class ClientBase<TStartup> where TStartup : class
 {
+    protected const string AriaDescribedBy = "aria-describedby";
     private readonly IWebDriver? _driver;
     protected readonly HttpClient Http;
     protected readonly IBrowsingContext Context;
@@ -70,9 +70,9 @@ public abstract class ClientBase<TStartup> where TStartup : class
         return (IHtmlDocument) document;
     }
 
-    protected AxeResult AxeResults(string type)
+    protected AxeResult AxeResults(string type, string action = "Axe")
     {
-        _driver?.Navigate().GoToUrl(BaseExternalAddress + $"/{type}/Axe");
+        _driver?.Navigate().GoToUrl(BaseExternalAddress + $"/{type}/{action}");
         return new AxeBuilder(_driver).DisableRules("region", "skip-link").Analyze();
     }
 }

@@ -58,7 +58,7 @@ public class CheckboxesModel : GdsViewModel
     /// Array of values for checkboxes which should be checked when the page loads.
     /// Use this as an alternative to setting the checked option on each individual item.
     /// </summary>
-    public List<bool>? Values { get; set; }
+    public List<string>? Values { get; set; }
 
     public CheckboxesModel()
     {
@@ -105,7 +105,7 @@ public class CheckboxesModel : GdsViewModel
         /// Whether the checkbox should be checked when the page loads.
         /// Takes precedence over the top-level values option.
         /// </summary>
-        public bool Checked { get; set; }
+        public bool? Checked { get; set; }
 
         /// <summary>
         /// Content provided will be revealed when the item is checked.
@@ -135,5 +135,14 @@ public class CheckboxesModel : GdsViewModel
     public class DividerModel : IItemModel
     {
         public string? Divider { get; set; }
+
+        public DividerModel()
+        {
+        }
+
+        public DividerModel(string divider)
+        {
+            Divider = divider;
+        }
     }
 }

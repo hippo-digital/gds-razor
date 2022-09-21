@@ -34,14 +34,17 @@
       }
       else if (obj is CheckboxesModel.ItemModel item)
       {
-        var id = item.Id ?? (idx == 0 ? Model.IdPrefix : $"{Model.IdPrefix}-{idx}");
+        var id = item.Id ?? (idx == 0 ? Model.IdPrefix : $"{Model.IdPrefix}-{idx+1}");
+        var conditionalId = item.ConditionalContent != null ? $"conditional-{id}" : null;
+        var describedBy = string.Join(" ", new[] {Model.Fieldset != null ? null : Model.DescribedBy, item.Hint != null ? $"{id}-item-hint" : null}.OfType<string>());
         <div class="govuk-checkboxes__item">
-          <input id="@id" class="govuk-checkboxes__input" name="@(item.Name ?? Model.Name)" type="checkbox"
-                 value="@item.Value" @if (item.Checked || Model.Values?.ElementAtOrDefault(idx) == true) { <text>checked</text> } @if (item.Disabled) { <text>disabled</text> }
-                 data-aria-controls="@(item.ConditionalContent != null ? $"conditional-{id}" : null)" data-behaviour="@item.Behaviour"
-                 aria-describedby="@(Model.Fieldset != null ? "" : Model.DescribedBy) @(Model.Hint != null ? $"{id}-item-hint" : "")" @Html.Raw(item.ExpandAttributes()) />
+          <input id="@id" class="govuk-checkboxes__input @item.Classes" name="@(item.Name ?? Model.Name)" type="checkbox"
+                 value="@item.Value" @if (item.Checked ?? (item.Value != null && Model.Values?.Contains(item.Value) == true)) { <text>checked</text> } @if (item.Disabled) { <text>disabled</text> }
+                 @if (conditionalId != null) { <text>data-aria-controls="@conditionalId"</text> } @if (!string.IsNullOrWhiteSpace(item.Behaviour)) { <text>data-behaviour="@item.Behaviour"</text> }
+                 @if (!string.IsNullOrWhiteSpace(describedBy)) { <text>aria-describedby="@describedBy"</text> } @Html.Raw(item.ExpandAttributes()) />
           @await Html.PartialAsync("GdsLabel", new LabelModel
           {
+            Id = item.Label?.Id,
             Content = item.Content,
             Classes = "govuk-checkboxes__label " + (item.Label?.Classes ?? ""),
             Attributes = item.Label?.Attributes,
@@ -58,9 +61,9 @@
             })
           }
         </div>
-        @if (item.ConditionalContent != null)
+        if (item.ConditionalContent != null)
         {
-          <div class="govuk-checkboxes__conditional @(item.Checked || Model.Values?[idx] == true ? "" : "govuk-checkboxes__conditional--hidden")" id="conditional-@id">
+          <div class="govuk-checkboxes__conditional @(item.Checked ?? (item.Value != null && Model.Values?.Contains(item.Value) == true) ? "" : "govuk-checkboxes__conditional--hidden")" id="conditional-@id">
             @await Html.PartialAsync("GdsContent", item.ConditionalContent)
           </div>
         }

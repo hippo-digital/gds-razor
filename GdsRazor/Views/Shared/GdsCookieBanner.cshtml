@@ -6,7 +6,7 @@
   {
     @foreach (var message in Model.Messages)
     {
-      <div class="govuk-cookie-banner__message govuk-width-container @message.Classes" role="@message.Role" @if (message.Hidden) { <text>hidden</text> } @Html.Raw(message.ExpandAttributes())>
+      <div id="@message.Id" class="govuk-cookie-banner__message govuk-width-container @message.Classes" role="@message.Role" @if (message.Hidden) { <text>hidden</text> } @Html.Raw(message.ExpandAttributes())>
         <div class="govuk-grid-row">
           <div class="govuk-grid-column-two-thirds">
             @if (message.Heading != null)

@@ -40,9 +40,9 @@ public class AutoTests : ClientBase<Startup>
         // Hint
         // Assert.Contains(model.Hint!.Id, html); Overridden in textarea
         Assert.Contains(model.Hint!.Classes, html);
-        Assert.Contains(((GdsPlain) model.Hint!.Content!).Text, html);
+        Assert.Contains(((GdsPlain) model.Hint.Content!).Text, html);
 
-        foreach (var kv in model.Hint!.Attributes!)
+        foreach (var kv in model.Hint.Attributes!)
         {
             Assert.Contains(kv.Key, html);
             Assert.Contains(kv.Value, html);
@@ -50,11 +50,11 @@ public class AutoTests : ClientBase<Startup>
 
         // Label
         Assert.Contains(model.Label!.Id, html);
-        Assert.Contains(model.Label!.Classes, html);
-        // Assert.Contains(model.Label!.For, html); Overridden in character count
-        Assert.Contains(((GdsPlain) model.Label!.Content!).Text, html);
+        Assert.Contains(model.Label.Classes, html);
+        // Assert.Contains(model.Label.For, html); Overridden in character count
+        Assert.Contains(((GdsPlain) model.Label.Content!).Text, html);
 
-        foreach (var kv in model.Label!.Attributes!)
+        foreach (var kv in model.Label.Attributes!)
         {
             Assert.Contains(kv.Key, html);
             Assert.Contains(kv.Value, html);
@@ -63,10 +63,10 @@ public class AutoTests : ClientBase<Startup>
         // Error message
         // Assert.Contains(model.ErrorMessage!.Id, html); Overridden in textarea
         Assert.Contains(model.ErrorMessage!.Classes, html);
-        Assert.Contains(model.ErrorMessage!.VisuallyHiddenText, html);
-        Assert.Contains(((GdsPlain) model.ErrorMessage!.Content!).Text, html);
+        Assert.Contains(model.ErrorMessage.VisuallyHiddenText, html);
+        Assert.Contains(((GdsPlain) model.ErrorMessage.Content!).Text, html);
 
-        foreach (var kv in model.ErrorMessage!.Attributes!)
+        foreach (var kv in model.ErrorMessage.Attributes!)
         {
             Assert.Contains(kv.Key, html);
             Assert.Contains(kv.Value, html);
