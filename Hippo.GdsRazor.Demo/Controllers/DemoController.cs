@@ -11,7 +11,7 @@ public class DemoController : Controller
     {
         var types = Assembly.GetExecutingAssembly()
             .GetTypes()
-            .Where(type => typeof(RazorPage).IsAssignableFrom(type) && type.Name?.StartsWith("Views_Demo") == true)
+            .Where(type => typeof(RazorPage).IsAssignableFrom(type) && type.Name.StartsWith("Views_Demo"))
             .Select(type => type.Name.Replace("Views_Demo_", ""));
 
         ViewBag.types = types;

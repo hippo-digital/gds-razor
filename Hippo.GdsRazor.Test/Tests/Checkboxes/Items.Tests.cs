@@ -1,4 +1,5 @@
 using AngleSharp.Html.Dom;
+using Hippo.GdsRazor.Test.Controllers;
 using Hippo.GdsRazor.Test.Tests.Internal;
 using Xunit;
 
@@ -13,7 +14,7 @@ public class ItemsTests : ClientBase<Startup>
     [Fact]
     public async void RenderAMatchingLabelAndInputUsingNameByDefault()
     {
-        var response = await Navigate("/Checkboxes/Default");
+        var response = await Navigate("Checkboxes" ,nameof(CheckboxesController.Default));
         var firstInput = response.QuerySelector(".govuk-checkboxes__item:first-child input");
         var firstLabel = response.QuerySelector(".govuk-checkboxes__item:first-child label");
 
@@ -32,7 +33,7 @@ public class ItemsTests : ClientBase<Startup>
     [Fact]
     public async void RenderAMatchingLabelAndInputUsingCustomIdPrefix()
     {
-        var response = await Navigate("/Checkboxes/WithIdPrefix");
+        var response = await Navigate("Checkboxes" ,nameof(CheckboxesController.WithIdPrefix));
         var firstInput = response.QuerySelector(".govuk-checkboxes__item:first-child input");
         var firstLabel = response.QuerySelector(".govuk-checkboxes__item:first-child label");
 
@@ -51,7 +52,7 @@ public class ItemsTests : ClientBase<Startup>
     [Fact]
     public async void RenderExplicitlyPassedItemIds()
     {
-        var response = await Navigate("/Checkboxes/WithIdAndName");
+        var response = await Navigate("Checkboxes" ,nameof(CheckboxesController.WithIdAndName));
         var lastInput = response.QuerySelector(".govuk-checkboxes__item:last-child input");
 
         Assert.Equal("with-id-and-name-3", lastInput!.Id);
@@ -67,7 +68,7 @@ public class ItemsTests : ClientBase<Startup>
     [Fact]
     public async void RenderExplicitlyPassedItemNames()
     {
-        var response = await Navigate("/Checkboxes/WithIdAndName");
+        var response = await Navigate("Checkboxes" ,nameof(CheckboxesController.WithIdAndName));
         var lastInput = response.QuerySelector(".govuk-checkboxes__item:last-child input");
 
         Assert.IsAssignableFrom<IHtmlInputElement>(lastInput);
@@ -77,7 +78,7 @@ public class ItemsTests : ClientBase<Startup>
     [Fact]
     public async void RenderDisabled()
     {
-        var response = await Navigate("/Checkboxes/WithDisabledItem");
+        var response = await Navigate("Checkboxes" ,nameof(CheckboxesController.WithDisabledItem));
         var lastInput = response.QuerySelector(".govuk-checkboxes__item:last-child input");
 
         Assert.IsAssignableFrom<IHtmlInputElement>(lastInput);
@@ -87,7 +88,7 @@ public class ItemsTests : ClientBase<Startup>
     [Fact]
     public async void RenderChecked()
     {
-        var response = await Navigate("/Checkboxes/WithCheckedItem");
+        var response = await Navigate("Checkboxes" ,nameof(CheckboxesController.WithCheckedItem));
         var secondInput = response.QuerySelector(".govuk-checkboxes__item:nth-child(2) input");
         var lastInput = response.QuerySelector(".govuk-checkboxes__item:last-child input");
 
@@ -100,7 +101,7 @@ public class ItemsTests : ClientBase<Startup>
     [Fact]
     public async void ChecksTheCheckboxesInValues()
     {
-        var response = await Navigate("/Checkboxes/WithPrecheckedValues");
+        var response = await Navigate("Checkboxes" ,nameof(CheckboxesController.WithPrecheckedValues));
         var british = response.QuerySelector(".govuk-checkboxes input[value=\"british\"]");
         var other = response.QuerySelector(".govuk-checkboxes input[value=\"other\"]");
 
@@ -113,7 +114,7 @@ public class ItemsTests : ClientBase<Startup>
     [Fact]
     public async void AllowsItemCheckedToOverrideValues()
     {
-        var response = await Navigate("/Checkboxes/ItemCheckedOverridesValues");
+        var response = await Navigate("Checkboxes" ,nameof(CheckboxesController.ItemCheckedOverridesValues));
         var green = response.QuerySelector(".govuk-checkboxes input[value=\"green\"]");
 
         Assert.IsAssignableFrom<IHtmlInputElement>(green);
@@ -123,7 +124,7 @@ public class ItemsTests : ClientBase<Startup>
     [Fact]
     public async void RendersTheAttributes()
     {
-        var response = await Navigate("/Checkboxes/ItemsWithAttributes");
+        var response = await Navigate("Checkboxes" ,nameof(CheckboxesController.ItemsWithAttributes));
         var firstInput = response.QuerySelector(".govuk-checkboxes__item:first-child input");
         var lastInput = response.QuerySelector(".govuk-checkboxes__item:last-child input");
 

@@ -1,4 +1,5 @@
 using System.Text.RegularExpressions;
+using Hippo.GdsRazor.Test.Controllers;
 using Hippo.GdsRazor.Test.Tests.Internal;
 using Xunit;
 
@@ -13,7 +14,7 @@ public class ErrorMessageTests : ClientBase<Startup>
     [Fact]
     public async void RendersWithErrorMessage()
     {
-        var response = await Navigate("/CharacterCount/WithDefaultValueExceedingLimit");
+        var response = await Navigate("CharacterCount" ,nameof(CharacterCountController.WithDefaultValueExceedingLimit));
         var component = response.QuerySelector(".govuk-error-message");
 
         const string expected = "<p id=\"exceeding-characters-error\" class=\"govuk-error-message \">\n  \nPlease do not exceed the maximum allowed limit\n</p>";
@@ -24,7 +25,7 @@ public class ErrorMessageTests : ClientBase<Startup>
     [Fact]
     public async void AssociatesTheCharacterCountAsDescribedByTheErrorMessage()
     {
-        var response = await Navigate("/CharacterCount/WithDefaultValueExceedingLimit");
+        var response = await Navigate("CharacterCount" ,nameof(CharacterCountController.WithDefaultValueExceedingLimit));
         var textarea = response.QuerySelector(".govuk-js-character-count");
         var errorMessage = response.QuerySelector(".govuk-error-message");
 
@@ -34,7 +35,7 @@ public class ErrorMessageTests : ClientBase<Startup>
     [Fact]
     public async void AddsTheErrorClassToTheCharacterCount()
     {
-        var response = await Navigate("/CharacterCount/WithDefaultValueExceedingLimit");
+        var response = await Navigate("CharacterCount" ,nameof(CharacterCountController.WithDefaultValueExceedingLimit));
         var component = response.QuerySelector(".govuk-js-character-count");
 
         Assert.Contains("govuk-textarea--error", component!.ClassList);
@@ -43,7 +44,7 @@ public class ErrorMessageTests : ClientBase<Startup>
     [Fact]
     public async void RendersWithClasses()
     {
-        var response = await Navigate("/CharacterCount/CustomClassesWithErrorMessage");
+        var response = await Navigate("CharacterCount" ,nameof(CharacterCountController.CustomClassesWithErrorMessage));
         var component = response.QuerySelector(".govuk-js-character-count");
 
         Assert.Contains("app-character-count--custom-modifier", component!.ClassList);

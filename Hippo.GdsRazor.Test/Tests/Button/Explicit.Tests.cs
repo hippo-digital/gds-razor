@@ -1,4 +1,5 @@
 using AngleSharp.Html.Dom;
+using Hippo.GdsRazor.Test.Controllers;
 using Hippo.GdsRazor.Test.Tests.Internal;
 using Xunit;
 
@@ -11,7 +12,7 @@ public class ExplicitTests : ClientBase<Startup>
     [Fact]
     public async void RendersWithInput()
     {
-        var response = await Navigate("/Button/Input");
+        var response = await Navigate("Button" ,nameof(ButtonController.Input));
         var component = response.QuerySelector(".govuk-button");
 
         Assert.IsAssignableFrom<IHtmlInputElement>(component);
@@ -21,7 +22,7 @@ public class ExplicitTests : ClientBase<Startup>
     [Fact]
     public async void RendersWithAttributes()
     {
-        var response = await Navigate("/Button/InputAttributes");
+        var response = await Navigate("Button" ,nameof(ButtonController.InputAttributes));
         var component = response.QuerySelector(".govuk-button");
 
         Assert.Equal("example-id", component!.Attributes["aria-controls"]?.Value);
@@ -31,7 +32,7 @@ public class ExplicitTests : ClientBase<Startup>
     [Fact]
     public async void RendersWithClasses()
     {
-        var response = await Navigate("/Button/InputClasses");
+        var response = await Navigate("Button" ,nameof(ButtonController.InputClasses));
         var component = response.QuerySelector(".govuk-button");
 
         Assert.Contains("app-button--custom-modifier", component!.ClassList);
@@ -40,7 +41,7 @@ public class ExplicitTests : ClientBase<Startup>
     [Fact]
     public async void RendersWithDisabled()
     {
-        var response = await Navigate("/Button/InputDisabled");
+        var response = await Navigate("Button" ,nameof(ButtonController.InputDisabled));
         var component = response.QuerySelector(".govuk-button");
 
         Assert.Equal("true", component!.Attributes["aria-disabled"]?.Value);
@@ -51,7 +52,7 @@ public class ExplicitTests : ClientBase<Startup>
     [Fact]
     public async void RendersWithName()
     {
-        var response = await Navigate("/Button/Input");
+        var response = await Navigate("Button" ,nameof(ButtonController.Input));
         var component = response.QuerySelector(".govuk-button");
 
         Assert.Equal("start-now", ((IHtmlInputElement) component!).Name);
@@ -60,7 +61,7 @@ public class ExplicitTests : ClientBase<Startup>
     [Fact]
     public async void RendersWithType()
     {
-        var response = await Navigate("/Button/InputType");
+        var response = await Navigate("Button" ,nameof(ButtonController.InputType));
         var component = response.QuerySelector(".govuk-button");
 
         Assert.IsAssignableFrom<IHtmlInputElement>(component);

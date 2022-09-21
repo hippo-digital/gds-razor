@@ -1,4 +1,5 @@
 using System.Text.RegularExpressions;
+using Hippo.GdsRazor.Test.Controllers;
 using Hippo.GdsRazor.Test.Tests.Internal;
 using Xunit;
 
@@ -13,7 +14,7 @@ public class CountMessageTests : ClientBase<Startup>
     [Fact]
     public async void RendersWithTheAmountOfCharactersExpected()
     {
-        var response = await Navigate("/CharacterCount/Default");
+        var response = await Navigate("CharacterCount" ,nameof(CharacterCountController.Default));
         var countMessage = response.QuerySelector(".govuk-character-count__message");
 
         Assert.Contains("You can enter up to 10 characters", countMessage!.TextContent);
@@ -22,7 +23,7 @@ public class CountMessageTests : ClientBase<Startup>
     [Fact]
     public async void RendersWithRows()
     {
-        var response = await Navigate("/CharacterCount/WithWordCount");
+        var response = await Navigate("CharacterCount" ,nameof(CharacterCountController.WithWordCount));
         var countMessage = response.QuerySelector(".govuk-character-count__message");
 
         Assert.Contains("You can enter up to 10 words", countMessage!.TextContent);
@@ -31,7 +32,7 @@ public class CountMessageTests : ClientBase<Startup>
     [Fact]
     public async void IsAssociatedWithTheTextarea()
     {
-        var response = await Navigate("/CharacterCount/Default");
+        var response = await Navigate("CharacterCount" ,nameof(CharacterCountController.Default));
         var textarea = response.QuerySelector(".govuk-js-character-count");
         var countMessage = response.QuerySelector(".govuk-character-count__message");
 
@@ -41,7 +42,7 @@ public class CountMessageTests : ClientBase<Startup>
     [Fact]
     public async void RendersWithCustomClasses()
     {
-        var response = await Navigate("/CharacterCount/CustomClassesOnCountMessage");
+        var response = await Navigate("CharacterCount" ,nameof(CharacterCountController.CustomClassesOnCountMessage));
         var countMessage = response.QuerySelector(".govuk-character-count__message");
 
         Assert.Contains("app-custom-count-message", countMessage!.ClassList);

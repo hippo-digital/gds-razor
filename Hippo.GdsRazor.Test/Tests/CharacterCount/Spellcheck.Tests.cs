@@ -1,3 +1,4 @@
+using Hippo.GdsRazor.Test.Controllers;
 using Hippo.GdsRazor.Test.Tests.Internal;
 using Xunit;
 
@@ -12,7 +13,7 @@ public class SpellcheckTests : ClientBase<Startup>
     [Fact]
     public async void RendersTheTextareaWithSpellcheckAttributeSetToTrue()
     {
-        var response = await Navigate("/CharacterCount/SpellcheckEnabled");
+        var response = await Navigate("CharacterCount" ,nameof(CharacterCountController.SpellcheckEnabled));
         var component = response.QuerySelector(".govuk-character-count .govuk-textarea");
 
         Assert.Equal("true", component!.Attributes["spellcheck"]?.Value);
@@ -21,7 +22,7 @@ public class SpellcheckTests : ClientBase<Startup>
     [Fact]
     public async void RendersTheTextareaWithSpellcheckAttributeSetToFalse()
     {
-        var response = await Navigate("/CharacterCount/SpellcheckDisabled");
+        var response = await Navigate("CharacterCount" ,nameof(CharacterCountController.SpellcheckDisabled));
         var component = response.QuerySelector(".govuk-character-count .govuk-textarea");
 
         Assert.Equal("false", component!.Attributes["spellcheck"]?.Value);
@@ -30,7 +31,7 @@ public class SpellcheckTests : ClientBase<Startup>
     [Fact]
     public async void RendersTheTextareaWithoutSpellcheckAttributeByDefault()
     {
-        var response = await Navigate("/CharacterCount/Default");
+        var response = await Navigate("CharacterCount" ,nameof(CharacterCountController.Default));
         var component = response.QuerySelector(".govuk-character-count .govuk-textarea");
 
         Assert.Null(component!.Attributes["spellcheck"]?.Value);

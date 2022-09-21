@@ -1,4 +1,5 @@
 using AngleSharp.Html.Dom;
+using Hippo.GdsRazor.Test.Controllers;
 using Hippo.GdsRazor.Test.Tests.Internal;
 using Xunit;
 
@@ -21,7 +22,7 @@ public class DefaultTests : ClientBase<Startup>
     [Fact]
     public async void RendersWithItems()
     {
-        var response = await Navigate("/Breadcrumbs/Default");
+        var response = await Navigate("Breadcrumbs" ,nameof(BreadcrumbsController.Default));
         var items = response.QuerySelectorAll(".govuk-breadcrumbs__list-item");
 
         Assert.Equal(2, items.Length);
@@ -30,7 +31,7 @@ public class DefaultTests : ClientBase<Startup>
     [Fact]
     public async void RendersITemWithAnchor()
     {
-        var response = await Navigate("/Breadcrumbs/Default");
+        var response = await Navigate("Breadcrumbs" ,nameof(BreadcrumbsController.Default));
         var anchor = response.QuerySelector(".govuk-breadcrumbs__list-item a");
 
         Assert.IsAssignableFrom<IHtmlAnchorElement>(anchor);

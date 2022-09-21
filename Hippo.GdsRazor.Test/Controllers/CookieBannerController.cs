@@ -83,6 +83,26 @@ public class CookieBannerController : Controller
                 }
             }
         );
+        public static readonly CookieBannerModel LinkClasses = new(
+            new CookieBannerModel.MessageModel {
+                Actions = new List<CookieBannerModel.MessageModel.ActionModel> {
+                    new("This with custom classes") {
+                        Href = "/link",
+                        Classes = "my-link-class app-link-class"
+                    }
+                }
+            }
+        );
+        public static readonly CookieBannerModel LinkAttributes = new(
+            new CookieBannerModel.MessageModel {
+                Actions = new List<CookieBannerModel.MessageModel.ActionModel> {
+                    new("This with attributes") {
+                        Href = "/link",
+                        Attributes = new Dictionary<string, string?> {{"data-link-attribute", "my-value"}}
+                    }
+                }
+            }
+        );
         public static readonly CookieBannerModel LinkWithFalseButtonOptions = new(
             new CookieBannerModel.MessageModel {
                 Actions = new List<CookieBannerModel.MessageModel.ActionModel> {
@@ -125,7 +145,7 @@ public class CookieBannerController : Controller
         public static readonly CookieBannerModel ButtonAttributes = new(
             new CookieBannerModel.MessageModel {
                 Actions = new List<CookieBannerModel.MessageModel.ActionModel> {
-                    new("Button with custom classes") {
+                    new("Button with attributes") {
                         Attributes = new Dictionary<string, string?> {{"data-button-attribute", "my-value"}}
                     }
                 }
@@ -152,6 +172,7 @@ public class CookieBannerController : Controller
             },
             new CookieBannerModel.MessageModel("Your cookie preferences have been saved. You have accepted cookies.") {
                 Role = "alert",
+                Hidden = true,
                 Actions = new List<CookieBannerModel.MessageModel.ActionModel> {
                     new("Hide cookie message") {
                         Type = "button"
@@ -160,6 +181,7 @@ public class CookieBannerController : Controller
             },
             new CookieBannerModel.MessageModel("Your cookie preferences have been saved. You have rejected cookies.") {
                 Role = "alert",
+                Hidden = true,
                 Actions = new List<CookieBannerModel.MessageModel.ActionModel> {
                     new("Hide cookie message") {
                         Type = "button"
@@ -203,6 +225,7 @@ public class CookieBannerController : Controller
                 }
             }
         ) {
+            Hidden = true,
             Classes = "hide-cookie-banner",
             Attributes = new Dictionary<string, string?> {{"data-hide-cookie-banner", "true"}}
         };
@@ -220,6 +243,10 @@ public class CookieBannerController : Controller
     public IActionResult HiddenFalse() => PartialView("GdsCookieBanner", Examples.HiddenFalse);
     public IActionResult DefaultAction() => PartialView("GdsCookieBanner", Examples.DefaultAction);
     public IActionResult Link() => PartialView("GdsCookieBanner", Examples.Link);
+    public IActionResult LinkClasses() => PartialView("GdsCookieBanner", Examples.LinkClasses);
+
+    public IActionResult LinkAttributes() => PartialView("GdsCookieBanner", Examples.LinkAttributes);
+
     public IActionResult LinkWithFalseButtonOptions() => PartialView("GdsCookieBanner", Examples.LinkWithFalseButtonOptions);
     public IActionResult LinkAsAButton() => PartialView("GdsCookieBanner", Examples.LinkAsAButton);
     public IActionResult Type() => PartialView("GdsCookieBanner", Examples.Type);

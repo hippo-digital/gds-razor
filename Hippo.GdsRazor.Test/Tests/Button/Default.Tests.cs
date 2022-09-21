@@ -1,4 +1,5 @@
 using AngleSharp.Html.Dom;
+using Hippo.GdsRazor.Test.Controllers;
 using Hippo.GdsRazor.Test.Tests.Internal;
 using Xunit;
 
@@ -21,7 +22,7 @@ public class DefaultTests : ClientBase<Startup>
     [Fact]
     public async void RendersTheDefaultExample()
     {
-        var response = await Navigate("/Button/Default");
+        var response = await Navigate("Button" ,nameof(ButtonController.Default));
         var component = response.QuerySelector(".govuk-button");
 
         Assert.IsAssignableFrom<IHtmlButtonElement>(component);

@@ -1,5 +1,5 @@
-using System.Text.RegularExpressions;
 using AngleSharp.Html.Dom;
+using Hippo.GdsRazor.Test.Controllers;
 using Hippo.GdsRazor.Test.Tests.Internal;
 using Xunit;
 
@@ -14,7 +14,7 @@ public class DependantTests : ClientBase<Startup>
     [Fact]
     public async void HaveCorrectNestingOrder()
     {
-        var response = await Navigate("/CharacterCount/WithDefaultValueExceedingLimit");
+        var response = await Navigate("CharacterCount" ,nameof(CharacterCountController.WithDefaultValueExceedingLimit));
         var component = response.QuerySelectorAll(".govuk-form-group > .govuk-js-character-count");
 
         Assert.NotEmpty(component);
@@ -23,7 +23,7 @@ public class DependantTests : ClientBase<Startup>
     [Fact]
     public async void RendersWithLabel()
     {
-        var response = await Navigate("/CharacterCount/Default");
+        var response = await Navigate("CharacterCount" ,nameof(CharacterCountController.Default));
         var label = response.QuerySelector(".govuk-label");
 
         const string expected = "<label class=\"govuk-label \" for=\"more-detail\">\n    \nCan you provide more detail?\n  </label>";
@@ -34,7 +34,7 @@ public class DependantTests : ClientBase<Startup>
     [Fact]
     public async void RendersLabelWithForAttributeReferringTheCharacterCountId()
     {
-        var response = await Navigate("/CharacterCount/Default");
+        var response = await Navigate("CharacterCount" ,nameof(CharacterCountController.Default));
         var component = response.QuerySelector(".govuk-label");
 
         Assert.IsAssignableFrom<IHtmlLabelElement>(component);

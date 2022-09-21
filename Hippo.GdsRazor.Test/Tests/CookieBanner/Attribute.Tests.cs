@@ -1,3 +1,4 @@
+using Hippo.GdsRazor.Test.Controllers;
 using Hippo.GdsRazor.Test.Tests.Internal;
 using Xunit;
 
@@ -12,7 +13,7 @@ public class AttributeTests : ClientBase<Startup>
     [Fact]
     public async void HasARoleOfRegion()
     {
-        var response = await Navigate("/CookieBanner/Default");
+        var response = await Navigate("CookieBanner" ,nameof(CookieBannerController.Default));
         var component = response.QuerySelector(".govuk-cookie-banner");
 
         Assert.Equal("region", component!.Attributes["role"]?.Value);
@@ -21,7 +22,7 @@ public class AttributeTests : ClientBase<Startup>
     [Fact]
     public async void HasADefaultAriaLabel()
     {
-        var response = await Navigate("/CookieBanner/Default");
+        var response = await Navigate("CookieBanner" ,nameof(CookieBannerController.Default));
         var component = response.QuerySelector(".govuk-cookie-banner");
 
         Assert.Equal("Cookie banner", component!.Attributes["aria-label"]?.Value);
@@ -30,7 +31,7 @@ public class AttributeTests : ClientBase<Startup>
     [Fact]
     public async void RendersACustomAriaLabel()
     {
-        var response = await Navigate("/CookieBanner/CustomAriaLabel");
+        var response = await Navigate("CookieBanner" ,nameof(CookieBannerController.CustomAriaLabel));
         var component = response.QuerySelector(".govuk-cookie-banner");
 
         Assert.Equal("Cookies on GOV.UK", component!.Attributes["aria-label"]?.Value);

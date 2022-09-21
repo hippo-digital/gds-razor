@@ -1,4 +1,4 @@
-using AngleSharp.Html.Dom;
+using Hippo.GdsRazor.Test.Controllers;
 using Hippo.GdsRazor.Test.Tests.Internal;
 using Xunit;
 
@@ -21,7 +21,7 @@ public class DefaultTests : ClientBase<Startup>
     [Fact]
     public async void RendersWithClasses()
     {
-        var response = await Navigate("/InsetText/Classes");
+        var response = await Navigate("InsetText" ,nameof(InsetTextController.Classes));
         var component = response.QuerySelector(".govuk-inset-text");
 
         Assert.Contains("app-inset-text--custom-modifier", component!.ClassList);
@@ -30,7 +30,7 @@ public class DefaultTests : ClientBase<Startup>
     [Fact]
     public async void RendersWithId()
     {
-        var response = await Navigate("/InsetText/Id");
+        var response = await Navigate("InsetText" ,nameof(InsetTextController.Id));
         var component = response.QuerySelector(".govuk-inset-text");
 
         Assert.Equal("my-inset-text", component!.Id);
@@ -39,7 +39,7 @@ public class DefaultTests : ClientBase<Startup>
     [Fact]
     public async void AllowsTextToBePassedWhilstEscapingHtmlEntities()
     {
-        var response = await Navigate("/InsetText/HtmlAsText");
+        var response = await Navigate("InsetText" ,nameof(InsetTextController.HtmlAsText));
         var component = response.QuerySelector(".govuk-inset-text");
 
         Assert.Equal("It can take &lt;b&gt;up to 8 weeks&lt;/b&gt; to register a lasting power of attorney if there are no mistakes in the application.", component!.InnerHtml.Trim());
@@ -48,7 +48,7 @@ public class DefaultTests : ClientBase<Startup>
     [Fact]
     public async void AllowsHtmlToBePassedUnescaped()
     {
-        var response = await Navigate("/InsetText/WithHtml");
+        var response = await Navigate("InsetText" ,nameof(InsetTextController.WithHtml));
         var mainContent = response.QuerySelector(".govuk-inset-text .govuk-body:first-child");
         var warningContent = response.QuerySelector(".govuk-inset-text .govuk-warning-text__text");
 
@@ -59,7 +59,7 @@ public class DefaultTests : ClientBase<Startup>
     [Fact]
     public async void RendersWithAttributes()
     {
-        var response = await Navigate("/InsetText/Attributes");
+        var response = await Navigate("InsetText" ,nameof(InsetTextController.Attributes));
         var component = response.QuerySelector(".govuk-inset-text");
 
         Assert.Equal("my data value", component!.Attributes["data-attribute"]?.Value);

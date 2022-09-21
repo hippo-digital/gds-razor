@@ -1,4 +1,5 @@
 using System.Text.RegularExpressions;
+using Hippo.GdsRazor.Test.Controllers;
 using Hippo.GdsRazor.Test.Tests.Internal;
 using Xunit;
 
@@ -13,7 +14,7 @@ public class HintTests : ClientBase<Startup>
     [Fact]
     public async void RendersWithHint()
     {
-        var response = await Navigate("/CharacterCount/WithHint");
+        var response = await Navigate("CharacterCount" ,nameof(CharacterCountController.WithHint));
         var component = response.QuerySelectorAll(".govuk-hint");
 
         const string expected1 = "<div id=\"with-hint-hint\" class=\"govuk-hint \">\n  \nDon't include personal or financial information, eg your National Insurance number or credit card details.\n</div>";
@@ -26,7 +27,7 @@ public class HintTests : ClientBase<Startup>
     [Fact]
     public async void AssociatesTheCharacterCountAsDescribedByTheHint()
     {
-        var response = await Navigate("/CharacterCount/WithHint");
+        var response = await Navigate("CharacterCount" ,nameof(CharacterCountController.WithHint));
         var textarea = response.QuerySelector(".govuk-js-character-count");
         var hint = response.QuerySelector(".govuk-hint");
 

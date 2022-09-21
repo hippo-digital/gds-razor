@@ -1,4 +1,3 @@
-using AngleSharp;
 using Hippo.GdsRazor.Models;
 using Hippo.GdsRazor.Models.Content;
 using Hippo.GdsRazor.Test.Tests.Internal;
@@ -13,9 +12,7 @@ public class AutoTests : ClientBase<Startup>
     [Theory, GdsAutoData]
     public async void AllPropertiesAreUsed(CheckboxesModel model)
     {
-        GdsCollection.Model = ("GdsCheckboxes", model);
-        var response = await Navigate("/Custom");
-        var html = response.ToHtml();
+        var html = await AutoFixtureResults("Checkboxes", model);
 
         Assert.Contains(model.Id, html);
         Assert.Contains(model.Classes, html);
@@ -32,7 +29,7 @@ public class AutoTests : ClientBase<Startup>
 
         // Hint
         // Assert.Contains(model.Hint!.Id, html); Overridden in checkboxes
-        Assert.Contains(model.Hint.Classes, html);
+        Assert.Contains(model.Hint!.Classes, html);
         Assert.Contains(((GdsPlain) model.Hint.Content!).Text, html);
 
         foreach (var kv in model.Hint.Attributes!)

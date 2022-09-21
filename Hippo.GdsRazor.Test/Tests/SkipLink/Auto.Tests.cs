@@ -1,4 +1,3 @@
-using AngleSharp;
 using Hippo.GdsRazor.Models;
 using Hippo.GdsRazor.Models.Content;
 using Hippo.GdsRazor.Test.Tests.Internal;
@@ -13,9 +12,7 @@ public class AutoTests : ClientBase<Startup>
     [Theory, GdsAutoData]
     public async void AllPropertiesAreUsed(SkipLinkModel model)
     {
-        GdsCollection.Model = ("GdsSkipLink", model);
-        var response = await Navigate("/Custom");
-        var html = response.ToHtml();
+        var html = await AutoFixtureResults("SkipLink", model);
 
         Assert.Contains(model.Id, html);
         Assert.Contains(model.Classes, html);

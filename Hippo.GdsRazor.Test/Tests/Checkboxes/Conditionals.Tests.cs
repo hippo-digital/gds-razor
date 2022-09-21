@@ -1,3 +1,4 @@
+using Hippo.GdsRazor.Test.Controllers;
 using Hippo.GdsRazor.Test.Tests.Internal;
 using Xunit;
 
@@ -12,7 +13,7 @@ public class ConditionalsTests : ClientBase<Startup>
     [Fact]
     public async void HiddenByDefaultWhenNotChecked()
     {
-        var response = await Navigate("/Checkboxes/WithConditionalItems");
+        var response = await Navigate("Checkboxes" ,nameof(CheckboxesController.WithConditionalItems));
         var component = response.QuerySelector(".govuk-checkboxes__conditional");
 
         Assert.Equal("Email address", component!.TextContent.Trim());
@@ -22,7 +23,7 @@ public class ConditionalsTests : ClientBase<Startup>
     [Fact]
     public async void VisibleByDefaultWhenChecked()
     {
-        var response = await Navigate("/Checkboxes/WithConditionalItemChecked");
+        var response = await Navigate("Checkboxes" ,nameof(CheckboxesController.WithConditionalItemChecked));
         var component = response.QuerySelector(".govuk-checkboxes__conditional");
 
         Assert.Equal("Email address", component!.TextContent.Trim());
@@ -32,7 +33,7 @@ public class ConditionalsTests : ClientBase<Startup>
     [Fact]
     public async void VisibleWhenCheckedWithPrecheckedValues()
     {
-        var response = await Navigate("/Checkboxes/WithPrecheckedValues");
+        var response = await Navigate("Checkboxes" ,nameof(CheckboxesController.WithPrecheckedValues));
         var component = response.QuerySelector(".govuk-checkboxes__conditional");
 
         Assert.Equal("Country", component!.TextContent.Trim());
@@ -42,7 +43,7 @@ public class ConditionalsTests : ClientBase<Startup>
     [Fact]
     public async void WithAssociationToTheInputTheyAreControlledBy()
     {
-        var response = await Navigate("/Checkboxes/WithConditionalItems");
+        var response = await Navigate("Checkboxes" ,nameof(CheckboxesController.WithConditionalItems));
         var lastInput = response.QuerySelectorAll(".govuk-checkboxes__input").Last();
         var lastConditional = response.QuerySelectorAll(".govuk-checkboxes__conditional").Last();
 
@@ -53,7 +54,7 @@ public class ConditionalsTests : ClientBase<Startup>
     [Fact]
     public async void OmitsEmptyConditionals()
     {
-        var response = await Navigate("/Checkboxes/EmptyConditional");
+        var response = await Navigate("Checkboxes" ,nameof(CheckboxesController.EmptyConditional));
         var components = response.QuerySelectorAll(".govuk-checkboxes__conditional");
 
         Assert.Empty(components);
@@ -62,7 +63,7 @@ public class ConditionalsTests : ClientBase<Startup>
     [Fact]
     public async void DoesNotAssociateCheckboxesWithEmptyConditionals()
     {
-        var response = await Navigate("/Checkboxes/EmptyConditional");
+        var response = await Navigate("Checkboxes" ,nameof(CheckboxesController.EmptyConditional));
         var firstInput = response.QuerySelector(".govuk-checkboxes__input");
 
         Assert.Null(firstInput!.Attributes["data-aria-controls"]?.Value);

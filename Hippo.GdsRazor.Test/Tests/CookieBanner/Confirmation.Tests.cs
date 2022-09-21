@@ -1,3 +1,4 @@
+using Hippo.GdsRazor.Test.Controllers;
 using Hippo.GdsRazor.Test.Tests.Internal;
 using Xunit;
 
@@ -20,7 +21,7 @@ public class ConfirmationTests : ClientBase<Startup>
     [Fact]
     public async void RoleAlertNotSetByDefault()
     {
-        var response = await Navigate("/CookieBanner/Default");
+        var response = await Navigate("CookieBanner" ,nameof(CookieBannerController.Default));
         var banner = response.QuerySelector(".govuk-cookie-banner .govuk-cookie-banner__message");
 
         Assert.Null(banner!.Attributes["role"]?.Value);
@@ -29,7 +30,7 @@ public class ConfirmationTests : ClientBase<Startup>
     [Fact]
     public async void SetsRoleAttributeWhenRoleProvided()
     {
-        var response = await Navigate("/CookieBanner/AcceptedConfirmationBanner");
+        var response = await Navigate("CookieBanner" ,nameof(CookieBannerController.AcceptedConfirmationBanner));
         var banner = response.QuerySelector(".govuk-cookie-banner .govuk-cookie-banner__message");
 
         Assert.Equal("alert", banner!.Attributes["role"]?.Value);
@@ -38,16 +39,16 @@ public class ConfirmationTests : ClientBase<Startup>
     [Fact]
     public async void HidesBannerIfHiddenOptionSetToTrue()
     {
-        var response = await Navigate("/CookieBanner/Hidden");
+        var response = await Navigate("CookieBanner" ,nameof(CookieBannerController.Hidden));
         var component = response.QuerySelector(".govuk-cookie-banner__message");
 
         Assert.NotNull(component!.Attributes["hidden"]?.Value);
     }
 
     [Fact]
-    public async void DoesNotHideBAnnerIfHiddenOptionSetToFalse()
+    public async void DoesNotHideBannerIfHiddenOptionSetToFalse()
     {
-        var response = await Navigate("/CookieBanner/HiddenFalse");
+        var response = await Navigate("CookieBanner" ,nameof(CookieBannerController.HiddenFalse));
         var component = response.QuerySelector(".govuk-cookie-banner__message");
 
         Assert.Null(component!.Attributes["hidden"]?.Value);

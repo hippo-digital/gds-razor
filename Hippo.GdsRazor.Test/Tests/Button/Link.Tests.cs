@@ -1,4 +1,5 @@
 using AngleSharp.Html.Dom;
+using Hippo.GdsRazor.Test.Controllers;
 using Hippo.GdsRazor.Test.Tests.Internal;
 using Xunit;
 
@@ -11,7 +12,7 @@ public class LinkTests : ClientBase<Startup>
     [Fact]
     public async void RendersWithAnchorHrefAndAnAccessibleRoleOfButton()
     {
-        var response = await Navigate("/Button/ExplicitLink");
+        var response = await Navigate("Button" ,nameof(ButtonController.ExplicitLink));
         var component = response.QuerySelector(".govuk-button");
 
         Assert.IsAssignableFrom<IHtmlAnchorElement>(component);
@@ -23,7 +24,7 @@ public class LinkTests : ClientBase<Startup>
     [Fact]
     public async void RendersWithHashHrefIfNoHrefPassed()
     {
-        var response = await Navigate("/Button/NoHref");
+        var response = await Navigate("Button" ,nameof(ButtonController.NoHref));
         var component = response.QuerySelector(".govuk-button");
 
         Assert.Equal("#", component!.Attributes["href"]?.Value);
@@ -32,7 +33,7 @@ public class LinkTests : ClientBase<Startup>
     [Fact]
     public async void RendersWithAttributes()
     {
-        var response = await Navigate("/Button/LinkAttributes");
+        var response = await Navigate("Button" ,nameof(ButtonController.LinkAttributes));
         var component = response.QuerySelector(".govuk-button");
 
         Assert.Equal("example-id", component!.Attributes["aria-controls"]?.Value);
@@ -42,7 +43,7 @@ public class LinkTests : ClientBase<Startup>
     [Fact]
     public async void RendersWithClasses()
     {
-        var response = await Navigate("/Button/LinkClasses");
+        var response = await Navigate("Button" ,nameof(ButtonController.LinkClasses));
         var component = response.QuerySelector(".govuk-button");
 
         Assert.Contains("app-button--custom-modifier", component!.ClassList);
@@ -51,7 +52,7 @@ public class LinkTests : ClientBase<Startup>
     [Fact]
     public async void RendersWithDisabled()
     {
-        var response = await Navigate("/Button/LinkDisabled");
+        var response = await Navigate("Button" ,nameof(ButtonController.LinkDisabled));
         var component = response.QuerySelector(".govuk-button");
 
         Assert.Contains("govuk-button--disabled", component!.ClassList);

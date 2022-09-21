@@ -1,3 +1,4 @@
+using Hippo.GdsRazor.Test.Controllers;
 using Hippo.GdsRazor.Test.Tests.Internal;
 using Xunit;
 
@@ -20,7 +21,7 @@ public class DefaultTests : ClientBase<Startup>
     [Fact]
     public async void RendersTheDefaultExampleWithStrongElementAndText()
     {
-        var response = await Navigate("/Tag/Default");
+        var response = await Navigate("Tag" ,nameof(TagController.Default));
         var component = response.QuerySelector(".govuk-tag");
 
         Assert.Equal("STRONG", component!.TagName);
@@ -30,7 +31,7 @@ public class DefaultTests : ClientBase<Startup>
     [Fact]
     public async void RendersClasses()
     {
-        var response = await Navigate("/Tag/Inactive");
+        var response = await Navigate("Tag" ,nameof(TagController.Inactive));
         var component = response.QuerySelector(".govuk-tag");
 
         Assert.Contains("govuk-tag--grey", component!.ClassList);

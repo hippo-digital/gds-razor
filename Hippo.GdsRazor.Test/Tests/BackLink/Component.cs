@@ -1,4 +1,5 @@
 using AngleSharp.Html.Dom;
+using Hippo.GdsRazor.Test.Controllers;
 using Hippo.GdsRazor.Test.Tests.Internal;
 using Xunit;
 
@@ -21,7 +22,7 @@ public class ComponentTests : ClientBase<Startup>
     [Fact]
     public async void RendersTheDefaultExampleWithAnAnchorHrefAndTextCorrectly()
     {
-        var response = await Navigate("/BackLink/Default");
+        var response = await Navigate("BackLink" ,nameof(BackLinkController.Default));
         var component = response.QuerySelector(".govuk-back-link");
 
         Assert.IsAssignableFrom<IHtmlAnchorElement>(component);
@@ -32,7 +33,7 @@ public class ComponentTests : ClientBase<Startup>
     [Fact]
     public async void RendersClassesCorrectly()
     {
-        var response = await Navigate("/BackLink/Classes");
+        var response = await Navigate("BackLink" ,nameof(BackLinkController.Classes));
         var component = response.QuerySelector(".govuk-back-link");
 
         Assert.Contains("app-back-link--custom-class", component!.ClassList);
@@ -41,7 +42,7 @@ public class ComponentTests : ClientBase<Startup>
     [Fact]
     public async void RendersCustomTextCorrectly()
     {
-        var response = await Navigate("/BackLink/CustomText");
+        var response = await Navigate("BackLink" ,nameof(BackLinkController.CustomText));
         var component = response.QuerySelector(".govuk-back-link");
 
         Assert.Equal("Back to home", component!.InnerHtml.Trim());
@@ -50,7 +51,7 @@ public class ComponentTests : ClientBase<Startup>
     [Fact]
     public async void RendersEscapedHtmlWhenPassedToText()
     {
-        var response = await Navigate("/BackLink/HtmlAsText");
+        var response = await Navigate("BackLink" ,nameof(BackLinkController.HtmlAsText));
         var component = response.QuerySelector(".govuk-back-link");
 
         Assert.Equal("&lt;b&gt;Home&lt;/b&gt;", component!.InnerHtml.Trim());
@@ -59,7 +60,7 @@ public class ComponentTests : ClientBase<Startup>
     [Fact]
     public async void RendersHtmlCorrectly()
     {
-        var response = await Navigate("/BackLink/Html");
+        var response = await Navigate("BackLink" ,nameof(BackLinkController.Html));
         var component = response.QuerySelector(".govuk-back-link");
 
         Assert.Equal("<b>Back</b>", component!.InnerHtml.Trim());
@@ -68,7 +69,7 @@ public class ComponentTests : ClientBase<Startup>
     [Fact]
     public async void RendersAttributesCorrectly()
     {
-        var response = await Navigate("/BackLink/Attributes");
+        var response = await Navigate("BackLink" ,nameof(BackLinkController.Attributes));
         var component = response.QuerySelector(".govuk-back-link");
 
         Assert.Equal("attribute", component!.Attributes["data-test"]?.Value);

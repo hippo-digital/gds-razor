@@ -1,3 +1,4 @@
+using Hippo.GdsRazor.Test.Controllers;
 using Hippo.GdsRazor.Test.Tests.Internal;
 using Xunit;
 
@@ -10,7 +11,7 @@ public class CustomTests : ClientBase<Startup>
     [Fact]
     public async void RendersWithAttributes()
     {
-        var response = await Navigate("/Button/Attributes");
+        var response = await Navigate("Button" ,nameof(ButtonController.Attributes));
         var component = response.QuerySelector(".govuk-button");
 
         Assert.Equal("example-id", component!.Attributes["aria-controls"]?.Value);
@@ -20,7 +21,7 @@ public class CustomTests : ClientBase<Startup>
     [Fact]
     public async void RendersWithClasses()
     {
-        var response = await Navigate("/Button/Classes");
+        var response = await Navigate("Button" ,nameof(ButtonController.Classes));
         var component = response.QuerySelector(".govuk-button");
 
         Assert.Contains("app-button--custom-modifier", component!.ClassList);
@@ -29,7 +30,7 @@ public class CustomTests : ClientBase<Startup>
     [Fact]
     public async void RendersWithDisabled()
     {
-        var response = await Navigate("/Button/Disabled");
+        var response = await Navigate("Button" ,nameof(ButtonController.Disabled));
         var component = response.QuerySelector(".govuk-button");
 
         Assert.Equal("true", component!.Attributes["aria-disabled"]?.Value);
@@ -40,7 +41,7 @@ public class CustomTests : ClientBase<Startup>
     [Fact]
     public async void RendersWithName()
     {
-        var response = await Navigate("/Button/Name");
+        var response = await Navigate("Button" ,nameof(ButtonController.Name));
         var component = response.QuerySelector(".govuk-button");
 
         Assert.Equal("start-now", component!.Attributes["name"]?.Value);
@@ -49,7 +50,7 @@ public class CustomTests : ClientBase<Startup>
     [Fact]
     public async void RendersWithValue()
     {
-        var response = await Navigate("/Button/Value");
+        var response = await Navigate("Button" ,nameof(ButtonController.Value));
         var component = response.QuerySelector(".govuk-button");
 
         Assert.Equal("start", component!.Attributes["value"]?.Value);
@@ -58,7 +59,7 @@ public class CustomTests : ClientBase<Startup>
     [Fact]
     public async void RendersWithType()
     {
-        var response = await Navigate("/Button/Type");
+        var response = await Navigate("Button" ,nameof(ButtonController.Type));
         var component = response.QuerySelector(".govuk-button");
 
         Assert.Equal("button", component!.Attributes["type"]?.Value);
@@ -67,7 +68,7 @@ public class CustomTests : ClientBase<Startup>
     [Fact]
     public async void RendersWithHtml()
     {
-        var response = await Navigate("/Button/Html");
+        var response = await Navigate("Button" ,nameof(ButtonController.Html));
         var component = response.QuerySelector(".govuk-button");
 
         Assert.Equal("Start <em>now</em>", component!.InnerHtml.Trim());
@@ -76,7 +77,7 @@ public class CustomTests : ClientBase<Startup>
     [Fact]
     public async void RendersWithPreventDoubleClickAttribute()
     {
-        var response = await Navigate("/Button/PreventDoubleClick");
+        var response = await Navigate("Button" ,nameof(ButtonController.PreventDoubleClick));
         var component = response.QuerySelector(".govuk-button");
 
         Assert.Equal("true", component!.Attributes["data-prevent-double-click"]?.Value);

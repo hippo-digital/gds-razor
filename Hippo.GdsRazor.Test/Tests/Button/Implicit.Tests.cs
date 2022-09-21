@@ -1,4 +1,5 @@
 using AngleSharp.Html.Dom;
+using Hippo.GdsRazor.Test.Controllers;
 using Hippo.GdsRazor.Test.Tests.Internal;
 using Xunit;
 
@@ -11,7 +12,7 @@ public class ImplicitTests : ClientBase<Startup>
     [Fact]
     public async void RendersALinkIfYouPassAnHref()
     {
-        var response = await Navigate("/Button/Link");
+        var response = await Navigate("Button" ,nameof(ButtonController.Link));
         var component = response.QuerySelector(".govuk-button");
 
         Assert.IsAssignableFrom<IHtmlAnchorElement>(component);
@@ -20,7 +21,7 @@ public class ImplicitTests : ClientBase<Startup>
     [Fact]
     public async void RendersAButtonIfYouDontPassAnything()
     {
-        var response = await Navigate("/Button/NoType");
+        var response = await Navigate("Button" ,nameof(ButtonController.NoType));
         var component = response.QuerySelector(".govuk-button");
 
         Assert.IsAssignableFrom<IHtmlButtonElement>(component);

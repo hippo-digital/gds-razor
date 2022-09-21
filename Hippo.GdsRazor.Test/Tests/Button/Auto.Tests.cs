@@ -1,5 +1,3 @@
-using AngleSharp;
-using AngleSharp.Html.Dom;
 using Hippo.GdsRazor.Models;
 using Hippo.GdsRazor.Models.Content;
 using Hippo.GdsRazor.Test.Tests.Internal;
@@ -20,9 +18,7 @@ public class AutoTests : ClientBase<Startup>
         foreach (var s in new [] {"a", "input"})
         {
             model.Element = s;
-            GdsCollection.Model = ("GdsButton", model);
-            var response = await Navigate("/Custom");
-            html += response.ToHtml();
+            html += await AutoFixtureResults("Button", model);
         }
 
         Assert.Contains(model.Id, html);

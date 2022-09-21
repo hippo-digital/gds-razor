@@ -1,3 +1,4 @@
+using Hippo.GdsRazor.Test.Controllers;
 using Hippo.GdsRazor.Test.Tests.Internal;
 using Xunit;
 
@@ -10,7 +11,7 @@ public class HtmlTests : ClientBase<Startup>
     [Fact]
     public async void RendersEscapedHtmlWhenPassedToText()
     {
-        var response = await Navigate("/Tag/HtmlAsText");
+        var response = await Navigate("Tag" ,nameof(TagController.HtmlAsText));
         var component = response.QuerySelector(".govuk-tag");
 
         Assert.Equal("&lt;span&gt;alpha&lt;/span&gt;", component!.InnerHtml.Trim());
@@ -19,7 +20,7 @@ public class HtmlTests : ClientBase<Startup>
     [Fact]
     public async void RendersAttributes()
     {
-        var response = await Navigate("/Tag/Html");
+        var response = await Navigate("Tag" ,nameof(TagController.Html));
         var component = response.QuerySelector(".govuk-tag");
 
         Assert.Equal("<span>alpha</span>", component!.InnerHtml.Trim());

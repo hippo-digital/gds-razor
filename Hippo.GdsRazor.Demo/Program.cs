@@ -1,4 +1,3 @@
-using GdsRazor;
 using Microsoft.AspNetCore;
 
 namespace Hippo.GdsRazor.Demo;

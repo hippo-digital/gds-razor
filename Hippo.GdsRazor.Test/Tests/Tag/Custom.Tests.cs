@@ -1,3 +1,4 @@
+using Hippo.GdsRazor.Test.Controllers;
 using Hippo.GdsRazor.Test.Tests.Internal;
 using Xunit;
 
@@ -10,7 +11,7 @@ public class CustomTests : ClientBase<Startup>
     [Fact]
     public async void RendersCustomText()
     {
-        var response = await Navigate("/Tag/Grey");
+        var response = await Navigate("Tag" ,nameof(TagController.Grey));
         var component = response.QuerySelector(".govuk-tag");
 
         Assert.Equal("Grey", component!.TextContent.Trim());
@@ -19,7 +20,7 @@ public class CustomTests : ClientBase<Startup>
     [Fact]
     public async void RendersAttributes()
     {
-        var response = await Navigate("/Tag/Attributes");
+        var response = await Navigate("Tag" ,nameof(TagController.Attributes));
         var component = response.QuerySelector(".govuk-tag");
 
         Assert.Equal("my-tag", component!.Id);

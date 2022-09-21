@@ -1,4 +1,5 @@
 using AngleSharp.Html.Dom;
+using Hippo.GdsRazor.Test.Controllers;
 using Hippo.GdsRazor.Test.Tests.Internal;
 using Xunit;
 
@@ -13,7 +14,7 @@ public class CustomTests : ClientBase<Startup>
     [Fact]
     public async void RendersWithClasses()
     {
-        var response = await Navigate("/CharacterCount/Classes");
+        var response = await Navigate("CharacterCount" ,nameof(CharacterCountController.Classes));
         var component = response.QuerySelector(".govuk-js-character-count");
 
         Assert.Contains("app-character-count--custom-modifier", component!.ClassList);
@@ -22,7 +23,7 @@ public class CustomTests : ClientBase<Startup>
     [Fact]
     public async void RendersWithRows()
     {
-        var response = await Navigate("/CharacterCount/WithCustomRows");
+        var response = await Navigate("CharacterCount" ,nameof(CharacterCountController.WithCustomRows));
         var component = response.QuerySelector(".govuk-js-character-count");
 
         Assert.IsAssignableFrom<IHtmlTextAreaElement>(component);
@@ -32,7 +33,7 @@ public class CustomTests : ClientBase<Startup>
     [Fact]
     public async void RendersWithValue()
     {
-        var response = await Navigate("/CharacterCount/WithDefaultValue");
+        var response = await Navigate("CharacterCount" ,nameof(CharacterCountController.WithDefaultValue));
         var component = response.QuerySelector(".govuk-js-character-count");
 
         Assert.Equal("221B Baker Street\nLondon\nNW1 6XE", component!.TextContent);
@@ -41,7 +42,7 @@ public class CustomTests : ClientBase<Startup>
     [Fact]
     public async void RendersWithAttributes()
     {
-        var response = await Navigate("/CharacterCount/Attributes");
+        var response = await Navigate("CharacterCount" ,nameof(CharacterCountController.Attributes));
         var component = response.QuerySelector(".govuk-js-character-count");
 
         Assert.Equal("my data value", component!.Attributes["data-attribute"]?.Value);
@@ -50,7 +51,7 @@ public class CustomTests : ClientBase<Startup>
     [Fact]
     public async void RendersWithFormGroup()
     {
-        var response = await Navigate("/CharacterCount/FormGroupWithClasses");
+        var response = await Navigate("CharacterCount" ,nameof(CharacterCountController.FormGroupWithClasses));
         var component = response.QuerySelector(".govuk-form-group");
 
         Assert.Contains("app-character-count--custom-modifier", component!.ClassList);

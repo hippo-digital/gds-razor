@@ -1,3 +1,4 @@
+using Hippo.GdsRazor.Test.Controllers;
 using Hippo.GdsRazor.Test.Tests.Internal;
 using Xunit;
 
@@ -20,7 +21,7 @@ public class DefaultTests : ClientBase<Startup>
     [Fact]
     public async void RendersAHeading()
     {
-        var response = await Navigate("/CookieBanner/Default");
+        var response = await Navigate("CookieBanner" ,nameof(CookieBannerController.Default));
         var heading = response.QuerySelector(".govuk-cookie-banner__heading");
 
         Assert.Equal("Cookies on this government service", heading!.TextContent.Trim());
@@ -29,7 +30,7 @@ public class DefaultTests : ClientBase<Startup>
     [Fact]
     public async void RendersHeadingAsEscapedHtmlWhenPassedAsText()
     {
-        var response = await Navigate("/CookieBanner/HeadingHtmlAsText");
+        var response = await Navigate("CookieBanner" ,nameof(CookieBannerController.HeadingHtmlAsText));
         var heading = response.QuerySelector(".govuk-cookie-banner__heading");
 
         Assert.Equal("Cookies on &lt;span&gt;my service&lt;/span&gt;", heading!.InnerHtml.Trim());
@@ -38,7 +39,7 @@ public class DefaultTests : ClientBase<Startup>
     [Fact]
     public async void RendersHeadingHtml()
     {
-        var response = await Navigate("/CookieBanner/HeadingHtml");
+        var response = await Navigate("CookieBanner" ,nameof(CookieBannerController.HeadingHtml));
         var heading = response.QuerySelector(".govuk-cookie-banner__heading");
 
         Assert.Equal("Cookies on <span>my service</span>", heading!.InnerHtml.Trim());
@@ -47,7 +48,7 @@ public class DefaultTests : ClientBase<Startup>
     [Fact]
     public async void RendersMainContentText()
     {
-        var response = await Navigate("/CookieBanner/Default");
+        var response = await Navigate("CookieBanner" ,nameof(CookieBannerController.Default));
         var content = response.QuerySelector(".govuk-cookie-banner__content");
 
         Assert.Equal("We use analytics cookies to help understand how users use our service.", content!.TextContent.Trim());
@@ -56,7 +57,7 @@ public class DefaultTests : ClientBase<Startup>
     [Fact]
     public async void RendersMainContentHtml()
     {
-        var response = await Navigate("/CookieBanner/Html");
+        var response = await Navigate("CookieBanner" ,nameof(CookieBannerController.Html));
         var content = response.QuerySelector(".govuk-cookie-banner__content");
 
         Assert.Equal("<p class=\"govuk-body\">We use cookies in <span>our service</span>.</p>", content!.InnerHtml.Trim());
@@ -65,7 +66,7 @@ public class DefaultTests : ClientBase<Startup>
     [Fact]
     public async void RendersClasses()
     {
-        var response = await Navigate("/CookieBanner/Classes");
+        var response = await Navigate("CookieBanner" ,nameof(CookieBannerController.Classes));
         var banner = response.QuerySelector(".govuk-cookie-banner__message");
 
         Assert.Contains("app-my-class", banner!.ClassList);
@@ -74,7 +75,7 @@ public class DefaultTests : ClientBase<Startup>
     [Fact]
     public async void RendersAttributes()
     {
-        var response = await Navigate("/CookieBanner/Attributes");
+        var response = await Navigate("CookieBanner" ,nameof(CookieBannerController.Attributes));
         var banner = response.QuerySelector(".govuk-cookie-banner__message");
 
         Assert.Equal("my-value", banner!.Attributes["data-attribute"]?.Value);

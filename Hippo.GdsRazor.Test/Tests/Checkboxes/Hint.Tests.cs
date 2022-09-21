@@ -1,4 +1,5 @@
 using System.Text.RegularExpressions;
+using Hippo.GdsRazor.Test.Controllers;
 using Hippo.GdsRazor.Test.Tests.Internal;
 using Xunit;
 
@@ -13,7 +14,7 @@ public class HintTests : ClientBase<Startup>
     [Fact]
     public async void ItRendersTheHintText()
     {
-        var response = await Navigate("/Checkboxes/WithHintsOnItems");
+        var response = await Navigate("Checkboxes" ,nameof(CheckboxesController.WithHintsOnItems));
         var component = response.QuerySelector(".govuk-checkboxes__hint");
 
         Assert.Equal("You'll have a user ID if you've registered for Self Assessment or filed a tax return online before.", component!.TextContent.Trim());
@@ -22,7 +23,7 @@ public class HintTests : ClientBase<Startup>
     [Fact]
     public async void ItRendersTheCorrectIdAttributeForTheHint()
     {
-        var response = await Navigate("/Checkboxes/WithHintsOnItems");
+        var response = await Navigate("Checkboxes" ,nameof(CheckboxesController.WithHintsOnItems));
         var component = response.QuerySelector(".govuk-checkboxes__hint");
 
         Assert.Equal("government-gateway-item-hint", component!.Id);
@@ -31,7 +32,7 @@ public class HintTests : ClientBase<Startup>
     [Fact]
     public async void TheInputDescribedByAttributeMatchesTheItemHintId()
     {
-        var response = await Navigate("/Checkboxes/WithHintsOnItems");
+        var response = await Navigate("Checkboxes" ,nameof(CheckboxesController.WithHintsOnItems));
         var component = response.QuerySelector(".govuk-checkboxes__input");
 
         Assert.Contains("government-gateway-item-hint", component!.Attributes[AriaDescribedBy]?.Value ?? "");
@@ -40,7 +41,7 @@ public class HintTests : ClientBase<Startup>
     [Fact]
     public async void RendersTheHint()
     {
-        var response = await Navigate("/Checkboxes/MultipleHints");
+        var response = await Navigate("Checkboxes" ,nameof(CheckboxesController.MultipleHints));
         var components = response.QuerySelectorAll(".govuk-hint");
 
         const string expected1 = "<div id=\"example-multiple-hints-hint\" class=\"govuk-hint \">\n  \nIf you have dual nationality, select all options that are relevant to you.\n</div>";
@@ -55,7 +56,7 @@ public class HintTests : ClientBase<Startup>
     [Fact]
     public async void AssociatesTheFieldsetAsDescribedByTheHint()
     {
-        var response = await Navigate("/Checkboxes/WithIdAndName");
+        var response = await Navigate("Checkboxes" ,nameof(CheckboxesController.WithIdAndName));
         var hint = response.QuerySelector(".govuk-hint");
         var fieldset = response.QuerySelector(".govuk-fieldset");
 
@@ -65,11 +66,11 @@ public class HintTests : ClientBase<Startup>
     [Fact]
     public async void AssociatesTheFieldsetAsDescribedByTheHintAndParentFieldset()
     {
-        var response = await Navigate("/Checkboxes/WithFieldsetDescribedBy");
+        var response = await Navigate("Checkboxes" ,nameof(CheckboxesController.WithFieldsetDescribedBy));
         var hint = response.QuerySelector(".govuk-hint");
         var fieldset = response.QuerySelector(".govuk-fieldset");
 
         Assert.Matches(new Regex($"\\b{hint!.Id}\\b"), fieldset!.Attributes[AriaDescribedBy]?.Value ?? "");
-        Assert.Matches(new Regex("\\bsome-id\\b"), fieldset!.Attributes[AriaDescribedBy]?.Value ?? "");
+        Assert.Matches(new Regex("\\bsome-id\\b"), fieldset.Attributes[AriaDescribedBy]?.Value ?? "");
     }
 }

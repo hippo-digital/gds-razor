@@ -1,4 +1,5 @@
 using AngleSharp.Html.Dom;
+using Hippo.GdsRazor.Test.Controllers;
 using Hippo.GdsRazor.Test.Tests.Internal;
 using Xunit;
 
@@ -21,7 +22,7 @@ public class DefaultTests : ClientBase<Startup>
     [Fact]
     public async void RenderExampleWithMinimumRequiredNameAndItems()
     {
-        var response = await Navigate("/Checkboxes/Default");
+        var response = await Navigate("Checkboxes" ,nameof(CheckboxesController.Default));
         var firstInput = response.QuerySelector(".govuk-checkboxes__item:first-child input");
         var firstLabel = response.QuerySelector(".govuk-checkboxes__item:first-child label");
 
@@ -44,7 +45,7 @@ public class DefaultTests : ClientBase<Startup>
     [Fact]
     public async void RenderExampleWithADividerAndNoneCheckboxWithExclusiveBehaviour()
     {
-        var response = await Navigate("/Checkboxes/WithDividerAndNone");
+        var response = await Navigate("Checkboxes" ,nameof(CheckboxesController.WithDividerAndNone));
         var component = response.QuerySelector(".govuk-checkboxes");
         var divider = component!.QuerySelector(".govuk-checkboxes__divider");
         var items = component.QuerySelectorAll(".govuk-checkboxes__item");
@@ -58,7 +59,7 @@ public class DefaultTests : ClientBase<Startup>
     [Fact]
     public async void RenderAdditionalLabelClasses()
     {
-        var response = await Navigate("/Checkboxes/WithLabelClasses");
+        var response = await Navigate("Checkboxes" ,nameof(CheckboxesController.WithLabelClasses));
         var component = response.QuerySelector(".govuk-checkboxes");
         var label = component!.QuerySelector(".govuk-checkboxes__item label");
 
@@ -68,7 +69,7 @@ public class DefaultTests : ClientBase<Startup>
     [Fact]
     public async void RenderClasses()
     {
-        var response = await Navigate("/Checkboxes/Classes");
+        var response = await Navigate("Checkboxes" ,nameof(CheckboxesController.Classes));
         var component = response.QuerySelector(".govuk-checkboxes");
 
         Assert.Contains("app-checkboxes--custom-modifier", component!.ClassList);
@@ -77,7 +78,7 @@ public class DefaultTests : ClientBase<Startup>
     [Fact]
     public async void RendersInitialAriaDescribedByOnFieldset()
     {
-        var response = await Navigate("/Checkboxes/WithFieldsetDescribedBy");
+        var response = await Navigate("Checkboxes" ,nameof(CheckboxesController.WithFieldsetDescribedBy));
         var component = response.QuerySelector(".govuk-fieldset");
 
         Assert.Contains("some-id", component!.Attributes[AriaDescribedBy]?.Value ?? "");
@@ -86,17 +87,17 @@ public class DefaultTests : ClientBase<Startup>
     [Fact]
     public async void RenderAttributes()
     {
-        var response = await Navigate("/Checkboxes/Attributes");
+        var response = await Navigate("Checkboxes" ,nameof(CheckboxesController.Attributes));
         var component = response.QuerySelector(".govuk-checkboxes");
 
         Assert.Equal("value", component!.Attributes["data-attribute"]?.Value);
-        Assert.Equal("second-value", component!.Attributes["data-second-attribute"]?.Value);
+        Assert.Equal("second-value", component.Attributes["data-second-attribute"]?.Value);
     }
 
     [Fact]
     public async void RendersWithAFormGroupWrapper()
     {
-        var response = await Navigate("/Checkboxes/Default");
+        var response = await Navigate("Checkboxes" ,nameof(CheckboxesController.Default));
         var formGroup = response.QuerySelector(".govuk-form-group");
 
         Assert.NotNull(formGroup);
@@ -105,7 +106,7 @@ public class DefaultTests : ClientBase<Startup>
     [Fact]
     public async void RenderACustomClassOnTheFormGroup()
     {
-        var response = await Navigate("/Checkboxes/WithOptionalFormGroupClassesShowingGroupError");
+        var response = await Navigate("Checkboxes" ,nameof(CheckboxesController.WithOptionalFormGroupClassesShowingGroupError));
         var formGroup = response.QuerySelector(".govuk-form-group");
 
         Assert.Contains("govuk-form-group--error", formGroup!.ClassList);

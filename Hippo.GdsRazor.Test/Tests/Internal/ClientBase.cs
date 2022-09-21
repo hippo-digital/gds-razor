@@ -1,11 +1,11 @@
 using AngleSharp;
-using AngleSharp.Dom;
 using AngleSharp.Html.Dom;
 using AngleSharp.Io;
 using AutoFixture;
 using AutoFixture.Kernel;
 using AutoFixture.Xunit2;
 using Hippo.GdsRazor.Models;
+using Hippo.GdsRazor.Models.Base;
 using Hippo.GdsRazor.Models.Content;
 using OpenQA.Selenium;
 using Selenium.Axe;
@@ -16,7 +16,7 @@ namespace Hippo.GdsRazor.Test.Tests.Internal;
 [CollectionDefinition("GDS")]
 public class GdsCollection : ICollectionFixture<CustomWebApplicationFactory<Startup>>, ICollectionFixture<SeleniumBase>
 {
-    public static (string, object?) Model = ("", null);
+    public static (string, GdsAttributes?) Model = ("", null);
 }
 
 public class GdsAutoDataAttribute : AutoDataAttribute
@@ -51,22 +51,9 @@ public abstract class ClientBase<TStartup> where TStartup : class
         Context = BrowsingContext.New(Configuration.Default.With(new HttpClientRequester(factory.Http)).WithDefaultLoader(new LoaderOptions { IsResourceLoadingEnabled = true, IsNavigationDisabled = false }));
     }
 
-    public Task<IHtmlDocument> Follow(IElement element)
+    protected async Task<IHtmlDocument> Navigate(string controller, string action)
     {
-        switch (element)
-        {
-            case IHtmlLinkElement link:
-                return Navigate(link.Href!);
-            case IHtmlAnchorElement a:
-                return Navigate(a.Href);
-            default:
-                throw new Exception($"Unable to follow a {element.GetType()}");
-        }
-    }
-
-    protected async Task<IHtmlDocument> Navigate(string uri)
-    {
-        var document = await Context.OpenAsync(BaseInternalAddress + uri, CancellationToken.None);
+        var document = await Context.OpenAsync($"{BaseInternalAddress}/{controller}/{action}", CancellationToken.None);
         return (IHtmlDocument) document;
     }
 
@@ -74,5 +61,12 @@ public abstract class ClientBase<TStartup> where TStartup : class
     {
         _driver?.Navigate().GoToUrl(BaseExternalAddress + $"/{type}/{action}");
         return new AxeBuilder(_driver).DisableRules("region", "skip-link").Analyze();
+    }
+
+    protected async Task<string> AutoFixtureResults<T>(string type, T model) where T : GdsAttributes
+    {
+        GdsCollection.Model = ($"Gds{type}", model);
+        var document = await Context.OpenAsync($"{BaseInternalAddress}/Custom", CancellationToken.None);
+        return ((IHtmlDocument) document).ToHtml();
     }
 }

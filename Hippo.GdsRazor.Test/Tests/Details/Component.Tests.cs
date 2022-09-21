@@ -1,4 +1,5 @@
 using AngleSharp.Html.Dom;
+using Hippo.GdsRazor.Test.Controllers;
 using Hippo.GdsRazor.Test.Tests.Internal;
 using Xunit;
 
@@ -21,7 +22,7 @@ public class ComponentTests : ClientBase<Startup>
     [Fact]
     public async void RendersADetailsElement()
     {
-        var response = await Navigate("/Details/Default");
+        var response = await Navigate("Details" ,nameof(DetailsController.Default));
         var component = response.QuerySelector(".govuk-details");
 
         Assert.IsAssignableFrom<IHtmlDetailsElement>(component);
@@ -30,7 +31,7 @@ public class ComponentTests : ClientBase<Startup>
     [Fact]
     public async void RendersWithACustomId()
     {
-        var response = await Navigate("/Details/Id");
+        var response = await Navigate("Details" ,nameof(DetailsController.Id));
         var component = response.QuerySelector(".govuk-details");
 
         Assert.Equal("my-details-element", component!.Id);
@@ -39,7 +40,7 @@ public class ComponentTests : ClientBase<Startup>
     [Fact]
     public async void IsCollapsedByDefault()
     {
-        var response = await Navigate("/Details/Default");
+        var response = await Navigate("Details" ,nameof(DetailsController.Default));
         var component = response.QuerySelector(".govuk-details");
 
         Assert.NotEqual(true, component!.Attributes["open"]?.IsSpecified);
@@ -48,7 +49,7 @@ public class ComponentTests : ClientBase<Startup>
     [Fact]
     public async void CanBeOpenedByDefault()
     {
-        var response = await Navigate("/Details/Expanded");
+        var response = await Navigate("Details" ,nameof(DetailsController.Expanded));
         var component = response.QuerySelector(".govuk-details");
 
         Assert.True(component!.Attributes["open"]?.IsSpecified);
@@ -57,7 +58,7 @@ public class ComponentTests : ClientBase<Startup>
     [Fact]
     public async void IncludesANestedSummary()
     {
-        var response = await Navigate("/Details/Default");
+        var response = await Navigate("Details" ,nameof(DetailsController.Default));
         var component = response.QuerySelector(".govuk-details .govuk-details__summary");
 
         Assert.Equal("SUMMARY", component!.TagName);
@@ -66,7 +67,7 @@ public class ComponentTests : ClientBase<Startup>
     [Fact]
     public async void AllowsTextToBePassedWhilstEscapingHtmlEntities()
     {
-        var response = await Navigate("/Details/HtmlAsText");
+        var response = await Navigate("Details" ,nameof(DetailsController.HtmlAsText));
         var detailsText = response.QuerySelector(".govuk-details__text");
 
         Assert.Equal("More about the greater than symbol (&gt;)", detailsText!.InnerHtml.Trim());
@@ -75,7 +76,7 @@ public class ComponentTests : ClientBase<Startup>
     [Fact]
     public async void AllowsHtmlToBePassedUnescaped()
     {
-        var response = await Navigate("/Details/Html");
+        var response = await Navigate("Details" ,nameof(DetailsController.Html));
         var detailsText = response.QuerySelector(".govuk-details__text");
 
         Assert.Equal("More about <b>bold text</b>", detailsText!.InnerHtml.Trim());
@@ -84,7 +85,7 @@ public class ComponentTests : ClientBase<Startup>
     [Fact]
     public async void AllowsSummaryTextToBePassedWhilstEscapingHtmlEntities()
     {
-        var response = await Navigate("/Details/SummaryHtmlAsText");
+        var response = await Navigate("Details" ,nameof(DetailsController.SummaryHtmlAsText));
         var detailsText = response.QuerySelector(".govuk-details__summary-text");
 
         Assert.Equal("The greater than symbol (&gt;) is the best", detailsText!.InnerHtml.Trim());
@@ -93,7 +94,7 @@ public class ComponentTests : ClientBase<Startup>
     [Fact]
     public async void AllowsSummaryHtmlToBePassedUnescaped()
     {
-        var response = await Navigate("/Details/SummaryHtml");
+        var response = await Navigate("Details" ,nameof(DetailsController.SummaryHtml));
         var detailsText = response.QuerySelector(".govuk-details__summary-text");
 
         Assert.Equal("Use <b>bold text</b> sparingly", detailsText!.InnerHtml.Trim());
@@ -102,7 +103,7 @@ public class ComponentTests : ClientBase<Startup>
     [Fact]
     public async void AllowsAdditionalClassesToBeAddedToTheDetailsElement()
     {
-        var response = await Navigate("/Details/Classes");
+        var response = await Navigate("Details" ,nameof(DetailsController.Classes));
         var component = response.QuerySelector(".govuk-details");
 
         Assert.Contains("some-additional-class", component!.ClassList);
@@ -111,10 +112,10 @@ public class ComponentTests : ClientBase<Startup>
     [Fact]
     public async void AllowsAdditionalAttributesToBeAddedToTheDetailsElement()
     {
-        var response = await Navigate("/Details/Attributes");
+        var response = await Navigate("Details" ,nameof(DetailsController.Attributes));
         var component = response.QuerySelector(".govuk-details");
 
         Assert.Equal("i-love-data", component!.Attributes["data-some-data-attribute"]?.Value);
-        Assert.Equal("foo", component!.Attributes["another-attribute"]?.Value);
+        Assert.Equal("foo", component.Attributes["another-attribute"]?.Value);
     }
 }

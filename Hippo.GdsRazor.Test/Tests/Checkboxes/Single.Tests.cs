@@ -1,3 +1,4 @@
+using Hippo.GdsRazor.Test.Controllers;
 using Hippo.GdsRazor.Test.Tests.Internal;
 using Xunit;
 
@@ -12,7 +13,7 @@ public class SingleTests : ClientBase<Startup>
     [Fact]
     public async void AddsAriaDescribedByToInputIfThereIsAnError()
     {
-        var response = await Navigate("/Checkboxes/WithSingleOptionSetAriaDescribedByOnInput");
+        var response = await Navigate("Checkboxes" ,nameof(CheckboxesController.WithSingleOptionSetAriaDescribedByOnInput));
         var input = response.QuerySelector("input");
 
         Assert.Contains("t-and-c-error", input!.Attributes[AriaDescribedBy]?.Value ?? "");
@@ -21,7 +22,7 @@ public class SingleTests : ClientBase<Startup>
     [Fact]
     public async void AddsAriaDescribedByToInputIfThereIsAnErrorAndParentFieldset()
     {
-        var response = await Navigate("/Checkboxes/WithSingleOptionSetAriaDescribedByOnInputAndDescribedBy");
+        var response = await Navigate("Checkboxes" ,nameof(CheckboxesController.WithSingleOptionSetAriaDescribedByOnInputAndDescribedBy));
         var input = response.QuerySelector("input");
 
         Assert.Contains("some-id t-and-c-error", input!.Attributes[AriaDescribedBy]?.Value ?? "");
@@ -30,7 +31,7 @@ public class SingleTests : ClientBase<Startup>
     [Fact]
     public async void AddsAriaDescribedByToInputIfThereIsAnErrorAndAHint()
     {
-        var response = await Navigate("/Checkboxes/WithSingleOptionAndHintSetAriaDescribedByOnInput");
+        var response = await Navigate("Checkboxes" ,nameof(CheckboxesController.WithSingleOptionAndHintSetAriaDescribedByOnInput));
         var input = response.QuerySelector("input");
 
         Assert.Contains("t-and-c-with-hint-error t-and-c-with-hint-item-hint", input!.Attributes[AriaDescribedBy]?.Value ?? "");
@@ -39,7 +40,7 @@ public class SingleTests : ClientBase<Startup>
     [Fact]
     public async void AddsAriaDescribedByToInputIfThereIsAnErrorHintAndParentFieldset()
     {
-        var response = await Navigate("/Checkboxes/WithSingleOptionAndHintSetAriaDescribedByOnInputAndDescribedBy");
+        var response = await Navigate("Checkboxes" ,nameof(CheckboxesController.WithSingleOptionAndHintSetAriaDescribedByOnInputAndDescribedBy));
         var input = response.QuerySelector("input");
 
         Assert.Contains("some-id t-and-c-with-hint-error t-and-c-with-hint-item-hint", input!.Attributes[AriaDescribedBy]?.Value ?? "");

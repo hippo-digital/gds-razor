@@ -1,3 +1,4 @@
+using Hippo.GdsRazor.Test.Controllers;
 using Hippo.GdsRazor.Test.Tests.Internal;
 using Xunit;
 
@@ -12,7 +13,7 @@ public class ThresholdTests : ClientBase<Startup>
     [Fact]
     public async void HidesTheCountToStartWith()
     {
-        var response = await Navigate("/CharacterCount/WithThreshold");
+        var response = await Navigate("CharacterCount" ,nameof(CharacterCountController.WithThreshold));
         var component = response.QuerySelector(".govuk-character-count");
 
         Assert.Equal("75", component?.Attributes["data-threshold"]?.Value);
