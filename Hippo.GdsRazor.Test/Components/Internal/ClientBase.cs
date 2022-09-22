@@ -62,6 +62,10 @@ public abstract class ClientBase<TStartup> where TStartup : class
     protected AxeResult AxeResults(string type, string action = "Axe")
     {
         _driver?.Navigate().GoToUrl(BaseExternalAddress + $"/{type}/{action}");
+        Thread.Sleep(1000);
+        Console.WriteLine("Request complete");
+        Console.WriteLine(_driver?.Url);
+        Console.WriteLine(_driver?.PageSource);
         return new AxeBuilder(_driver).DisableRules("region", "skip-link").Analyze();
     }
 

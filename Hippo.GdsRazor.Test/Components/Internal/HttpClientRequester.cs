@@ -75,7 +75,6 @@ public class HttpClientRequester : BaseRequester
     {
         // create the request message
         var method = new HttpMethod(request.Method.ToString().ToUpperInvariant());
-        Console.WriteLine($"Requested {request.Address}");
         var requestMessage = new HttpRequestMessage(method, request.Address);
         var contentHeaders = request.Headers
             .Where(header => !requestMessage.Headers.TryAddWithoutValidation(header.Key, header.Value))

@@ -10,7 +10,7 @@ public class SeleniumBase : IDisposable
     public SeleniumBase()
     {
         var options = new ChromeOptions();
-        options.AddArgument("headless");
+        options.AddArguments("--headless", "--ignore-certificate-errors", "--disable-gpu");
         Driver = new ChromeDriver(options);
     }
 
