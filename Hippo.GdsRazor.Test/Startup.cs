@@ -31,6 +31,14 @@ public class Startup
         services.AddAuthorization();
         services.AddServerSideBlazor();
 
+        services.AddLogging(builder =>
+        {
+            builder
+                .AddFilter("Microsoft", LogLevel.Warning)
+                .AddFilter("System", LogLevel.Warning)
+                .AddConsole();
+        });
+
         services.AddSingleton<IModelProvider>(new ModelProvider());
 
         services.AddControllersWithViews().AddRazorRuntimeCompilation();
