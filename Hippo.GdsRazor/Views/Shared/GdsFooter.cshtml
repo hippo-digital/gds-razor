@@ -75,13 +75,29 @@
         }
       </div>
       <div class="govuk-footer__meta-item">
-        @if (Model.Copyright != null)
+        @if (Model.DisableCopyrightLink)
         {
-          @await Html.PartialAsync("GdsContent", Model.Copyright)
+          @if (Model.Copyright != null)
+          {
+            @await Html.PartialAsync("GdsContent", Model.Copyright)
+          }
+          else
+          {
+            <text>© Crown copyright</text>
+          }
         }
         else
         {
-          <a class="govuk-footer__link govuk-footer__copyright-logo" href="@FooterModel.CopyrightHref">© Crown copyright</a>
+          <a class="govuk-footer__link govuk-footer__copyright-logo" href="@FooterModel.CopyrightHref">
+            @if (Model.Copyright != null)
+            {
+              @await Html.PartialAsync("GdsContent", Model.Copyright)
+            }
+            else
+            {
+              <text>© Crown copyright</text>
+            }
+          </a>
         }
       </div>
     </div>

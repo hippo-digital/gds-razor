@@ -32,6 +32,8 @@ public class FooterModel : GdsViewModel
     /// </summary>
     public GdsContent? Copyright { get; set; }
 
+    public bool DisableCopyrightLink { get; set; }
+
     /// <summary>
     /// Classes that can be added to the inner container, useful if you want to make the footer full width.
     /// </summary>
