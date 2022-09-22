@@ -28,7 +28,7 @@ public class ErrorSummaryModel : GdsViewModel
     /// <summary>
     /// Prevent moving focus to the error summary when the page loads.
     /// </summary>
-    public bool DisableAutoFocus { get; set; }
+    public bool? DisableAutoFocus { get; set; }
     
     public ErrorSummaryModel()
     {
@@ -55,6 +55,7 @@ public class ErrorSummaryModel : GdsViewModel
         }
 
         public static implicit operator ErrorModel(string s) => new(s);
+        public static implicit operator ErrorModel(HTML s) => new(s);
         public static implicit operator ErrorModel((string, string) t) => new(t.Item2) { Href = t.Item1 };
     }
 }

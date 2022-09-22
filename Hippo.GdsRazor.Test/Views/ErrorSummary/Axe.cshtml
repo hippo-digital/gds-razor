@@ -1,0 +1,9 @@
+@using Hippo.GdsRazor.Models
+@model ErrorSummaryModel
+
+@{
+    ViewData["Title"] = "ErrorSummary Axe";
+    Layout = "../Axe";
+}
+
+@await Html.PartialAsync("GdsErrorSummary", Model)

@@ -1,0 +1,6 @@
+@using Hippo.GdsRazor.Models
+
+@await Html.PartialAsync("GdsErrorSummary", new ErrorSummaryModel(
+  "There is a problem",
+  (HTML) (@<text>The date your passport was issued <b>must</b> be in the past</text>)
+))

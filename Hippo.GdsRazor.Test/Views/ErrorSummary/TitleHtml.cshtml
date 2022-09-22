@@ -1,0 +1,6 @@
+@using Hippo.GdsRazor.Models
+
+@await Html.PartialAsync("GdsErrorSummary", new ErrorSummaryModel(
+  (HTML) (@<text>Alert, <em>alert</em></text>),
+  "Invalid username or password"
+))

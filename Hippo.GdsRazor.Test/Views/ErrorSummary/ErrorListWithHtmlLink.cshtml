@@ -1,0 +1,8 @@
+@using Hippo.GdsRazor.Models
+
+@await Html.PartialAsync("GdsErrorSummary", new ErrorSummaryModel(
+  "There is a problem",
+  new ErrorSummaryModel.ErrorModel((HTML) (@<text>Descriptive link to the <b>question</b> with an error</text>)) {
+    Href = "#error-1"
+  }
+))

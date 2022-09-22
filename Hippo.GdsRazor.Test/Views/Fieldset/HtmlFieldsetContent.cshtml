@@ -1,0 +1,8 @@
+@using Hippo.GdsRazor.Models
+
+@await Html.PartialAsync("GdsFieldset", new FieldsetModel {
+  Legend = "What is your address?",
+  Content = (HTML) (@<div class="my-content">
+                      <p>This is some content to put inside the fieldset</p>
+                    </div>)
+})
