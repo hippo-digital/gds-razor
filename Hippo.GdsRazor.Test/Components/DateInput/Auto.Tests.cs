@@ -28,7 +28,7 @@ public class AutoTests : ClientBase<Startup>
 
         // Hint
         // Assert.Contains(model.Hint!.Id, html); Overriden in dateinput
-        Assert.Contains(model.Hint.Classes, html);
+        Assert.Contains(model.Hint!.Classes, html);
         Assert.Contains(((GdsPlain) model.Hint.Content!).Text, html);
 
         foreach (var kv in model.Hint.Attributes!)

@@ -1,0 +1,9 @@
+@using Hippo.GdsRazor.Models
+@model FileUploadModel
+
+@{
+    ViewData["Title"] = "FileUpload Axe";
+    Layout = "../Axe";
+}
+
+@await Html.PartialAsync("GdsFileUpload", Model)
