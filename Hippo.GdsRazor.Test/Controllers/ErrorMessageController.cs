@@ -26,13 +26,14 @@ public class ErrorMessageController : Controller
         };
     }
 
-    public IActionResult Default() => PartialView("GdsErrorMessage", Examples.Default);
-    public IActionResult Id() => PartialView("GdsErrorMessage", Examples.Id);
-    public IActionResult Classes() => PartialView("GdsErrorMessage", Examples.Classes);
-    public IActionResult HtmlAsText() => PartialView("GdsErrorMessage", Examples.HtmlAsText);
-    public IActionResult Attributes() => PartialView("GdsErrorMessage", Examples.Attributes);
-    public IActionResult WithVisuallyHiddenText() => PartialView("GdsErrorMessage", Examples.WithVisuallyHiddenText);
-    public IActionResult VisuallyHiddenTextRemoved() => PartialView("GdsErrorMessage", Examples.VisuallyHiddenTextRemoved);
+    private const string PartialName = "GdsErrorMessage";
+    public IActionResult Default() => PartialView(PartialName, Examples.Default);
+    public IActionResult Id() => PartialView(PartialName, Examples.Id);
+    public IActionResult Classes() => PartialView(PartialName, Examples.Classes);
+    public IActionResult HtmlAsText() => PartialView(PartialName, Examples.HtmlAsText);
+    public IActionResult Attributes() => PartialView(PartialName, Examples.Attributes);
+    public IActionResult WithVisuallyHiddenText() => PartialView(PartialName, Examples.WithVisuallyHiddenText);
+    public IActionResult VisuallyHiddenTextRemoved() => PartialView(PartialName, Examples.VisuallyHiddenTextRemoved);
     public IActionResult Html() => View();
     public IActionResult Translated() => View();
     public IActionResult Axe() => View(Examples.Default);

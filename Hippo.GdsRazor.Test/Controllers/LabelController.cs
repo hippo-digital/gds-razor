@@ -25,13 +25,14 @@ public class LabelController : Controller
         };
     }
 
-    public IActionResult Default() => PartialView("GdsLabel", Examples.Default);
-    public IActionResult Empty() => PartialView("GdsLabel", Examples.Empty);
-    public IActionResult Classes() => PartialView("GdsLabel", Examples.Classes);
-    public IActionResult HtmlAsText() => PartialView("GdsLabel", Examples.HtmlAsText);
-    public IActionResult For() => PartialView("GdsLabel", Examples.For);
-    public IActionResult AsPageHeadingL() => PartialView("GdsLabel", Examples.AsPageHeadingL);
-    public IActionResult Attributes() => PartialView("GdsLabel", Examples.Attributes);
+    private const string PartialName = "GdsLabel";
+    public IActionResult Default() => PartialView(PartialName, Examples.Default);
+    public IActionResult Empty() => PartialView(PartialName, Examples.Empty);
+    public IActionResult Classes() => PartialView(PartialName, Examples.Classes);
+    public IActionResult HtmlAsText() => PartialView(PartialName, Examples.HtmlAsText);
+    public IActionResult For() => PartialView(PartialName, Examples.For);
+    public IActionResult AsPageHeadingL() => PartialView(PartialName, Examples.AsPageHeadingL);
+    public IActionResult Attributes() => PartialView(PartialName, Examples.Attributes);
     public IActionResult Html() => View();
     public IActionResult Axe() => View(Examples.Default);
 }

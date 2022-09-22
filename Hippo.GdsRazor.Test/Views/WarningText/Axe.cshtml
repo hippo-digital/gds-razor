@@ -1,0 +1,9 @@
+@using Hippo.GdsRazor.Models
+@model WarningTextModel
+
+@{
+    ViewData["Title"] = "WarningText Axe";
+    Layout = "../Axe";
+}
+
+@await Html.PartialAsync("GdsWarningText", Model)

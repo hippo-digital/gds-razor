@@ -20,11 +20,12 @@ public class InsetTextController : Controller
         };
     }
 
-    public IActionResult Default() => PartialView("GdsInsetText", Examples.Default);
+    private const string PartialName = "GdsInsetText";
+    public IActionResult Default() => PartialView(PartialName, Examples.Default);
     public IActionResult WithHtml() => View();
-    public IActionResult Classes() => PartialView("GdsInsetText", Examples.Classes);
-    public IActionResult Id() => PartialView("GdsInsetText", Examples.Id);
-    public IActionResult HtmlAsText() => PartialView("GdsInsetText", Examples.HtmlAsText);
-    public IActionResult Attributes() => PartialView("GdsInsetText", Examples.Attributes);
+    public IActionResult Classes() => PartialView(PartialName, Examples.Classes);
+    public IActionResult Id() => PartialView(PartialName, Examples.Id);
+    public IActionResult HtmlAsText() => PartialView(PartialName, Examples.HtmlAsText);
+    public IActionResult Attributes() => PartialView(PartialName, Examples.Attributes);
     public IActionResult Axe() => View(Examples.Default);
 }

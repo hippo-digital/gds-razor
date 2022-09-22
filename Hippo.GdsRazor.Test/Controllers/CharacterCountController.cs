@@ -79,19 +79,20 @@ public class CharacterCountController : Controller
         };
     }
 
-    public IActionResult Default() => PartialView("GdsCharacterCount", Examples.Default);
-    public IActionResult WithHint() => PartialView("GdsCharacterCount", Examples.WithHint);
-    public IActionResult WithDefaultValue() => PartialView("GdsCharacterCount", Examples.WithDefaultValue);
-    public IActionResult WithDefaultValueExceedingLimit() => PartialView("GdsCharacterCount", Examples.WithDefaultValueExceedingLimit);
-    public IActionResult WithCustomRows() => PartialView("GdsCharacterCount", Examples.WithCustomRows);
-    public IActionResult WithWordCount() => PartialView("GdsCharacterCount", Examples.WithWordCount);
-    public IActionResult WithThreshold() => PartialView("GdsCharacterCount", Examples.WithThreshold);
-    public IActionResult Classes() => PartialView("GdsCharacterCount", Examples.Classes);
-    public IActionResult Attributes() => PartialView("GdsCharacterCount", Examples.Attributes);
-    public IActionResult FormGroupWithClasses() => PartialView("GdsCharacterCount", Examples.FormGroupWithClasses);
-    public IActionResult CustomClassesOnCountMessage() => PartialView("GdsCharacterCount", Examples.CustomClassesOnCountMessage);
-    public IActionResult SpellcheckEnabled() => PartialView("GdsCharacterCount", Examples.SpellcheckEnabled);
-    public IActionResult SpellcheckDisabled() => PartialView("GdsCharacterCount", Examples.SpellcheckDisabled);
-    public IActionResult CustomClassesWithErrorMessage() => PartialView("GdsCharacterCount", Examples.CustomClassesWithErrorMessage);
+    private const string PartialName = "GdsCharacterCount";
+    public IActionResult Default() => PartialView(PartialName, Examples.Default);
+    public IActionResult WithHint() => PartialView(PartialName, Examples.WithHint);
+    public IActionResult WithDefaultValue() => PartialView(PartialName, Examples.WithDefaultValue);
+    public IActionResult WithDefaultValueExceedingLimit() => PartialView(PartialName, Examples.WithDefaultValueExceedingLimit);
+    public IActionResult WithCustomRows() => PartialView(PartialName, Examples.WithCustomRows);
+    public IActionResult WithWordCount() => PartialView(PartialName, Examples.WithWordCount);
+    public IActionResult WithThreshold() => PartialView(PartialName, Examples.WithThreshold);
+    public IActionResult Classes() => PartialView(PartialName, Examples.Classes);
+    public IActionResult Attributes() => PartialView(PartialName, Examples.Attributes);
+    public IActionResult FormGroupWithClasses() => PartialView(PartialName, Examples.FormGroupWithClasses);
+    public IActionResult CustomClassesOnCountMessage() => PartialView(PartialName, Examples.CustomClassesOnCountMessage);
+    public IActionResult SpellcheckEnabled() => PartialView(PartialName, Examples.SpellcheckEnabled);
+    public IActionResult SpellcheckDisabled() => PartialView(PartialName, Examples.SpellcheckDisabled);
+    public IActionResult CustomClassesWithErrorMessage() => PartialView(PartialName, Examples.CustomClassesWithErrorMessage);
     public IActionResult Axe() => View(Examples.Default);
 }

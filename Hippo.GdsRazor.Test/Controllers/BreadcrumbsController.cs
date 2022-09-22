@@ -26,13 +26,14 @@ public class BreadcrumbsController : Controller
         ) { CollapseOnMobile = true };
     }
 
-    public IActionResult Default() => PartialView("GdsBreadcrumbs", Examples.Default);
-    public IActionResult Classes() => PartialView("GdsBreadcrumbs", Examples.Classes);
-    public IActionResult Attributes() => PartialView("GdsBreadcrumbs", Examples.Attributes);
-    public IActionResult ItemAttributes() => PartialView("GdsBreadcrumbs", Examples.ItemAttributes);
-    public IActionResult HtmlAsText() => PartialView("GdsBreadcrumbs", Examples.HtmlAsText);
+    private const string PartialName = "GdsBreadcrumbs";
+    public IActionResult Default() => PartialView(PartialName, Examples.Default);
+    public IActionResult Classes() => PartialView(PartialName, Examples.Classes);
+    public IActionResult Attributes() => PartialView(PartialName, Examples.Attributes);
+    public IActionResult ItemAttributes() => PartialView(PartialName, Examples.ItemAttributes);
+    public IActionResult HtmlAsText() => PartialView(PartialName, Examples.HtmlAsText);
     public IActionResult Html() => View();
-    public IActionResult WithLastBreadcrumbAsCurrentPage() => PartialView("GdsBreadcrumbs", Examples.WithLastBreadcrumbAsCurrentPage);
-    public IActionResult WithCollapseOnMobile() => PartialView("GdsBreadcrumbs", Examples.WithCollapseOnMobile);
+    public IActionResult WithLastBreadcrumbAsCurrentPage() => PartialView(PartialName, Examples.WithLastBreadcrumbAsCurrentPage);
+    public IActionResult WithCollapseOnMobile() => PartialView(PartialName, Examples.WithCollapseOnMobile);
     public IActionResult Axe() => View(Examples.Default);
 }

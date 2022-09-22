@@ -1,0 +1,6 @@
+@using Hippo.GdsRazor.Models
+
+@await Html.PartialAsync("GdsPanel", new PanelModel(
+  (HTML) (@<text>Application <strong>not</strong> complete</text>),
+  (HTML) (@<text>Please complete <strong>form 1</strong></text>)
+))

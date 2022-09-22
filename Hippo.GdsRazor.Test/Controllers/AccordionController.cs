@@ -38,10 +38,11 @@ public class AccordionController : Controller
         };
     }
 
+    private const string PartialName = "GdsAccordion";
     public IActionResult Default() => View();
-    public IActionResult Classes() => PartialView("GdsAccordion", Examples.Classes);
-    public IActionResult Attributes() => PartialView("GdsAccordion", Examples.Attributes);
-    public IActionResult CustomHeadingLevel() => PartialView("GdsAccordion", Examples.CustomHeadingLevel);
+    public IActionResult Classes() => PartialView(PartialName, Examples.Classes);
+    public IActionResult Attributes() => PartialView(PartialName, Examples.Attributes);
+    public IActionResult CustomHeadingLevel() => PartialView(PartialName, Examples.CustomHeadingLevel);
     public IActionResult HeadingHtml() => View();
     public IActionResult WithOneSectionOpen() => View();
     public IActionResult WithAdditionalDescriptions() => View();

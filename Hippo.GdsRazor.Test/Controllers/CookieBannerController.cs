@@ -231,29 +231,28 @@ public class CookieBannerController : Controller
         };
     }
 
-    public IActionResult Default() => PartialView("GdsCookieBanner", Examples.Default);
-    public IActionResult HeadingHtmlAsText() => PartialView("GdsCookieBanner", Examples.HeadingHtmlAsText);
+    private const string PartialName = "GdsCookieBanner";
+    public IActionResult Default() => PartialView(PartialName, Examples.Default);
+    public IActionResult HeadingHtmlAsText() => PartialView(PartialName, Examples.HeadingHtmlAsText);
     public IActionResult HeadingHtml() => View();
-    public IActionResult Classes() => PartialView("GdsCookieBanner", Examples.Classes);
+    public IActionResult Classes() => PartialView(PartialName, Examples.Classes);
     public IActionResult Html() => View();
-    public IActionResult Attributes() => PartialView("GdsCookieBanner", Examples.Attributes);
-    public IActionResult CustomAriaLabel() => PartialView("GdsCookieBanner", Examples.CustomAriaLabel);
-    public IActionResult AcceptedConfirmationBanner() => PartialView("GdsCookieBanner", Examples.AcceptedConfirmationBanner);
-    public IActionResult Hidden() => PartialView("GdsCookieBanner", Examples.Hidden);
-    public IActionResult HiddenFalse() => PartialView("GdsCookieBanner", Examples.HiddenFalse);
-    public IActionResult DefaultAction() => PartialView("GdsCookieBanner", Examples.DefaultAction);
-    public IActionResult Link() => PartialView("GdsCookieBanner", Examples.Link);
-    public IActionResult LinkClasses() => PartialView("GdsCookieBanner", Examples.LinkClasses);
-
-    public IActionResult LinkAttributes() => PartialView("GdsCookieBanner", Examples.LinkAttributes);
-
-    public IActionResult LinkWithFalseButtonOptions() => PartialView("GdsCookieBanner", Examples.LinkWithFalseButtonOptions);
-    public IActionResult LinkAsAButton() => PartialView("GdsCookieBanner", Examples.LinkAsAButton);
-    public IActionResult Type() => PartialView("GdsCookieBanner", Examples.Type);
-    public IActionResult ButtonClasses() => PartialView("GdsCookieBanner", Examples.ButtonClasses);
-    public IActionResult ButtonAttributes() => PartialView("GdsCookieBanner", Examples.ButtonAttributes);
-    public IActionResult ClientSideImplementation() => PartialView("GdsCookieBanner", Examples.ClientSideImplementation);
-    public IActionResult FullBannerHidden() => PartialView("GdsCookieBanner", Examples.FullBannerHidden);
+    public IActionResult Attributes() => PartialView(PartialName, Examples.Attributes);
+    public IActionResult CustomAriaLabel() => PartialView(PartialName, Examples.CustomAriaLabel);
+    public IActionResult AcceptedConfirmationBanner() => PartialView(PartialName, Examples.AcceptedConfirmationBanner);
+    public IActionResult Hidden() => PartialView(PartialName, Examples.Hidden);
+    public IActionResult HiddenFalse() => PartialView(PartialName, Examples.HiddenFalse);
+    public IActionResult DefaultAction() => PartialView(PartialName, Examples.DefaultAction);
+    public IActionResult Link() => PartialView(PartialName, Examples.Link);
+    public IActionResult LinkClasses() => PartialView(PartialName, Examples.LinkClasses);
+    public IActionResult LinkAttributes() => PartialView(PartialName, Examples.LinkAttributes);
+    public IActionResult LinkWithFalseButtonOptions() => PartialView(PartialName, Examples.LinkWithFalseButtonOptions);
+    public IActionResult LinkAsAButton() => PartialView(PartialName, Examples.LinkAsAButton);
+    public IActionResult Type() => PartialView(PartialName, Examples.Type);
+    public IActionResult ButtonClasses() => PartialView(PartialName, Examples.ButtonClasses);
+    public IActionResult ButtonAttributes() => PartialView(PartialName, Examples.ButtonAttributes);
+    public IActionResult ClientSideImplementation() => PartialView(PartialName, Examples.ClientSideImplementation);
+    public IActionResult FullBannerHidden() => PartialView(PartialName, Examples.FullBannerHidden);
     public IActionResult Axe() => View(Examples.Default);
     public IActionResult AxeConfirmation() => View("Axe", Examples.AcceptedConfirmationBanner);
 }

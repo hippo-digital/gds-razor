@@ -1,0 +1,6 @@
+@using Hippo.GdsRazor.Models
+
+@await Html.PartialAsync("GdsPanel", new PanelModel(
+  "Application complete",
+  (HTML) (@<text>Your reference number<br><strong>HDJ2123F</strong></text>)
+))

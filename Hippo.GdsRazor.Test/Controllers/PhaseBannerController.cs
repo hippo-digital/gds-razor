@@ -22,12 +22,13 @@ public class PhaseBannerController : Controller
         };
     }
 
+    private const string PartialName = "GdsPhaseBanner";
     public IActionResult Default() => View();
-    public IActionResult Classes() => PartialView("GdsPhaseBanner", Examples.Classes);
-    public IActionResult Text() => PartialView("GdsPhaseBanner", Examples.Text);
-    public IActionResult HtmlAsText() => PartialView("GdsPhaseBanner", Examples.HtmlAsText);
-    public IActionResult Attributes() => PartialView("GdsPhaseBanner", Examples.Attributes);
+    public IActionResult Classes() => PartialView(PartialName, Examples.Classes);
+    public IActionResult Text() => PartialView(PartialName, Examples.Text);
+    public IActionResult HtmlAsText() => PartialView(PartialName, Examples.HtmlAsText);
+    public IActionResult Attributes() => PartialView(PartialName, Examples.Attributes);
     public IActionResult TagHtml() => View();
-    public IActionResult TagClasses() => PartialView("GdsPhaseBanner", Examples.TagClasses);
+    public IActionResult TagClasses() => PartialView(PartialName, Examples.TagClasses);
     public IActionResult Axe() => View();
 }

@@ -1,0 +1,9 @@
+@using Hippo.GdsRazor.Models
+@model PanelModel
+
+@{
+    ViewData["Title"] = "Panel Axe";
+    Layout = "../Axe";
+}
+
+@await Html.PartialAsync("GdsPanel", Model)

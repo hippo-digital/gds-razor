@@ -18,13 +18,14 @@ public class SkipLinkController : Controller
         };
     }
 
-    public IActionResult Default() => PartialView("GdsSkipLink", Examples.Default);
-    public IActionResult NoHref() => PartialView("GdsSkipLink", Examples.NoHref);
-    public IActionResult CustomHref() => PartialView("GdsSkipLink", Examples.CustomHref);
-    public IActionResult CustomText() => PartialView("GdsSkipLink", Examples.CustomText);
-    public IActionResult HtmlAsText() => PartialView("GdsSkipLink", Examples.HtmlAsText);
+    private const string PartialName = "GdsSkipLink";
+    public IActionResult Default() => PartialView(PartialName, Examples.Default);
+    public IActionResult NoHref() => PartialView(PartialName, Examples.NoHref);
+    public IActionResult CustomHref() => PartialView(PartialName, Examples.CustomHref);
+    public IActionResult CustomText() => PartialView(PartialName, Examples.CustomText);
+    public IActionResult HtmlAsText() => PartialView(PartialName, Examples.HtmlAsText);
     public IActionResult Html() => View();
-    public IActionResult Classes() => PartialView("GdsSkipLink", Examples.Classes);
-    public IActionResult Attributes() => PartialView("GdsSkipLink", Examples.Attributes);
+    public IActionResult Classes() => PartialView(PartialName, Examples.Classes);
+    public IActionResult Attributes() => PartialView(PartialName, Examples.Attributes);
     public IActionResult Axe() => View(Examples.Default);
 }

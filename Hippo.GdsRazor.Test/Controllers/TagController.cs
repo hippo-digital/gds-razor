@@ -14,11 +14,12 @@ public class TagController : Controller
         public static readonly TagModel HtmlAsText = "<span>alpha</span>";
     }
 
-    public IActionResult Default() => PartialView("GdsTag", Examples.Default);
-    public IActionResult Inactive() => PartialView("GdsTag", Examples.Inactive);
-    public IActionResult Grey() => PartialView("GdsTag", Examples.Grey);
-    public IActionResult Attributes() => PartialView("GdsTag", Examples.Attributes);
-    public IActionResult HtmlAsText() => PartialView("GdsTag", Examples.HtmlAsText);
+    private const string PartialName = "GdsTag";
+    public IActionResult Default() => PartialView(PartialName, Examples.Default);
+    public IActionResult Inactive() => PartialView(PartialName, Examples.Inactive);
+    public IActionResult Grey() => PartialView(PartialName, Examples.Grey);
+    public IActionResult Attributes() => PartialView(PartialName, Examples.Attributes);
+    public IActionResult HtmlAsText() => PartialView(PartialName, Examples.HtmlAsText);
     public IActionResult Html() => View();
     public IActionResult Axe() => View(Examples.Default);
 }

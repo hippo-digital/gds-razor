@@ -1,4 +1,4 @@
-﻿using Hippo.GdsRazor.Test.Tests.Internal;
+﻿using Hippo.GdsRazor.Test.Components.Internal;
 
 namespace Hippo.GdsRazor.Test;
 

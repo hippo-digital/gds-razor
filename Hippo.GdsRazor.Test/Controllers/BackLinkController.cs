@@ -13,10 +13,11 @@ public class BackLinkController : Controller
         public static readonly BackLinkModel HtmlAsText = new("#") { Content = "<b>Home</b>" };
     }
 
-    public IActionResult Default() => PartialView("GdsBackLink", Examples.Default);
-    public IActionResult Classes() => PartialView("GdsBackLink", Examples.Classes);
-    public IActionResult CustomText() => PartialView("GdsBackLink", Examples.CustomText);
-    public IActionResult HtmlAsText() => PartialView("GdsBackLink", Examples.HtmlAsText);
+    private const string PartialName = "GdsBackLink";
+    public IActionResult Default() => PartialView(PartialName, Examples.Default);
+    public IActionResult Classes() => PartialView(PartialName, Examples.Classes);
+    public IActionResult CustomText() => PartialView(PartialName, Examples.CustomText);
+    public IActionResult HtmlAsText() => PartialView(PartialName, Examples.HtmlAsText);
     public IActionResult Html() => View();
     public IActionResult Attributes() => View();
     public IActionResult Axe() => View(Examples.Default);

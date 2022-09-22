@@ -32,14 +32,15 @@ public class DetailsController : Controller
         };
     }
 
-    public IActionResult Default() => PartialView("GdsDetails", Examples.Default);
-    public IActionResult Expanded() => PartialView("GdsDetails", Examples.Expanded);
-    public IActionResult Id() => PartialView("GdsDetails", Examples.Id);
-    public IActionResult HtmlAsText() => PartialView("GdsDetails", Examples.HtmlAsText);
+    private const string PartialName = "GdsDetails";
+    public IActionResult Default() => PartialView(PartialName, Examples.Default);
+    public IActionResult Expanded() => PartialView(PartialName, Examples.Expanded);
+    public IActionResult Id() => PartialView(PartialName, Examples.Id);
+    public IActionResult HtmlAsText() => PartialView(PartialName, Examples.HtmlAsText);
     public IActionResult Html() => View();
-    public IActionResult SummaryHtmlAsText() => PartialView("GdsDetails", Examples.SummaryHtmlAsText);
+    public IActionResult SummaryHtmlAsText() => PartialView(PartialName, Examples.SummaryHtmlAsText);
     public IActionResult SummaryHtml() => View();
-    public IActionResult Classes() => PartialView("GdsDetails", Examples.Classes);
-    public IActionResult Attributes() => PartialView("GdsDetails", Examples.Attributes);
+    public IActionResult Classes() => PartialView(PartialName, Examples.Classes);
+    public IActionResult Attributes() => PartialView(PartialName, Examples.Attributes);
     public IActionResult Axe() => View(Examples.Default);
 }

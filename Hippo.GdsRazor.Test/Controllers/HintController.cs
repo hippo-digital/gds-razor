@@ -21,11 +21,12 @@ public class HintController : Controller
         };
     }
 
-    public IActionResult Default() => PartialView("GdsHint", Examples.Default);
-    public IActionResult Id() => PartialView("GdsHint", Examples.Id);
-    public IActionResult Classes() => PartialView("GdsHint", Examples.Classes);
-    public IActionResult HtmlAsText() => PartialView("GdsHint", Examples.HtmlAsText);
-    public IActionResult Attributes() => PartialView("GdsHint", Examples.Attributes);
+    private const string PartialName = "GdsHint";
+    public IActionResult Default() => PartialView(PartialName, Examples.Default);
+    public IActionResult Id() => PartialView(PartialName, Examples.Id);
+    public IActionResult Classes() => PartialView(PartialName, Examples.Classes);
+    public IActionResult HtmlAsText() => PartialView(PartialName, Examples.HtmlAsText);
+    public IActionResult Attributes() => PartialView(PartialName, Examples.Attributes);
     public IActionResult Html() => View();
     public IActionResult Axe() => View(Examples.Default);
 }
