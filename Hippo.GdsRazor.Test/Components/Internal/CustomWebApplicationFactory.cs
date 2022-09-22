@@ -66,7 +66,7 @@ public class CustomWebApplicationFactory<TStartup> : WebApplicationFactory<TStar
 
         var addresses = serverAddresses.Addresses;
 
-        var returnValue = addresses.FirstOrDefault() ?? "";
+        var returnValue = addresses.LastOrDefault() ?? "";
 
         return returnValue;
     }
