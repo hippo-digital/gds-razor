@@ -1,0 +1,7 @@
+@using Hippo.GdsRazor.Models
+
+@await Html.PartialAsync("GdsDateInput", new DateInputModel("with-fieldset-html") {
+  Fieldset = new FieldsetModel {
+    Legend = (HTML) (@<text>What is your <b>date of birth</b>?</text>)
+  }
+})

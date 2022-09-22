@@ -1,3 +1,4 @@
+using System.Text.RegularExpressions;
 using AngleSharp;
 using AngleSharp.Dom;
 using AngleSharp.Html.Dom;
@@ -8,7 +9,6 @@ using AutoFixture.Xunit2;
 using Hippo.GdsRazor.Models;
 using Hippo.GdsRazor.Models.Base;
 using Hippo.GdsRazor.Models.Content;
-using Microsoft.AspNetCore.Mvc;
 using OpenQA.Selenium;
 using Selenium.Axe;
 using Xunit;
@@ -18,7 +18,8 @@ namespace Hippo.GdsRazor.Test.Components.Internal;
 [CollectionDefinition("GDS")]
 public class GdsCollection : ICollectionFixture<CustomWebApplicationFactory<Startup>>, ICollectionFixture<SeleniumBase>
 {
-    public static (string, GdsAttributes?) Model = ("", null);
+    internal static readonly Regex AfterTagWhitespace = new("(?:([^b]>)\\s+|\\s+(<[^b]))", RegexOptions.Compiled);
+    internal static (string, GdsAttributes?) Model = ("", null);
 }
 
 public class GdsAutoDataAttribute : AutoDataAttribute
@@ -83,8 +84,10 @@ public abstract class ClientBase<TStartup> where TStartup : class
     /// <returns>HTML</returns>
     protected string HtmlWithClassName(IParentNode parentNode, string className)
     {
-        var outerElement = parentNode.QuerySelector($".{className}");
-        foreach (var element in outerElement!.QuerySelectorAll($"[class]:not([class^={className}])")) element.Remove();
-        return outerElement.OuterHtml;
+        return string.Join("", parentNode.QuerySelectorAll($".{className}").Select(outerElement =>
+        {
+            foreach (var element in outerElement!.QuerySelectorAll($"[class]:not([class^={className}])")) element.Remove();
+            return GdsCollection.AfterTagWhitespace.Replace(outerElement.OuterHtml.ReplaceLineEndings(""), "$1$2");
+        }));
     }
 }

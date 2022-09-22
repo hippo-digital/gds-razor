@@ -41,7 +41,7 @@ public class DateInputModel : GdsViewModel
         }
     }
 
-    private static readonly List<ItemModel> DefaultItems = new()
+    internal static readonly List<ItemModel> DefaultItems = new()
     {
         new ItemModel("day") { Classes = InputModel.Width.Width2 },
         new ItemModel("month") { Classes = InputModel.Width.Width2 },
@@ -50,7 +50,7 @@ public class DateInputModel : GdsViewModel
 
     public DateInputModel(string id = "date-default") : base(id)
     {
-        Items = DefaultItems;
+        Items = new List<ItemModel>();
     }
 
     public class ItemModel : GdsViewModel

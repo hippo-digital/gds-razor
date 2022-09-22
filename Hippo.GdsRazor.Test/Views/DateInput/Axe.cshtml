@@ -1,0 +1,9 @@
+@using Hippo.GdsRazor.Models
+@model DateInputModel
+
+@{
+    ViewData["Title"] = "DateInput Axe";
+    Layout = "../Axe";
+}
+
+@await Html.PartialAsync("GdsDateInput", Model)

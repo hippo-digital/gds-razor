@@ -17,7 +17,7 @@ public class ErrorMessageTests : ClientBase<Startup>
         var response = await Navigate("CharacterCount" ,nameof(CharacterCountController.WithDefaultValueExceedingLimit));
         var html = HtmlWithClassName(response, "govuk-error-message");
 
-        const string expected = "<p id=\"exceeding-characters-error\" class=\"govuk-error-message \">\n    \n  \nPlease do not exceed the maximum allowed limit\n</p>";
+        const string expected = "<p id=\"exceeding-characters-error\" class=\"govuk-error-message \">Please do not exceed the maximum allowed limit</p>";
 
         Assert.Equal(expected, html);
     }

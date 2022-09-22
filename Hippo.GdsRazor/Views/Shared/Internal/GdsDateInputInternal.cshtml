@@ -25,7 +25,7 @@
 }
 
 <div id="@Model.Id" class="govuk-date-input @Model.Classes" @Html.Raw(Model.ExpandAttributes())>
-  @foreach (var item in Model.Items)
+  @foreach (var item in (Model.Items.Count == 0 ? DateInputModel.DefaultItems : Model.Items))
   {
     <div class="govuk-date-input__item">
       @await Html.PartialAsync("GdsInput", new InputModel

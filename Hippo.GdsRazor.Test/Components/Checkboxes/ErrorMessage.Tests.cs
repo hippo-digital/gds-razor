@@ -17,7 +17,7 @@ public class ErrorMessageTests : ClientBase<Startup>
         var response = await Navigate("Checkboxes" ,nameof(CheckboxesController.WithErrorMessage));
         var html = HtmlWithClassName(response, "govuk-error-message");
 
-        const string expected = "<p id=\"waste-error\" class=\"govuk-error-message \">\n    \n  \nPlease select an option\n</p>";
+        const string expected = "<p id=\"waste-error\" class=\"govuk-error-message \">Please select an option</p>";
 
         Assert.Equal(expected, html);
     }
