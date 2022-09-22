@@ -1,4 +1,5 @@
-# GDS Razor
+# GDS Razor · [![Test status](https://github.com/hippo-digital/gds-razor/actions/workflows/test.yml/badge.svg)](https://github.com/hippo-digital/gds-razor/actions/workflows/test.yml?query=branch%3Amaster)
+
 Components from [govuk-frontend](https://github.com/alphagov/govuk-frontend) packaged as ASP.NET partial views.
 
 To get started add the nuget package to your project and check out the examples in the [GdsRazorDemo](gds-razor/blob/master/GdsRazorDemo) project.
