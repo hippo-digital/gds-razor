@@ -24,9 +24,10 @@ jobs:
         run: dotnet restore
       - name: Test with dotnet
         run: dotnet test --logger trx --results-directory "TestResults-${{ matrix.dotnet-version }}"
-      - name: Upload dotnet test results
-        uses: actions/upload-artifact@v3
+      - name: Test Report
+        uses: phoenix-actions/test-reporting@v8
+        if: success() || failure()
         with:
-          name: dotnet-results-${{ matrix.dotnet-version }}
-          path: TestResults-${{ matrix.dotnet-version }}
-        if: ${{ always() }}
+          name: xUnit Tests
+          path: "TestResults-${{ matrix.dotnet-version }}/*.trx"
+          reporter: dotnet-trx
