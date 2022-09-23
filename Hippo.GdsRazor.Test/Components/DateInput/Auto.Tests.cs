@@ -73,7 +73,7 @@ public class AutoTests : ClientBase<Startup>
         }
 
         //Items
-        foreach (var item in model.Items!.OfType<DateInputModel.ItemModel>())
+        foreach (var item in model.Items.OfType<DateInputModel.ItemModel>())
         {
             Assert.Contains(item.Id, html);
             Assert.Contains(item.Classes, html);

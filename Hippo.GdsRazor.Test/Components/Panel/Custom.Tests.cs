@@ -64,7 +64,7 @@ public class CustomTests : ClientBase<Startup>
         var component = response.QuerySelector(".govuk-panel");
 
         Assert.Contains("extra-class", component!.ClassList);
-        Assert.Contains("one-more-class", component!.ClassList);
+        Assert.Contains("one-more-class", component.ClassList);
     }
 
     [Fact]

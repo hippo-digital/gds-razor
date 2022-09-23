@@ -1,0 +1,14 @@
+@using Hippo.GdsRazor.Models
+
+@await Html.PartialAsync("GdsHeader", new HeaderModel {
+  ServiceName = "Service Name",
+  ServiceUrl = "/components/header",
+  Navigation = new List<HeaderModel.ItemModel> {
+    new((HTML) (@<em>Navigation item 1</em>)) {
+      Href = "#1",
+      Active = true
+    },
+    ("#2", @<em>Navigation item 2</em>),
+    ("#3", @<em>Navigation item 3</em>)
+  }
+})

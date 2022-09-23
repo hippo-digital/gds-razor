@@ -97,6 +97,8 @@ public class HeaderModel : GdsViewModel
         }
 
         public static implicit operator ItemModel(string s) => new(s);
+        public static implicit operator ItemModel(HTML s) => new(s);
         public static implicit operator ItemModel((string, string) t) => new(t.Item2) { Href = t.Item1 };
+        public static implicit operator ItemModel((string, HTML) t) => new(t.Item2) { Href = t.Item1 };
     }
 }

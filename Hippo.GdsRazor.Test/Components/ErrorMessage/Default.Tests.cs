@@ -43,7 +43,7 @@ public class DefaultTests : ClientBase<Startup>
         var component = response.QuerySelector(".govuk-error-message");
         component!.QuerySelector(".govuk-visually-hidden")!.Remove();
 
-        Assert.Equal("Unexpected &gt; in body", component!.InnerHtml.Trim());
+        Assert.Equal("Unexpected &gt; in body", component.InnerHtml.Trim());
     }
 
     [Fact]
@@ -53,7 +53,7 @@ public class DefaultTests : ClientBase<Startup>
         var component = response.QuerySelector(".govuk-error-message");
         component!.QuerySelector(".govuk-visually-hidden")!.Remove();
 
-        Assert.Equal("Unexpected <b>bold text</b> in body copy", component!.InnerHtml.Trim());
+        Assert.Equal("Unexpected <b>bold text</b> in body copy", component.InnerHtml.Trim());
     }
 
     [Fact]

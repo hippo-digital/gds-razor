@@ -39,37 +39,35 @@ public abstract class ClientBase<TStartup> where TStartup : class
 {
     protected const string AriaDescribedBy = "aria-describedby";
     private readonly IWebDriver? _driver;
-    protected readonly HttpClient Http;
-    protected readonly IBrowsingContext Context;
-    protected readonly string BaseExternalAddress;
-    protected readonly string BaseInternalAddress;
+    private readonly IBrowsingContext _context;
+    private readonly string _baseExternalAddress;
+    private readonly string _baseInternalAddress;
 
     protected ClientBase(CustomWebApplicationFactory<TStartup> factory, IWebDriver? driver = null)
     {
         _driver = driver;
-        Http = factory.Http;
-        BaseExternalAddress = factory.GetServerAddress();
-        BaseInternalAddress = CustomWebApplicationFactory<TStartup>.BaseAddress;
+        _baseExternalAddress = factory.GetServerAddress();
+        _baseInternalAddress = CustomWebApplicationFactory<TStartup>.BaseAddress;
         //.WithCss().WithJs().WithRenderDevice()
-        Context = BrowsingContext.New(Configuration.Default.With(new HttpClientRequester(factory.Http)).WithDefaultLoader(new LoaderOptions { IsResourceLoadingEnabled = true, IsNavigationDisabled = false }));
+        _context = BrowsingContext.New(Configuration.Default.With(new HttpClientRequester(factory.Http)).WithDefaultLoader(new LoaderOptions { IsResourceLoadingEnabled = true, IsNavigationDisabled = false }));
     }
 
     protected async Task<IHtmlDocument> Navigate(string controller, string action)
     {
-        var document = await Context.OpenAsync($"{BaseInternalAddress}/{controller}/{action}", CancellationToken.None);
+        var document = await _context.OpenAsync($"{_baseInternalAddress}/{controller}/{action}", CancellationToken.None);
         return (IHtmlDocument) document;
     }
 
     protected AxeResult AxeResults(string type, string action = "Axe")
     {
-        _driver?.Navigate().GoToUrl(BaseExternalAddress + $"/{type}/{action}");
+        _driver?.Navigate().GoToUrl(_baseExternalAddress + $"/{type}/{action}");
         return new AxeBuilder(_driver).DisableRules("region", "skip-link").Analyze();
     }
 
     protected async Task<string> AutoFixtureResults<T>(string type, T model) where T : GdsAttributes
     {
         GdsCollection.Model = ($"Gds{type}", model);
-        var document = await Context.OpenAsync($"{BaseInternalAddress}/Custom", CancellationToken.None);
+        var document = await _context.OpenAsync($"{_baseInternalAddress}/Custom", CancellationToken.None);
         return ((IHtmlDocument) document).ToHtml();
     }
 
@@ -86,7 +84,7 @@ public abstract class ClientBase<TStartup> where TStartup : class
     {
         return string.Join("", parentNode.QuerySelectorAll($".{className}").Select(outerElement =>
         {
-            foreach (var element in outerElement!.QuerySelectorAll($"[class]:not([class^={className}])")) element.Remove();
+            foreach (var element in outerElement.QuerySelectorAll($"[class]:not([class^={className}])")) element.Remove();
             return GdsCollection.AfterTagWhitespace.Replace(outerElement.OuterHtml.ReplaceLineEndings(""), "$1$2");
         }));
     }
