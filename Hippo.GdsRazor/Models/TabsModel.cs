@@ -71,5 +71,7 @@ public class TabsModel : GdsViewModel
         }
 
         public static implicit operator PanelModel(Task<IHtmlContent> t) => new(t);
+        public static implicit operator PanelModel(HTML s) => new(s);
+        public static implicit operator PanelModel(string s) => new(s);
     }
 }

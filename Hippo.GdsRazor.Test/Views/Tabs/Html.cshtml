@@ -1,0 +1,14 @@
+@using Hippo.GdsRazor.Models
+
+@await Html.PartialAsync("GdsTabs", new TabsModel(
+    new TabsModel.ItemModel(
+        "tab-1",
+        "Tab 1",
+        (HTML) (@<p>Panel 1 content</p>)
+    ),
+    new TabsModel.ItemModel(
+        "tab-2",
+        "Tab 2",
+        (HTML) (@<p>Panel 2 content</p>)
+    )
+))
