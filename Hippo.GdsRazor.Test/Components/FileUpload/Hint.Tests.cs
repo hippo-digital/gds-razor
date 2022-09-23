@@ -30,7 +30,7 @@ public class HintTests : ClientBase<Startup>
         var fileUpload = response.QuerySelector(".govuk-file-upload");
         var hint = response.QuerySelector(".govuk-hint");
 
-        Assert.Matches(new Regex($"\\b{hint!.Id}\\b"), fileUpload!.Attributes[AriaDescribedBy]?.Value ?? "");
+        Assert.Matches(new Regex($"\\b{hint!.Id}\\b"), fileUpload!.GetAttribute(AriaDescribedBy) ?? "");
     }
 
     [Fact]
@@ -40,7 +40,7 @@ public class HintTests : ClientBase<Startup>
         var fileUpload = response.QuerySelector(".govuk-file-upload");
         var hint = response.QuerySelector(".govuk-hint");
 
-        Assert.Matches(new Regex($"\\b{hint!.Id}\\b"), fileUpload!.Attributes[AriaDescribedBy]?.Value ?? "");
-        Assert.Matches(new Regex("\\bsome-id\\b"), fileUpload.Attributes[AriaDescribedBy]?.Value ?? "");
+        Assert.Matches(new Regex($"\\b{hint!.Id}\\b"), fileUpload!.GetAttribute(AriaDescribedBy) ?? "");
+        Assert.Matches(new Regex("\\bsome-id\\b"), fileUpload.GetAttribute(AriaDescribedBy) ?? "");
     }
 }

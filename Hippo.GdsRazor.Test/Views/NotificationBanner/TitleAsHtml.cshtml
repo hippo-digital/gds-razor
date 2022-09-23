@@ -1,0 +1,5 @@
+@using Hippo.GdsRazor.Models
+
+@await Html.PartialAsync("GdsNotificationBanner", new NotificationBannerModel("This publication was withdrawn on 7 March 2014.") {
+  Title = (HTML) (@<span>Important information</span>)
+})

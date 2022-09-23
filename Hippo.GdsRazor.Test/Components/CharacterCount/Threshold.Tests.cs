@@ -16,6 +16,6 @@ public class ThresholdTests : ClientBase<Startup>
         var response = await Navigate("CharacterCount" ,nameof(CharacterCountController.WithThreshold));
         var component = response.QuerySelector(".govuk-character-count");
 
-        Assert.Equal("75", component?.Attributes["data-threshold"]?.Value);
+        Assert.Equal("75", component?.GetAttribute("data-threshold"));
     }
 }

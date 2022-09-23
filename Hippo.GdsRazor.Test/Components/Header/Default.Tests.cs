@@ -24,6 +24,6 @@ public class DefaultTests : ClientBase<Startup>
         var response = await Navigate("Header" ,nameof(HeaderController.Default));
         var component = response.QuerySelector(".govuk-header");
 
-        Assert.Equal("banner", component!.Attributes["role"]?.Value);
+        Assert.Equal("banner", component!.GetAttribute("role"));
     }
 }

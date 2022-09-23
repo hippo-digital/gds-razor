@@ -115,7 +115,7 @@ public class ComponentTests : ClientBase<Startup>
         var response = await Navigate("Details" ,nameof(DetailsController.Attributes));
         var component = response.QuerySelector(".govuk-details");
 
-        Assert.Equal("i-love-data", component!.Attributes["data-some-data-attribute"]?.Value);
-        Assert.Equal("foo", component.Attributes["another-attribute"]?.Value);
+        Assert.Equal("i-love-data", component!.GetAttribute("data-some-data-attribute"));
+        Assert.Equal("foo", component.GetAttribute("another-attribute"));
     }
 }

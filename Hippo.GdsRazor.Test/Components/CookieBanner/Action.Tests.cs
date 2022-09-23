@@ -37,10 +37,10 @@ public class ActionTests : ClientBase<Startup>
 
         Assert.IsAssignableFrom<IHtmlAnchorElement>(action);
         Assert.Equal("This is a link", action!.TextContent.Trim());
-        Assert.Equal("/link", action.Attributes["href"]?.Value);
+        Assert.Equal("/link", action.GetAttribute("href"));
 
-        Assert.Null(action.Attributes["value"]?.Value);
-        Assert.Null(action.Attributes["name"]?.Value);
+        Assert.Null(action.GetAttribute("value"));
+        Assert.Null(action.GetAttribute("name"));
     }
 
     [Fact]
@@ -51,9 +51,9 @@ public class ActionTests : ClientBase<Startup>
 
         Assert.IsAssignableFrom<IHtmlAnchorElement>(action);
         Assert.Equal("This is a link", action!.TextContent.Trim());
-        Assert.Equal("/link", action.Attributes["href"]?.Value);
+        Assert.Equal("/link", action.GetAttribute("href"));
 
-        Assert.Equal("button", action.Attributes["role"]?.Value);
+        Assert.Equal("button", action.GetAttribute("role"));
     }
 
     [Fact]
@@ -71,7 +71,7 @@ public class ActionTests : ClientBase<Startup>
         var response = await Navigate("CookieBanner" ,nameof(CookieBannerController.Type));
         var action = response.QuerySelector(".govuk-cookie-banner .govuk-button");
 
-        Assert.Equal("button", action!.Attributes["type"]?.Value);
+        Assert.Equal("button", action!.GetAttribute("type"));
     }
 
     [Fact]
@@ -80,7 +80,7 @@ public class ActionTests : ClientBase<Startup>
         var response = await Navigate("CookieBanner" ,nameof(CookieBannerController.Default));
         var action = response.QuerySelector(".govuk-cookie-banner .govuk-button");
 
-        Assert.Equal("cookies", action!.Attributes["name"]?.Value);
+        Assert.Equal("cookies", action!.GetAttribute("name"));
     }
 
     [Fact]
@@ -89,7 +89,7 @@ public class ActionTests : ClientBase<Startup>
         var response = await Navigate("CookieBanner" ,nameof(CookieBannerController.Default));
         var action = response.QuerySelector(".govuk-cookie-banner .govuk-button");
 
-        Assert.Equal("accept", action!.Attributes["value"]?.Value);
+        Assert.Equal("accept", action!.GetAttribute("value"));
     }
 
     [Fact]
@@ -107,7 +107,7 @@ public class ActionTests : ClientBase<Startup>
         var response = await Navigate("CookieBanner" ,nameof(CookieBannerController.ButtonAttributes));
         var action = response.QuerySelector(".govuk-cookie-banner .govuk-button");
 
-        Assert.Equal("my-value", action!.Attributes["data-button-attribute"]?.Value);
+        Assert.Equal("my-value", action!.GetAttribute("data-button-attribute"));
     }
 
     [Fact]
@@ -118,7 +118,7 @@ public class ActionTests : ClientBase<Startup>
 
         Assert.IsAssignableFrom<IHtmlAnchorElement>(action);
         Assert.Equal("This is a link", action!.TextContent.Trim());
-        Assert.Equal("/link", action.Attributes["href"]?.Value);
+        Assert.Equal("/link", action.GetAttribute("href"));
     }
 
     [Fact]
@@ -136,6 +136,6 @@ public class ActionTests : ClientBase<Startup>
         var response = await Navigate("CookieBanner" ,nameof(CookieBannerController.LinkAttributes));
         var action = response.QuerySelector(".govuk-cookie-banner .govuk-link");
 
-        Assert.Equal("my-value", action!.Attributes["data-link-attribute"]?.Value);
+        Assert.Equal("my-value", action!.GetAttribute("data-link-attribute"));
     }
 }

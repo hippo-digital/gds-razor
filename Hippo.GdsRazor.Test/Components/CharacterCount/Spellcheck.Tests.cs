@@ -16,7 +16,7 @@ public class SpellcheckTests : ClientBase<Startup>
         var response = await Navigate("CharacterCount" ,nameof(CharacterCountController.SpellcheckEnabled));
         var component = response.QuerySelector(".govuk-character-count .govuk-textarea");
 
-        Assert.Equal("true", component!.Attributes["spellcheck"]?.Value);
+        Assert.Equal("true", component!.GetAttribute("spellcheck"));
     }
 
     [Fact]
@@ -25,7 +25,7 @@ public class SpellcheckTests : ClientBase<Startup>
         var response = await Navigate("CharacterCount" ,nameof(CharacterCountController.SpellcheckDisabled));
         var component = response.QuerySelector(".govuk-character-count .govuk-textarea");
 
-        Assert.Equal("false", component!.Attributes["spellcheck"]?.Value);
+        Assert.Equal("false", component!.GetAttribute("spellcheck"));
     }
 
     [Fact]
@@ -34,6 +34,6 @@ public class SpellcheckTests : ClientBase<Startup>
         var response = await Navigate("CharacterCount" ,nameof(CharacterCountController.Default));
         var component = response.QuerySelector(".govuk-character-count .govuk-textarea");
 
-        Assert.Null(component!.Attributes["spellcheck"]?.Value);
+        Assert.Null(component!.GetAttribute("spellcheck"));
     }
 }

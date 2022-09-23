@@ -128,10 +128,10 @@ public class ItemsTests : ClientBase<Startup>
         var firstInput = response.QuerySelector(".govuk-checkboxes__item:first-child input");
         var lastInput = response.QuerySelector(".govuk-checkboxes__item:last-child input");
 
-        Assert.Equal("ABC", firstInput!.Attributes["data-attribute"]?.Value);
-        Assert.Equal("DEF", firstInput.Attributes["data-second-attribute"]?.Value);
+        Assert.Equal("ABC", firstInput!.GetAttribute("data-attribute"));
+        Assert.Equal("DEF", firstInput.GetAttribute("data-second-attribute"));
 
-        Assert.Equal("GHI", lastInput!.Attributes["data-attribute"]?.Value);
-        Assert.Equal("JKL", lastInput.Attributes["data-second-attribute"]?.Value);
+        Assert.Equal("GHI", lastInput!.GetAttribute("data-attribute"));
+        Assert.Equal("JKL", lastInput.GetAttribute("data-second-attribute"));
     }
 }

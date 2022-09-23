@@ -42,6 +42,6 @@ public class DefaultTests : ClientBase<Startup>
         var response = await Navigate("WarningText" ,nameof(WarningTextController.Default));
         var component = response.QuerySelector(".govuk-warning-text__icon");
 
-        Assert.Equal("true", component!.Attributes["aria-hidden"]?.Value);
+        Assert.Equal("true", component!.GetAttribute("aria-hidden"));
     }
 }

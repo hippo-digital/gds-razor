@@ -48,7 +48,7 @@ public class NavigationTests : ClientBase<Startup>
 
         Assert.Equal(9, components.Length);
         Assert.IsAssignableFrom<IHtmlAnchorElement>(firstItem);
-        Assert.Equal("#1", firstItem!.Attributes["href"]?.Value);
+        Assert.Equal("#1", firstItem!.GetAttribute("href"));
         Assert.Equal("Navigation item 1", firstItem.TextContent.Trim());
     }
 
@@ -58,8 +58,8 @@ public class NavigationTests : ClientBase<Startup>
         var response = await Navigate("Footer" ,nameof(FooterController.WithNavigationItemAttributes));
         var component = response.QuerySelector(".govuk-footer__list .govuk-footer__link");
 
-        Assert.Equal("my-attribute", component!.Attributes["data-attribute"]?.Value);
-        Assert.Equal("my-attribute-2", component.Attributes["data-attribute-2"]?.Value);
+        Assert.Equal("my-attribute", component!.GetAttribute("data-attribute"));
+        Assert.Equal("my-attribute-2", component.GetAttribute("data-attribute-2"));
     }
 
     [Fact]

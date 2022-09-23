@@ -71,8 +71,8 @@ public class CustomTests : ClientBase<Startup>
         var response = await Navigate("ErrorSummary" ,nameof(ErrorSummaryController.Attributes));
         var component = response.QuerySelector(".govuk-error-summary");
 
-        Assert.Equal("foo", component!.Attributes["first-attribute"]?.Value);
-        Assert.Equal("bar", component.Attributes["second-attribute"]?.Value);
+        Assert.Equal("foo", component!.GetAttribute("first-attribute"));
+        Assert.Equal("bar", component.GetAttribute("second-attribute"));
     }
 
     [Fact]
@@ -81,8 +81,8 @@ public class CustomTests : ClientBase<Startup>
         var response = await Navigate("ErrorSummary" ,nameof(ErrorSummaryController.ErrorListWithAttributes));
         var component = response.QuerySelector(".govuk-error-summary__list a");
 
-        Assert.Equal("my-attribute", component!.Attributes["data-attribute"]?.Value);
-        Assert.Equal("my-attribute-2", component.Attributes["data-attribute-2"]?.Value);
+        Assert.Equal("my-attribute", component!.GetAttribute("data-attribute"));
+        Assert.Equal("my-attribute-2", component.GetAttribute("data-attribute-2"));
     }
 
     [Fact]
@@ -136,7 +136,7 @@ public class CustomTests : ClientBase<Startup>
         var response = await Navigate("ErrorSummary" ,nameof(ErrorSummaryController.AutoFocusDisabled));
         var component = response.QuerySelector(".govuk-error-summary");
 
-        Assert.Equal("true", component!.Attributes["data-disable-auto-focus"]?.Value);
+        Assert.Equal("true", component!.GetAttribute("data-disable-auto-focus"));
     }
 
     [Fact]
@@ -145,6 +145,6 @@ public class CustomTests : ClientBase<Startup>
         var response = await Navigate("ErrorSummary" ,nameof(ErrorSummaryController.AutoFocusExplicitlyEnabled));
         var component = response.QuerySelector(".govuk-error-summary");
 
-        Assert.Equal("false", component!.Attributes["data-disable-auto-focus"]?.Value);
+        Assert.Equal("false", component!.GetAttribute("data-disable-auto-focus"));
     }
 }

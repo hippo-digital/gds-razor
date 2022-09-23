@@ -103,6 +103,6 @@ public class ItemsTests : ClientBase<Startup>
         var response = await Navigate("DateInput" ,nameof(DateInputController.WithAutocompleteValues));
         var component = response.QuerySelector(".govuk-date-input__item:first-child input");
 
-        Assert.Equal("bday-day", component!.Attributes["autocomplete"]?.Value);
+        Assert.Equal("bday-day", component!.GetAttribute("autocomplete"));
     }
 }

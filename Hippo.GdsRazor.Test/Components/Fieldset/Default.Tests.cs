@@ -61,7 +61,7 @@ public class DefaultTests : ClientBase<Startup>
         var response = await Navigate("Fieldset" ,nameof(FieldsetController.WithDescribedBy));
         var component = response.QuerySelector(".govuk-fieldset");
 
-        Assert.Equal("some-id", component!.Attributes[AriaDescribedBy]?.Value);
+        Assert.Equal("some-id", component!.GetAttribute(AriaDescribedBy));
     }
 
     [Fact]
@@ -124,7 +124,7 @@ public class DefaultTests : ClientBase<Startup>
         var response = await Navigate("Fieldset" ,nameof(FieldsetController.Role));
         var component = response.QuerySelector(".govuk-fieldset");
 
-        Assert.Equal("group", component!.Attributes["role"]?.Value);
+        Assert.Equal("group", component!.GetAttribute("role"));
     }
 
     [Fact]
@@ -133,6 +133,6 @@ public class DefaultTests : ClientBase<Startup>
         var response = await Navigate("Fieldset" ,nameof(FieldsetController.Attributes));
         var component = response.QuerySelector(".govuk-fieldset");
 
-        Assert.Equal("value", component!.Attributes["data-attribute"]?.Value);
+        Assert.Equal("value", component!.GetAttribute("data-attribute"));
     }
 }

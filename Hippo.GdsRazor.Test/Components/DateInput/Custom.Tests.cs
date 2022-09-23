@@ -26,7 +26,7 @@ public class CustomTests : ClientBase<Startup>
         var response = await Navigate("DateInput" ,nameof(DateInputController.Attributes));
         var component = response.QuerySelector(".govuk-date-input");
 
-        Assert.Equal("my data value", component!.Attributes["data-attribute"]?.Value);
+        Assert.Equal("my data value", component!.GetAttribute("data-attribute"));
     }
 
     [Fact]
@@ -37,9 +37,9 @@ public class CustomTests : ClientBase<Startup>
         var input2 = response.QuerySelector(".govuk-date-input__item:nth-of-type(2) input");
         var input3 = response.QuerySelector(".govuk-date-input__item:nth-of-type(3) input");
 
-        Assert.Equal("day", input1!.Attributes["data-example-day"]?.Value);
-        Assert.Equal("month", input2!.Attributes["data-example-month"]?.Value);
-        Assert.Equal("year", input3!.Attributes["data-example-year"]?.Value);
+        Assert.Equal("day", input1!.GetAttribute("data-example-day"));
+        Assert.Equal("month", input2!.GetAttribute("data-example-month"));
+        Assert.Equal("year", input3!.GetAttribute("data-example-year"));
     }
 
     [Fact]
@@ -58,7 +58,7 @@ public class CustomTests : ClientBase<Startup>
         var response = await Navigate("DateInput" ,nameof(DateInputController.CustomPattern));
         var component = response.QuerySelector(".govuk-date-input__item:first-child input");
 
-        Assert.Equal("[0-8]*", component!.Attributes["pattern"]?.Value);
+        Assert.Equal("[0-8]*", component!.GetAttribute("pattern"));
     }
 
     [Fact]
@@ -67,7 +67,7 @@ public class CustomTests : ClientBase<Startup>
         var response = await Navigate("DateInput" ,nameof(DateInputController.CustomInputmode));
         var component = response.QuerySelector(".govuk-date-input__item:first-child input");
 
-        Assert.Equal("text", component!.Attributes["inputmode"]?.Value);
+        Assert.Equal("text", component!.GetAttribute("inputmode"));
     }
 
     [Fact]

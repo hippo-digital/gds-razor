@@ -28,7 +28,7 @@ public class NavigationTests : ClientBase<Startup>
 
         Assert.Equal(4, components.Length);
         Assert.IsAssignableFrom<IHtmlAnchorElement>(firstItem);
-        Assert.Equal("#1", firstItem!.Attributes["href"]?.Value);
+        Assert.Equal("#1", firstItem!.GetAttribute("href"));
         Assert.Equal("Navigation item 1", firstItem.TextContent.Trim());
     }
 
@@ -38,7 +38,7 @@ public class NavigationTests : ClientBase<Startup>
         var response = await Navigate("Header" ,nameof(HeaderController.WithNavigation));
         var component = response.QuerySelector(".govuk-header nav");
 
-        Assert.Equal("Menu", component!.Attributes["aria-label"]?.Value);
+        Assert.Equal("Menu", component!.GetAttribute("aria-label"));
     }
 
     [Fact]
@@ -47,7 +47,7 @@ public class NavigationTests : ClientBase<Startup>
         var response = await Navigate("Header" ,nameof(HeaderController.WithCustomMenuButtonText));
         var component = response.QuerySelector(".govuk-header nav");
 
-        Assert.Equal("Dewislen", component!.Attributes["aria-label"]?.Value);
+        Assert.Equal("Dewislen", component!.GetAttribute("aria-label"));
     }
 
     [Fact]
@@ -56,7 +56,7 @@ public class NavigationTests : ClientBase<Startup>
         var response = await Navigate("Header" ,nameof(HeaderController.WithCustomNavigationLabel));
         var component = response.QuerySelector(".govuk-header nav");
 
-        Assert.Equal("Custom navigation label", component!.Attributes["aria-label"]?.Value);
+        Assert.Equal("Custom navigation label", component!.GetAttribute("aria-label"));
     }
 
     [Fact]
@@ -66,7 +66,7 @@ public class NavigationTests : ClientBase<Startup>
         var nav = response.QuerySelector(".govuk-header nav");
         var button = response.QuerySelector(".govuk-header .govuk-header__menu-button");
 
-        Assert.Equal("Custom navigation label", nav!.Attributes["aria-label"]?.Value);
+        Assert.Equal("Custom navigation label", nav!.GetAttribute("aria-label"));
         Assert.Equal("Custom menu button text", button!.TextContent.Trim());
     }
 
@@ -121,7 +121,7 @@ public class NavigationTests : ClientBase<Startup>
         var response = await Navigate("Header" ,nameof(HeaderController.NavigationItemWithAttributes));
         var component = response.QuerySelector(".govuk-header__navigation-item a");
 
-        Assert.Equal("my-attribute", component!.Attributes["data-attribute"]?.Value);
-        Assert.Equal("my-attribute-2", component.Attributes["data-attribute-2"]?.Value);
+        Assert.Equal("my-attribute", component!.GetAttribute("data-attribute"));
+        Assert.Equal("my-attribute-2", component.GetAttribute("data-attribute-2"));
     }
 }

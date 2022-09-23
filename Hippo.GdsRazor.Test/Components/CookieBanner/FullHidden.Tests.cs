@@ -43,6 +43,6 @@ public class FullHiddenTests : ClientBase<Startup>
         var response = await Navigate("CookieBanner" ,nameof(CookieBannerController.FullBannerHidden));
         var cookieBanner = response.QuerySelector(".govuk-cookie-banner");
 
-        Assert.Equal("true", cookieBanner!.Attributes["data-hide-cookie-banner"]?.Value);
+        Assert.Equal("true", cookieBanner!.GetAttribute("data-hide-cookie-banner"));
     }
 }

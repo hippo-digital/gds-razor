@@ -31,6 +31,6 @@ public class HintTests : ClientBase<Startup>
         var textarea = response.QuerySelector(".govuk-js-character-count");
         var hint = response.QuerySelector(".govuk-hint");
 
-        Assert.Matches(new Regex($"\\b{hint!.Id}\\b"), textarea!.Attributes[AriaDescribedBy]?.Value ?? "");
+        Assert.Matches(new Regex($"\\b{hint!.Id}\\b"), textarea!.GetAttribute(AriaDescribedBy) ?? "");
     }
 }

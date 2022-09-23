@@ -25,8 +25,8 @@ public class ExplicitTests : ClientBase<Startup>
         var response = await Navigate("Button" ,nameof(ButtonController.InputAttributes));
         var component = response.QuerySelector(".govuk-button");
 
-        Assert.Equal("example-id", component!.Attributes["aria-controls"]?.Value);
-        Assert.Equal("123", component.Attributes["data-tracking-dimension"]?.Value);
+        Assert.Equal("example-id", component!.GetAttribute("aria-controls"));
+        Assert.Equal("123", component.GetAttribute("data-tracking-dimension"));
     }
 
     [Fact]
@@ -44,7 +44,7 @@ public class ExplicitTests : ClientBase<Startup>
         var response = await Navigate("Button" ,nameof(ButtonController.InputDisabled));
         var component = response.QuerySelector(".govuk-button");
 
-        Assert.Equal("true", component!.Attributes["aria-disabled"]?.Value);
+        Assert.Equal("true", component!.GetAttribute("aria-disabled"));
         Assert.True(((IHtmlInputElement) component).IsDisabled);
         Assert.Contains("govuk-button--disabled", component.ClassList);
     }

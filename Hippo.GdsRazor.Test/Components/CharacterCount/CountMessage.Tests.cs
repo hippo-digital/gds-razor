@@ -36,7 +36,7 @@ public class CountMessageTests : ClientBase<Startup>
         var textarea = response.QuerySelector(".govuk-js-character-count");
         var countMessage = response.QuerySelector(".govuk-character-count__message");
 
-        Assert.Matches(new Regex($"\\b{countMessage!.Id}\\b"), textarea!.Attributes[AriaDescribedBy]?.Value ?? "");
+        Assert.Matches(new Regex($"\\b{countMessage!.Id}\\b"), textarea!.GetAttribute(AriaDescribedBy) ?? "");
     }
 
     [Fact]

@@ -47,7 +47,7 @@ public class ConditionalsTests : ClientBase<Startup>
         var lastInput = response.QuerySelectorAll(".govuk-checkboxes__input").Last();
         var lastConditional = response.QuerySelectorAll(".govuk-checkboxes__conditional").Last();
 
-        Assert.Equal("conditional-how-contacted-3", lastInput.Attributes["data-aria-controls"]?.Value);
+        Assert.Equal("conditional-how-contacted-3", lastInput.GetAttribute("data-aria-controls"));
         Assert.Equal("conditional-how-contacted-3", lastConditional.Id);
     }
 
@@ -66,6 +66,6 @@ public class ConditionalsTests : ClientBase<Startup>
         var response = await Navigate("Checkboxes" ,nameof(CheckboxesController.EmptyConditional));
         var firstInput = response.QuerySelector(".govuk-checkboxes__input");
 
-        Assert.Null(firstInput!.Attributes["data-aria-controls"]?.Value);
+        Assert.Null(firstInput!.GetAttribute("data-aria-controls"));
     }
 }

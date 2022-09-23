@@ -34,6 +34,6 @@ public class CustomTests : ClientBase<Startup>
         var response = await Navigate("WarningText" ,nameof(WarningTextController.Attributes));
         var component = response.QuerySelector(".govuk-warning-text");
 
-        Assert.Equal("attribute", component!.Attributes["data-test"]?.Value);
+        Assert.Equal("attribute", component!.GetAttribute("data-test"));
     }
 }

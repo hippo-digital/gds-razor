@@ -33,6 +33,6 @@ public class DefaultTests : ClientBase<Startup>
         var response = await Navigate("SkipLink" ,nameof(SkipLinkController.NoHref));
         var component = response.QuerySelector(".govuk-skip-link");
 
-        Assert.Equal("#content", component!.Attributes["href"]?.Value);
+        Assert.Equal("#content", component!.GetAttribute("href"));
     }
 }

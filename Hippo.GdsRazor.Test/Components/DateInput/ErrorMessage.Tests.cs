@@ -38,7 +38,7 @@ public class ErrorMessageTests : ClientBase<Startup>
         var fieldset = response.QuerySelector(".govuk-fieldset");
         var errorMessage = response.QuerySelector(".govuk-error-message");
 
-        Assert.Matches(new Regex($"\\b{errorMessage!.Id}\\b"), fieldset!.Attributes[AriaDescribedBy]?.Value ?? "");
+        Assert.Matches(new Regex($"\\b{errorMessage!.Id}\\b"), fieldset!.GetAttribute(AriaDescribedBy) ?? "");
     }
 
     [Fact]
@@ -48,8 +48,8 @@ public class ErrorMessageTests : ClientBase<Startup>
         var fieldset = response.QuerySelector(".govuk-fieldset");
         var errorMessage = response.QuerySelector(".govuk-error-message");
 
-        Assert.Matches(new Regex($"\\b{errorMessage!.Id}\\b"), fieldset!.Attributes[AriaDescribedBy]?.Value ?? "");
-        Assert.Matches(new Regex("\\bsome-id\\b"), fieldset.Attributes[AriaDescribedBy]?.Value ?? "");
+        Assert.Matches(new Regex($"\\b{errorMessage!.Id}\\b"), fieldset!.GetAttribute(AriaDescribedBy) ?? "");
+        Assert.Matches(new Regex("\\bsome-id\\b"), fieldset.GetAttribute(AriaDescribedBy) ?? "");
     }
 
     [Fact]

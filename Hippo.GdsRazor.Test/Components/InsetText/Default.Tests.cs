@@ -62,6 +62,6 @@ public class DefaultTests : ClientBase<Startup>
         var response = await Navigate("InsetText" ,nameof(InsetTextController.Attributes));
         var component = response.QuerySelector(".govuk-inset-text");
 
-        Assert.Equal("my data value", component!.Attributes["data-attribute"]?.Value);
+        Assert.Equal("my data value", component!.GetAttribute("data-attribute"));
     }
 }

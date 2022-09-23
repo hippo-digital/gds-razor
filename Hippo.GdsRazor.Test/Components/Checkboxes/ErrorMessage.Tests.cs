@@ -47,7 +47,7 @@ public class ErrorMessageTests : ClientBase<Startup>
         var fieldset = response.QuerySelector(".govuk-fieldset");
         var component = response.QuerySelector(".govuk-error-message");
 
-        Assert.Matches(new Regex($"\\b{component!.Id}\\b"), fieldset!.Attributes[AriaDescribedBy]?.Value ?? "");
+        Assert.Matches(new Regex($"\\b{component!.Id}\\b"), fieldset!.GetAttribute(AriaDescribedBy) ?? "");
     }
 
     [Fact]
@@ -57,8 +57,8 @@ public class ErrorMessageTests : ClientBase<Startup>
         var fieldset = response.QuerySelector(".govuk-fieldset");
         var component = response.QuerySelector(".govuk-error-message");
 
-        Assert.Matches(new Regex($"\\b{component!.Id}\\b"), fieldset!.Attributes[AriaDescribedBy]?.Value ?? "");
-        Assert.Matches(new Regex("\\bsome-id\\b"), fieldset.Attributes[AriaDescribedBy]?.Value ?? "");
+        Assert.Matches(new Regex($"\\b{component!.Id}\\b"), fieldset!.GetAttribute(AriaDescribedBy) ?? "");
+        Assert.Matches(new Regex("\\bsome-id\\b"), fieldset.GetAttribute(AriaDescribedBy) ?? "");
     }
 
     [Fact]
@@ -68,7 +68,7 @@ public class ErrorMessageTests : ClientBase<Startup>
         foreach (var (item, idx) in response.QuerySelectorAll("input").Select((v, i) => (v, i)))
         {
             var expectedDescribedById = (idx == 0) ? "waste-item-hint" : $"waste-{idx + 1}-item-hint";
-            Assert.Equal(expectedDescribedById, item.Attributes[AriaDescribedBy]?.Value);
+            Assert.Equal(expectedDescribedById, item.GetAttribute(AriaDescribedBy));
         }
     }
 

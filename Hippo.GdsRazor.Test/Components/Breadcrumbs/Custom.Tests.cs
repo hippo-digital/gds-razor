@@ -50,8 +50,8 @@ public class CustomTests : ClientBase<Startup>
         var response = await Navigate("Breadcrumbs" ,nameof(BreadcrumbsController.ItemAttributes));
         var breadcrumbLink = response.QuerySelector(".govuk-breadcrumbs__link");
 
-        Assert.Equal("my-attribute", breadcrumbLink!.Attributes["data-attribute"]?.Value);
-        Assert.Equal("my-attribute-2", breadcrumbLink.Attributes["data-attribute-2"]?.Value);
+        Assert.Equal("my-attribute", breadcrumbLink!.GetAttribute("data-attribute"));
+        Assert.Equal("my-attribute-2", breadcrumbLink.GetAttribute("data-attribute-2"));
     }
 
     [Fact]
@@ -70,7 +70,7 @@ public class CustomTests : ClientBase<Startup>
         var component = response.QuerySelector(".govuk-breadcrumbs");
 
         Assert.Equal("my-navigation", component!.Id);
-        Assert.Equal("navigation", component.Attributes["role"]?.Value);
+        Assert.Equal("navigation", component.GetAttribute("role"));
     }
 
     [Fact]

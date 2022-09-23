@@ -16,7 +16,7 @@ public class AttributeTests : ClientBase<Startup>
         var response = await Navigate("CookieBanner" ,nameof(CookieBannerController.Default));
         var component = response.QuerySelector(".govuk-cookie-banner");
 
-        Assert.Equal("region", component!.Attributes["role"]?.Value);
+        Assert.Equal("region", component!.GetAttribute("role"));
     }
 
     [Fact]
@@ -25,7 +25,7 @@ public class AttributeTests : ClientBase<Startup>
         var response = await Navigate("CookieBanner" ,nameof(CookieBannerController.Default));
         var component = response.QuerySelector(".govuk-cookie-banner");
 
-        Assert.Equal("Cookie banner", component!.Attributes["aria-label"]?.Value);
+        Assert.Equal("Cookie banner", component!.GetAttribute("aria-label"));
     }
 
     [Fact]
@@ -34,6 +34,6 @@ public class AttributeTests : ClientBase<Startup>
         var response = await Navigate("CookieBanner" ,nameof(CookieBannerController.CustomAriaLabel));
         var component = response.QuerySelector(".govuk-cookie-banner");
 
-        Assert.Equal("Cookies on GOV.UK", component!.Attributes["aria-label"]?.Value);
+        Assert.Equal("Cookies on GOV.UK", component!.GetAttribute("aria-label"));
     }
 }

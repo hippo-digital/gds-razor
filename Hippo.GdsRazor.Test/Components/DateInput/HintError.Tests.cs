@@ -17,7 +17,7 @@ public class HintErrorTests : ClientBase<Startup>
         var response = await Navigate("DateInput" ,nameof(DateInputController.WithErrorsAndHint));
         var fieldset = response.QuerySelector(".govuk-fieldset");
 
-        Assert.Equal("group", fieldset!.Attributes["role"]?.Value);
+        Assert.Equal("group", fieldset!.GetAttribute("role"));
     }
 
     [Fact]
@@ -28,7 +28,7 @@ public class HintErrorTests : ClientBase<Startup>
         var errorMessage = response.QuerySelector(".govuk-error-message");
         var fieldset = response.QuerySelector(".govuk-fieldset");
 
-        Assert.Matches(new Regex($"\\b{hint!.Id}\\b"), fieldset!.Attributes[AriaDescribedBy]?.Value ?? "");
-        Assert.Matches(new Regex($"\\b{errorMessage!.Id}\\b"), fieldset.Attributes[AriaDescribedBy]?.Value ?? "");
+        Assert.Matches(new Regex($"\\b{hint!.Id}\\b"), fieldset!.GetAttribute(AriaDescribedBy) ?? "");
+        Assert.Matches(new Regex($"\\b{errorMessage!.Id}\\b"), fieldset.GetAttribute(AriaDescribedBy) ?? "");
     }
 }

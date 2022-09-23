@@ -14,7 +14,7 @@ public class CustomTests : ClientBase<Startup>
         var response = await Navigate("SkipLink" ,nameof(SkipLinkController.CustomHref));
         var component = response.QuerySelector(".govuk-skip-link");
 
-        Assert.Equal("#custom", component!.Attributes["href"]?.Value);
+        Assert.Equal("#custom", component!.GetAttribute("href"));
     }
 
     [Fact]
@@ -59,8 +59,8 @@ public class CustomTests : ClientBase<Startup>
         var response = await Navigate("SkipLink" ,nameof(SkipLinkController.Attributes));
         var component = response.QuerySelector(".govuk-skip-link");
 
-        Assert.Equal("attribute", component!.Attributes["data-test"]?.Value);
-        Assert.Equal("Skip to content", component.Attributes["aria-label"]?.Value);
+        Assert.Equal("attribute", component!.GetAttribute("data-test"));
+        Assert.Equal("Skip to content", component.GetAttribute("aria-label"));
     }
 
     [Fact]
@@ -69,6 +69,6 @@ public class CustomTests : ClientBase<Startup>
         var response = await Navigate("SkipLink" ,nameof(SkipLinkController.Default));
         var component = response.QuerySelector(".govuk-skip-link");
 
-        Assert.Equal("govuk-skip-link", component!.Attributes["data-module"]?.Value);
+        Assert.Equal("govuk-skip-link", component!.GetAttribute("data-module"));
     }
 }

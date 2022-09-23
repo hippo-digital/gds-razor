@@ -16,7 +16,7 @@ public class SvgTests : ClientBase<Startup>
         var response = await Navigate("Header" ,nameof(HeaderController.Default));
         var component = response.QuerySelector(".govuk-header__logotype-crown");
 
-        Assert.Equal("false", component!.Attributes["focusable"]?.Value);
+        Assert.Equal("false", component!.GetAttribute("focusable"));
     }
 
     [Fact]
@@ -25,7 +25,7 @@ public class SvgTests : ClientBase<Startup>
         var response = await Navigate("Header" ,nameof(HeaderController.Default));
         var component = response.QuerySelector(".govuk-header__logotype-crown");
 
-        Assert.Equal("true", component!.Attributes["aria-hidden"]?.Value);
+        Assert.Equal("true", component!.GetAttribute("aria-hidden"));
     }
 
     [Fact]

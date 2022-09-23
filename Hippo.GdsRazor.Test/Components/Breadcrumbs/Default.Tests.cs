@@ -36,7 +36,7 @@ public class DefaultTests : ClientBase<Startup>
 
         Assert.IsAssignableFrom<IHtmlAnchorElement>(anchor);
         Assert.Contains("govuk-breadcrumbs__link", anchor!.ClassList);
-        Assert.Equal("/section", anchor.Attributes["href"]?.Value);
+        Assert.Equal("/section", anchor.GetAttribute("href"));
         Assert.Equal("Section", anchor.TextContent.Trim());
     }
 }

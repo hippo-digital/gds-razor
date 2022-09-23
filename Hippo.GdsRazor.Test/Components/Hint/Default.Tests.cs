@@ -69,6 +69,6 @@ public class DefaultTests : ClientBase<Startup>
         var response = await Navigate("Hint" ,nameof(HintController.Attributes));
         var component = response.QuerySelector(".govuk-hint");
 
-        Assert.Equal("my data value", component!.Attributes["data-attribute"]?.Value);
+        Assert.Equal("my data value", component!.GetAttribute("data-attribute"));
     }
 }

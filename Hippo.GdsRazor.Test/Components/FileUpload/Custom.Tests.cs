@@ -36,7 +36,7 @@ public class CustomTests : ClientBase<Startup>
         var response = await Navigate("FileUpload" ,nameof(FileUploadController.WithDescribedBy));
         var component = response.QuerySelector(".govuk-file-upload");
 
-        Assert.Equal("some-id", component!.Attributes[AriaDescribedBy]?.Value);
+        Assert.Equal("some-id", component!.GetAttribute(AriaDescribedBy));
     }
 
     [Fact]
@@ -45,7 +45,7 @@ public class CustomTests : ClientBase<Startup>
         var response = await Navigate("FileUpload" ,nameof(FileUploadController.Attributes));
         var component = response.QuerySelector(".govuk-file-upload");
 
-        Assert.Equal(".jpg, .jpeg, .png", component!.Attributes["accept"]?.Value);
+        Assert.Equal(".jpg, .jpeg, .png", component!.GetAttribute("accept"));
     }
 
     [Fact]

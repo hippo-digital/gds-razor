@@ -24,7 +24,7 @@ public class ConfirmationTests : ClientBase<Startup>
         var response = await Navigate("CookieBanner" ,nameof(CookieBannerController.Default));
         var banner = response.QuerySelector(".govuk-cookie-banner .govuk-cookie-banner__message");
 
-        Assert.Null(banner!.Attributes["role"]?.Value);
+        Assert.Null(banner!.GetAttribute("role"));
     }
 
     [Fact]
@@ -33,7 +33,7 @@ public class ConfirmationTests : ClientBase<Startup>
         var response = await Navigate("CookieBanner" ,nameof(CookieBannerController.AcceptedConfirmationBanner));
         var banner = response.QuerySelector(".govuk-cookie-banner .govuk-cookie-banner__message");
 
-        Assert.Equal("alert", banner!.Attributes["role"]?.Value);
+        Assert.Equal("alert", banner!.GetAttribute("role"));
     }
 
     [Fact]
@@ -42,7 +42,7 @@ public class ConfirmationTests : ClientBase<Startup>
         var response = await Navigate("CookieBanner" ,nameof(CookieBannerController.Hidden));
         var component = response.QuerySelector(".govuk-cookie-banner__message");
 
-        Assert.NotNull(component!.Attributes["hidden"]?.Value);
+        Assert.NotNull(component!.GetAttribute("hidden"));
     }
 
     [Fact]
@@ -51,6 +51,6 @@ public class ConfirmationTests : ClientBase<Startup>
         var response = await Navigate("CookieBanner" ,nameof(CookieBannerController.HiddenFalse));
         var component = response.QuerySelector(".govuk-cookie-banner__message");
 
-        Assert.Null(component!.Attributes["hidden"]?.Value);
+        Assert.Null(component!.GetAttribute("hidden"));
     }
 }

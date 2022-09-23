@@ -26,7 +26,7 @@ public class ComponentTests : ClientBase<Startup>
         var component = response.QuerySelector(".govuk-back-link");
 
         Assert.IsAssignableFrom<IHtmlAnchorElement>(component);
-        Assert.Equal("#", component!.Attributes["href"]?.Value);
+        Assert.Equal("#", component!.GetAttribute("href"));
         Assert.Equal("Back", component.TextContent.Trim());
     }
 
@@ -72,7 +72,7 @@ public class ComponentTests : ClientBase<Startup>
         var response = await Navigate("BackLink" ,nameof(BackLinkController.Attributes));
         var component = response.QuerySelector(".govuk-back-link");
 
-        Assert.Equal("attribute", component!.Attributes["data-test"]?.Value);
-        Assert.Equal("Back to home", component.Attributes["aria-label"]?.Value);
+        Assert.Equal("attribute", component!.GetAttribute("data-test"));
+        Assert.Equal("Back to home", component.GetAttribute("aria-label"));
     }
 }

@@ -62,7 +62,7 @@ public class DefaultTests : ClientBase<Startup>
         var response = await Navigate("ErrorMessage" ,nameof(ErrorMessageController.Attributes));
         var component = response.QuerySelector(".govuk-error-message");
 
-        Assert.Equal("attribute", component!.Attributes["data-test"]?.Value);
+        Assert.Equal("attribute", component!.GetAttribute("data-test"));
     }
 
     [Fact]

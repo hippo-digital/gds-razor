@@ -19,8 +19,8 @@ public class HintErrorTests : ClientBase<Startup>
         var errorMessage = response.QuerySelector(".govuk-error-message");
         var fieldset = response.QuerySelector(".govuk-fieldset");
 
-        Assert.Matches(new Regex($"\\b{hint!.Id}\\b"), fieldset!.Attributes[AriaDescribedBy]?.Value ?? "");
-        Assert.Matches(new Regex($"\\b{errorMessage!.Id}\\b"), fieldset.Attributes[AriaDescribedBy]?.Value ?? "");
+        Assert.Matches(new Regex($"\\b{hint!.Id}\\b"), fieldset!.GetAttribute(AriaDescribedBy) ?? "");
+        Assert.Matches(new Regex($"\\b{errorMessage!.Id}\\b"), fieldset.GetAttribute(AriaDescribedBy) ?? "");
     }
 
     [Fact]
@@ -31,8 +31,8 @@ public class HintErrorTests : ClientBase<Startup>
         var errorMessage = response.QuerySelector(".govuk-error-message");
         var fieldset = response.QuerySelector(".govuk-fieldset");
 
-        Assert.Matches(new Regex($"\\b{hint!.Id}\\b"), fieldset!.Attributes[AriaDescribedBy]?.Value ?? "");
-        Assert.Matches(new Regex($"\\b{errorMessage!.Id}\\b"), fieldset.Attributes[AriaDescribedBy]?.Value ?? "");
-        Assert.Matches(new Regex("\\bsome-id\\b"), fieldset.Attributes[AriaDescribedBy]?.Value ?? "");
+        Assert.Matches(new Regex($"\\b{hint!.Id}\\b"), fieldset!.GetAttribute(AriaDescribedBy) ?? "");
+        Assert.Matches(new Regex($"\\b{errorMessage!.Id}\\b"), fieldset.GetAttribute(AriaDescribedBy) ?? "");
+        Assert.Matches(new Regex("\\bsome-id\\b"), fieldset.GetAttribute(AriaDescribedBy) ?? "");
     }
 }

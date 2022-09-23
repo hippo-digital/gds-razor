@@ -42,7 +42,7 @@ public class NotificationBannerModel : GdsWithContent
     /// If you set type to success, or role to alert, JavaScript moves the keyboard focus to the notification banner when the page loads.
     /// To disable this behaviour, set disableAutoFocus to true.
     /// </summary>
-    public bool DisableAutoFocus { get; set; }
+    public bool? DisableAutoFocus { get; set; }
 
     public NotificationBannerModel()
     {

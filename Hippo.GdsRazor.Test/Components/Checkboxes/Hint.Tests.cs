@@ -35,7 +35,7 @@ public class HintTests : ClientBase<Startup>
         var response = await Navigate("Checkboxes" ,nameof(CheckboxesController.WithHintsOnItems));
         var component = response.QuerySelector(".govuk-checkboxes__input");
 
-        Assert.Contains("government-gateway-item-hint", component!.Attributes[AriaDescribedBy]?.Value ?? "");
+        Assert.Contains("government-gateway-item-hint", component!.GetAttribute(AriaDescribedBy) ?? "");
     }
 
     [Fact]
@@ -60,7 +60,7 @@ public class HintTests : ClientBase<Startup>
         var hint = response.QuerySelector(".govuk-hint");
         var fieldset = response.QuerySelector(".govuk-fieldset");
 
-        Assert.Matches(new Regex($"\\b{hint!.Id}\\b"), fieldset!.Attributes[AriaDescribedBy]?.Value ?? "");
+        Assert.Matches(new Regex($"\\b{hint!.Id}\\b"), fieldset!.GetAttribute(AriaDescribedBy) ?? "");
     }
 
     [Fact]
@@ -70,7 +70,7 @@ public class HintTests : ClientBase<Startup>
         var hint = response.QuerySelector(".govuk-hint");
         var fieldset = response.QuerySelector(".govuk-fieldset");
 
-        Assert.Matches(new Regex($"\\b{hint!.Id}\\b"), fieldset!.Attributes[AriaDescribedBy]?.Value ?? "");
-        Assert.Matches(new Regex("\\bsome-id\\b"), fieldset.Attributes[AriaDescribedBy]?.Value ?? "");
+        Assert.Matches(new Regex($"\\b{hint!.Id}\\b"), fieldset!.GetAttribute(AriaDescribedBy) ?? "");
+        Assert.Matches(new Regex("\\bsome-id\\b"), fieldset.GetAttribute(AriaDescribedBy) ?? "");
     }
 }

@@ -34,6 +34,6 @@ public class ClientTests : ClientBase<Startup>
         var response = await Navigate("CookieBanner" ,nameof(CookieBannerController.ClientSideImplementation));
         var parentContainer = response.QuerySelector(".govuk-cookie-banner");
 
-        Assert.Equal("", parentContainer!.Attributes["data-nosnippet"]?.Value);
+        Assert.Equal("", parentContainer!.GetAttribute("data-nosnippet"));
     }
 }

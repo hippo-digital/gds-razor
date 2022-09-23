@@ -1,9 +1,9 @@
 ﻿@using Hippo.GdsRazor.Models
 @model Hippo.GdsRazor.Models.NotificationBannerModel
 
-<div id="@Model.Id" class="govuk-notification-banner @(Model.Type == "success" ? "govuk-notification-banner--success" : "") @Model.Classes" role="@Model.Role"
+<div id="@Model.Id" class="govuk-notification-banner @(Model.Type == "success" ? "govuk-notification-banner--success" : "") @Model.Classes" role="@(Model.Role ?? (Model.Type == "success" ? "alert" : "region"))"
      aria-labelledby="@(Model.TitleId ?? "govuk-notification-banner-title")" data-module="govuk-notification-banner"
-     @if (Model.DisableAutoFocus) { <text>data-disable-auto-focus="true"</text> } @Html.Raw(Model.ExpandAttributes())>
+     @if (Model.DisableAutoFocus != null) { <text>data-disable-auto-focus="@Model.DisableAutoFocus?.ToString().ToLowerInvariant()"</text> } @Html.Raw(Model.ExpandAttributes())>
   <div class="govuk-notification-banner__header">
     @await Html.PartialAsync("GdsHeading", new HeadingModel
               {

@@ -45,7 +45,7 @@ public class CustomTests : ClientBase<Startup>
         var response = await Navigate("CharacterCount" ,nameof(CharacterCountController.Attributes));
         var component = response.QuerySelector(".govuk-js-character-count");
 
-        Assert.Equal("my data value", component!.Attributes["data-attribute"]?.Value);
+        Assert.Equal("my data value", component!.GetAttribute("data-attribute"));
     }
 
     [Fact]

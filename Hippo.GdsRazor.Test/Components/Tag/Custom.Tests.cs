@@ -24,6 +24,6 @@ public class CustomTests : ClientBase<Startup>
         var component = response.QuerySelector(".govuk-tag");
 
         Assert.Equal("my-tag", component!.Id);
-        Assert.Equal("attribute", component.Attributes["data-test"]?.Value);
+        Assert.Equal("attribute", component.GetAttribute("data-test"));
     }
 }

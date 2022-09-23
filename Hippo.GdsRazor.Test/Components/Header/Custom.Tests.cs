@@ -17,8 +17,8 @@ public class CustomTests : ClientBase<Startup>
         var response = await Navigate("Header" ,nameof(HeaderController.Attributes));
         var component = response.QuerySelector(".govuk-header");
 
-        Assert.Equal("value", component!.Attributes["data-test-attribute"]?.Value);
-        Assert.Equal("value-2", component.Attributes["data-test-attribute-2"]?.Value);
+        Assert.Equal("value", component!.GetAttribute("data-test-attribute"));
+        Assert.Equal("value-2", component.GetAttribute("data-test-attribute-2"));
     }
 
     [Fact]
@@ -55,7 +55,7 @@ public class CustomTests : ClientBase<Startup>
         var component = response.QuerySelector(".govuk-header .govuk-header__link--homepage");
 
         Assert.IsAssignableFrom<IHtmlAnchorElement>(component);
-        Assert.Equal("/", component!.Attributes["href"]?.Value);
+        Assert.Equal("/", component!.GetAttribute("href"));
     }
 
     [Fact]

@@ -24,7 +24,7 @@ public class CustomTests : ClientBase<Startup>
         var response = await Navigate("Accordion" ,nameof(AccordionController.Attributes));
         var component = response.QuerySelector(".govuk-accordion");
 
-        Assert.Equal("value", component!.Attributes["data-attribute"]?.Value);
+        Assert.Equal("value", component!.GetAttribute("data-attribute"));
     }
 
     [Fact]
@@ -70,9 +70,9 @@ public class CustomTests : ClientBase<Startup>
         var response = await Navigate("Accordion" ,nameof(AccordionController.WithTranslations));
         var component = response.QuerySelector(".govuk-accordion");
 
-        Assert.Equal("Collapse all sections", component!.Attributes["data-i18n.hide-all-sections"]?.Value);
-        Assert.Equal("Expand all sections", component.Attributes["data-i18n.show-all-sections"]?.Value);
-        Assert.Equal("Collapse <span class=\"govuk-visually-hidden\">this section</span>", component.Attributes["data-i18n.hide-section"]?.Value);
-        Assert.Equal("Expand <span class=\"govuk-visually-hidden\">this section</span>", component.Attributes["data-i18n.show-section"]?.Value);
+        Assert.Equal("Collapse all sections", component!.GetAttribute("data-i18n.hide-all-sections"));
+        Assert.Equal("Expand all sections", component.GetAttribute("data-i18n.show-all-sections"));
+        Assert.Equal("Collapse <span class=\"govuk-visually-hidden\">this section</span>", component.GetAttribute("data-i18n.hide-section"));
+        Assert.Equal("Expand <span class=\"govuk-visually-hidden\">this section</span>", component.GetAttribute("data-i18n.show-section"));
     }
 }

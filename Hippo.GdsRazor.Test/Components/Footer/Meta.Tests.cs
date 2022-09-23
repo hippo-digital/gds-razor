@@ -55,7 +55,7 @@ public class MetaTests : ClientBase<Startup>
 
         Assert.Equal(3, items.Length);
         Assert.IsAssignableFrom<IHtmlAnchorElement>(firstItem);
-        Assert.Equal("#1", firstItem!.Attributes["href"]?.Value);
+        Assert.Equal("#1", firstItem!.GetAttribute("href"));
         Assert.Equal("Item 1", firstItem.TextContent.Trim());
     }
 
@@ -92,7 +92,7 @@ public class MetaTests : ClientBase<Startup>
         var response = await Navigate("Footer" ,nameof(FooterController.WithMetaItemAttributes));
         var component = response.QuerySelector(".govuk-footer__meta .govuk-footer__link");
 
-        Assert.Equal("my-attribute", component!.Attributes["data-attribute"]?.Value);
-        Assert.Equal("my-attribute-2", component.Attributes["data-attribute-2"]?.Value);
+        Assert.Equal("my-attribute", component!.GetAttribute("data-attribute"));
+        Assert.Equal("my-attribute-2", component.GetAttribute("data-attribute-2"));
     }
 }

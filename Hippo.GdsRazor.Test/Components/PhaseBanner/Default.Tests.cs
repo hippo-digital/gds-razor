@@ -61,7 +61,7 @@ public class DefaultTests : ClientBase<Startup>
         var response = await Navigate("PhaseBanner" ,nameof(PhaseBannerController.Attributes));
         var component = response.QuerySelector(".govuk-phase-banner");
 
-        Assert.Equal("foo", component!.Attributes["first-attribute"]?.Value);
-        Assert.Equal("bar", component.Attributes["second-attribute"]?.Value);
+        Assert.Equal("foo", component!.GetAttribute("first-attribute"));
+        Assert.Equal("bar", component.GetAttribute("second-attribute"));
     }
 }

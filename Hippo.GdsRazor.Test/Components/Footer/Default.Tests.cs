@@ -24,7 +24,7 @@ public class DefaultTests : ClientBase<Startup>
         var response = await Navigate("Footer" ,nameof(FooterController.Default));
         var component = response.QuerySelector(".govuk-footer");
 
-        Assert.Equal("contentinfo", component!.Attributes["role"]?.Value);
+        Assert.Equal("contentinfo", component!.GetAttribute("role"));
     }
 
     [Fact]
@@ -33,8 +33,8 @@ public class DefaultTests : ClientBase<Startup>
         var response = await Navigate("Footer" ,nameof(FooterController.Attributes));
         var component = response.QuerySelector(".govuk-footer");
 
-        Assert.Equal("value", component!.Attributes["data-test-attribute"]?.Value);
-        Assert.Equal("value-2", component.Attributes["data-test-attribute-2"]?.Value);
+        Assert.Equal("value", component!.GetAttribute("data-test-attribute"));
+        Assert.Equal("value-2", component.GetAttribute("data-test-attribute-2"));
     }
 
     [Fact]

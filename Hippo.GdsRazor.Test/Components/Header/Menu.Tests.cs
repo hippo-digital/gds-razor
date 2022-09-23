@@ -37,7 +37,7 @@ public class MenuTests : ClientBase<Startup>
         var response = await Navigate("Header" ,nameof(HeaderController.WithNavigation));
         var component = response.QuerySelector(".govuk-header__menu-button");
 
-        Assert.Equal("Show or hide menu", component!.Attributes["aria-label"]?.Value);
+        Assert.Equal("Show or hide menu", component!.GetAttribute("aria-label"));
     }
 
     [Fact]
@@ -46,7 +46,7 @@ public class MenuTests : ClientBase<Startup>
         var response = await Navigate("Header" ,nameof(HeaderController.WithCustomMenuButtonLabel));
         var component = response.QuerySelector(".govuk-header__menu-button");
 
-        Assert.Equal("Custom button label", component!.Attributes["aria-label"]?.Value);
+        Assert.Equal("Custom button label", component!.GetAttribute("aria-label"));
     }
 
     [Fact]

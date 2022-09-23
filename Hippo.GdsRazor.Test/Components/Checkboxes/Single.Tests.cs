@@ -16,7 +16,7 @@ public class SingleTests : ClientBase<Startup>
         var response = await Navigate("Checkboxes" ,nameof(CheckboxesController.WithSingleOptionSetAriaDescribedByOnInput));
         var input = response.QuerySelector("input");
 
-        Assert.Contains("t-and-c-error", input!.Attributes[AriaDescribedBy]?.Value ?? "");
+        Assert.Contains("t-and-c-error", input!.GetAttribute(AriaDescribedBy) ?? "");
     }
 
     [Fact]
@@ -25,7 +25,7 @@ public class SingleTests : ClientBase<Startup>
         var response = await Navigate("Checkboxes" ,nameof(CheckboxesController.WithSingleOptionSetAriaDescribedByOnInputAndDescribedBy));
         var input = response.QuerySelector("input");
 
-        Assert.Contains("some-id t-and-c-error", input!.Attributes[AriaDescribedBy]?.Value ?? "");
+        Assert.Contains("some-id t-and-c-error", input!.GetAttribute(AriaDescribedBy) ?? "");
     }
 
     [Fact]
@@ -34,7 +34,7 @@ public class SingleTests : ClientBase<Startup>
         var response = await Navigate("Checkboxes" ,nameof(CheckboxesController.WithSingleOptionAndHintSetAriaDescribedByOnInput));
         var input = response.QuerySelector("input");
 
-        Assert.Contains("t-and-c-with-hint-error t-and-c-with-hint-item-hint", input!.Attributes[AriaDescribedBy]?.Value ?? "");
+        Assert.Contains("t-and-c-with-hint-error t-and-c-with-hint-item-hint", input!.GetAttribute(AriaDescribedBy) ?? "");
     }
 
     [Fact]
@@ -43,6 +43,6 @@ public class SingleTests : ClientBase<Startup>
         var response = await Navigate("Checkboxes" ,nameof(CheckboxesController.WithSingleOptionAndHintSetAriaDescribedByOnInputAndDescribedBy));
         var input = response.QuerySelector("input");
 
-        Assert.Contains("some-id t-and-c-with-hint-error t-and-c-with-hint-item-hint", input!.Attributes[AriaDescribedBy]?.Value ?? "");
+        Assert.Contains("some-id t-and-c-with-hint-error t-and-c-with-hint-item-hint", input!.GetAttribute(AriaDescribedBy) ?? "");
     }
 }

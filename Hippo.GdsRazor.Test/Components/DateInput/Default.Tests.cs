@@ -62,7 +62,7 @@ public class DefaultTests : ClientBase<Startup>
         var response = await Navigate("DateInput" ,nameof(DateInputController.Default));
         var component = response.QuerySelector(".govuk-date-input__item:first-child input");
 
-        Assert.Equal("numeric", component!.Attributes["inputmode"]?.Value);
+        Assert.Equal("numeric", component!.GetAttribute("inputmode"));
     }
 
     [Fact]

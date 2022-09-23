@@ -14,8 +14,8 @@ public class CustomTests : ClientBase<Startup>
         var response = await Navigate("Button" ,nameof(ButtonController.Attributes));
         var component = response.QuerySelector(".govuk-button");
 
-        Assert.Equal("example-id", component!.Attributes["aria-controls"]?.Value);
-        Assert.Equal("123", component.Attributes["data-tracking-dimension"]?.Value);
+        Assert.Equal("example-id", component!.GetAttribute("aria-controls"));
+        Assert.Equal("123", component.GetAttribute("data-tracking-dimension"));
     }
 
     [Fact]
@@ -33,8 +33,8 @@ public class CustomTests : ClientBase<Startup>
         var response = await Navigate("Button" ,nameof(ButtonController.Disabled));
         var component = response.QuerySelector(".govuk-button");
 
-        Assert.Equal("true", component!.Attributes["aria-disabled"]?.Value);
-        Assert.Equal("disabled", component.Attributes["disabled"]?.Value);
+        Assert.Equal("true", component!.GetAttribute("aria-disabled"));
+        Assert.Equal("disabled", component.GetAttribute("disabled"));
         Assert.Contains("govuk-button--disabled", component.ClassList);
     }
 
@@ -44,7 +44,7 @@ public class CustomTests : ClientBase<Startup>
         var response = await Navigate("Button" ,nameof(ButtonController.Name));
         var component = response.QuerySelector(".govuk-button");
 
-        Assert.Equal("start-now", component!.Attributes["name"]?.Value);
+        Assert.Equal("start-now", component!.GetAttribute("name"));
     }
 
     [Fact]
@@ -53,7 +53,7 @@ public class CustomTests : ClientBase<Startup>
         var response = await Navigate("Button" ,nameof(ButtonController.Value));
         var component = response.QuerySelector(".govuk-button");
 
-        Assert.Equal("start", component!.Attributes["value"]?.Value);
+        Assert.Equal("start", component!.GetAttribute("value"));
     }
 
     [Fact]
@@ -62,7 +62,7 @@ public class CustomTests : ClientBase<Startup>
         var response = await Navigate("Button" ,nameof(ButtonController.Type));
         var component = response.QuerySelector(".govuk-button");
 
-        Assert.Equal("button", component!.Attributes["type"]?.Value);
+        Assert.Equal("button", component!.GetAttribute("type"));
     }
 
     [Fact]
@@ -80,6 +80,6 @@ public class CustomTests : ClientBase<Startup>
         var response = await Navigate("Button" ,nameof(ButtonController.PreventDoubleClick));
         var component = response.QuerySelector(".govuk-button");
 
-        Assert.Equal("true", component!.Attributes["data-prevent-double-click"]?.Value);
+        Assert.Equal("true", component!.GetAttribute("data-prevent-double-click"));
     }
 }

@@ -29,7 +29,7 @@ public class ErrorMessageTests : ClientBase<Startup>
         var fileUpload = response.QuerySelector(".govuk-file-upload");
         var errorMessage = response.QuerySelector(".govuk-error-message");
 
-        Assert.Matches(new Regex($"\\b{errorMessage!.Id}\\b"), fileUpload!.Attributes[AriaDescribedBy]?.Value ?? "");
+        Assert.Matches(new Regex($"\\b{errorMessage!.Id}\\b"), fileUpload!.GetAttribute(AriaDescribedBy) ?? "");
     }
 
     [Fact]
@@ -39,8 +39,8 @@ public class ErrorMessageTests : ClientBase<Startup>
         var fileUpload = response.QuerySelector(".govuk-file-upload");
         var errorMessage = response.QuerySelector(".govuk-error-message");
 
-        Assert.Matches(new Regex($"\\b{errorMessage!.Id}\\b"), fileUpload!.Attributes[AriaDescribedBy]?.Value ?? "");
-        Assert.Matches(new Regex("\\bsome-id\\b"), fileUpload.Attributes[AriaDescribedBy]?.Value ?? "");
+        Assert.Matches(new Regex($"\\b{errorMessage!.Id}\\b"), fileUpload!.GetAttribute(AriaDescribedBy) ?? "");
+        Assert.Matches(new Regex("\\bsome-id\\b"), fileUpload.GetAttribute(AriaDescribedBy) ?? "");
     }
 
     [Fact]

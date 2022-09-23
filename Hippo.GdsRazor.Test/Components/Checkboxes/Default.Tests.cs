@@ -53,7 +53,7 @@ public class DefaultTests : ClientBase<Startup>
 
         Assert.Equal("or", divider!.TextContent.Trim());
         Assert.Equal(4, items.Length);
-        Assert.Equal("exclusive", orItemInput!.Attributes["data-behaviour"]?.Value);
+        Assert.Equal("exclusive", orItemInput!.GetAttribute("data-behaviour"));
     }
 
     [Fact]
@@ -81,7 +81,7 @@ public class DefaultTests : ClientBase<Startup>
         var response = await Navigate("Checkboxes" ,nameof(CheckboxesController.WithFieldsetDescribedBy));
         var component = response.QuerySelector(".govuk-fieldset");
 
-        Assert.Contains("some-id", component!.Attributes[AriaDescribedBy]?.Value ?? "");
+        Assert.Contains("some-id", component!.GetAttribute(AriaDescribedBy) ?? "");
     }
 
     [Fact]
@@ -90,8 +90,8 @@ public class DefaultTests : ClientBase<Startup>
         var response = await Navigate("Checkboxes" ,nameof(CheckboxesController.Attributes));
         var component = response.QuerySelector(".govuk-checkboxes");
 
-        Assert.Equal("value", component!.Attributes["data-attribute"]?.Value);
-        Assert.Equal("second-value", component.Attributes["data-second-attribute"]?.Value);
+        Assert.Equal("value", component!.GetAttribute("data-attribute"));
+        Assert.Equal("second-value", component.GetAttribute("data-second-attribute"));
     }
 
     [Fact]

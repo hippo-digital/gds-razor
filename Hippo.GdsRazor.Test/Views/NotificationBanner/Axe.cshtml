@@ -1,0 +1,9 @@
+@using Hippo.GdsRazor.Models
+@model NotificationBannerModel
+
+@{
+    ViewData["Title"] = "NotificationBanner Axe";
+    Layout = "../Axe";
+}
+
+@await Html.PartialAsync("GdsNotificationBanner", Model)

@@ -16,8 +16,8 @@ public class LinkTests : ClientBase<Startup>
         var component = response.QuerySelector(".govuk-button");
 
         Assert.IsAssignableFrom<IHtmlAnchorElement>(component);
-        Assert.Equal("/", component!.Attributes["href"]?.Value);
-        Assert.Equal("button", component.Attributes["role"]?.Value);
+        Assert.Equal("/", component!.GetAttribute("href"));
+        Assert.Equal("button", component.GetAttribute("role"));
         Assert.Equal("Continue", component.TextContent.Trim());
     }
 
@@ -27,7 +27,7 @@ public class LinkTests : ClientBase<Startup>
         var response = await Navigate("Button" ,nameof(ButtonController.NoHref));
         var component = response.QuerySelector(".govuk-button");
 
-        Assert.Equal("#", component!.Attributes["href"]?.Value);
+        Assert.Equal("#", component!.GetAttribute("href"));
     }
 
     [Fact]
@@ -36,8 +36,8 @@ public class LinkTests : ClientBase<Startup>
         var response = await Navigate("Button" ,nameof(ButtonController.LinkAttributes));
         var component = response.QuerySelector(".govuk-button");
 
-        Assert.Equal("example-id", component!.Attributes["aria-controls"]?.Value);
-        Assert.Equal("123", component.Attributes["data-tracking-dimension"]?.Value);
+        Assert.Equal("example-id", component!.GetAttribute("aria-controls"));
+        Assert.Equal("123", component.GetAttribute("data-tracking-dimension"));
     }
 
     [Fact]

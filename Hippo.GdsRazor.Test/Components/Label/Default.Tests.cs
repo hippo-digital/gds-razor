@@ -99,7 +99,7 @@ public class DefaultTests : ClientBase<Startup>
         var response = await Navigate("Label" ,nameof(LabelController.Attributes));
         var component = response.QuerySelector(".govuk-label");
 
-        Assert.Equal("foo", component!.Attributes["first-attribute"]?.Value);
-        Assert.Equal("bar", component.Attributes["second-attribute"]?.Value);
+        Assert.Equal("foo", component!.GetAttribute("first-attribute"));
+        Assert.Equal("bar", component.GetAttribute("second-attribute"));
     }
 }

@@ -78,6 +78,6 @@ public class DefaultTests : ClientBase<Startup>
         var response = await Navigate("CookieBanner" ,nameof(CookieBannerController.Attributes));
         var banner = response.QuerySelector(".govuk-cookie-banner__message");
 
-        Assert.Equal("my-value", banner!.Attributes["data-attribute"]?.Value);
+        Assert.Equal("my-value", banner!.GetAttribute("data-attribute"));
     }
 }

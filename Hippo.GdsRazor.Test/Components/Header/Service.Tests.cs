@@ -27,7 +27,7 @@ public class ServiceTests : ClientBase<Startup>
         var component = response.QuerySelector(".govuk-header .govuk-header__service-name");
 
         Assert.IsAssignableFrom<IHtmlAnchorElement>(component);
-        Assert.Equal("/components/header", component!.Attributes["href"]?.Value);
+        Assert.Equal("/components/header", component!.GetAttribute("href"));
     }
 
     [Fact]
@@ -37,6 +37,6 @@ public class ServiceTests : ClientBase<Startup>
         var component = response.QuerySelector(".govuk-header .govuk-header__service-name");
 
         Assert.IsAssignableFrom<IHtmlSpanElement>(component);
-        Assert.Null(component!.Attributes["href"]?.Value);
+        Assert.Null(component!.GetAttribute("href"));
     }
 }

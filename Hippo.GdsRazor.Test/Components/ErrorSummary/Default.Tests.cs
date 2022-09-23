@@ -25,7 +25,7 @@ public class DefaultTests : ClientBase<Startup>
         var response = await Navigate("ErrorSummary" ,nameof(ErrorSummaryController.Default));
         var component = response.QuerySelector(".govuk-error-summary div:first-child");
 
-        Assert.Equal("alert", component!.Attributes["role"]?.Value);
+        Assert.Equal("alert", component!.GetAttribute("role"));
     }
 
     [Fact]
@@ -62,6 +62,6 @@ public class DefaultTests : ClientBase<Startup>
         var component = response.QuerySelector(".govuk-error-summary .govuk-error-summary__list li:first-child a");
 
         Assert.IsAssignableFrom<IHtmlAnchorElement>(component);
-        Assert.Equal("#example-error-1", component!.Attributes["href"]?.Value);
+        Assert.Equal("#example-error-1", component!.GetAttribute("href"));
     }
 }
