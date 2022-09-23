@@ -1,0 +1,9 @@
+@using Hippo.GdsRazor.Models
+@model PaginationModel
+
+@{
+    ViewData["Title"] = "Pagination Axe";
+    Layout = "../Axe";
+}
+
+@await Html.PartialAsync("GdsPagination", Model)
