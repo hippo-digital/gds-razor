@@ -4,7 +4,7 @@ namespace Hippo.GdsRazor.Models;
 
 /// <summary>
 /// Help users navigate forwards and backwards through a series of pages.
-/// For example, search results or guidance that’s divided into multiple website pages.
+/// For example, search results or guidance that's divided into multiple website pages.
 /// </summary>
 public class PaginationModel : GdsViewModel
 {
@@ -33,7 +33,7 @@ public class PaginationModel : GdsViewModel
     public interface IItemModel
     {
     }
-    
+
     public class ItemModel : GdsAttributes, IItemModel
     {
         /// <summary>
@@ -70,7 +70,6 @@ public class PaginationModel : GdsViewModel
     public class EllipsisModel : IItemModel
     {
     }
-
 
     public class LinkModel : GdsAttributes
     {

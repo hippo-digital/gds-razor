@@ -68,11 +68,11 @@ public class RadiosModel : GdsViewModel
     public RadiosModel(string name, params IItemModel[] items) : this(name, items.ToList())
     {
     }
-    
+
     public interface IItemModel
     {
     }
-    
+
     public class ItemModel : GdsWithContent, IItemModel
     {
         /// <summary>

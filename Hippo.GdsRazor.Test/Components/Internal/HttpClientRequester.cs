@@ -62,7 +62,6 @@ public class HttpClientRequester : BaseRequester
         protocol.Equals(ProtocolNames.Http, StringComparison.OrdinalIgnoreCase) ||
         protocol.Equals(ProtocolNames.Https, StringComparison.OrdinalIgnoreCase);
 
-
     /// <summary>
     /// Performs an asynchronous request that can be cancelled.
     /// </summary>

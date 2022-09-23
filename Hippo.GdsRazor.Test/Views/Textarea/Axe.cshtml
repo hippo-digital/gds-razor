@@ -1,0 +1,9 @@
+@using Hippo.GdsRazor.Models
+@model TextareaModel
+
+@{
+    ViewData["Title"] = "Textarea Axe";
+    Layout = "../Axe";
+}
+
+@await Html.PartialAsync("GdsTextarea", Model)

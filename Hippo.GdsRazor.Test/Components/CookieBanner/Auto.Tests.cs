@@ -37,7 +37,7 @@ public class AutoTests : ClientBase<Startup>
                 Assert.Contains(kv.Key, html);
                 Assert.Contains(kv.Value, html);
             }
-            
+
             foreach (var action in message.Actions!)
             {
                 Assert.Contains(action.Id, html);

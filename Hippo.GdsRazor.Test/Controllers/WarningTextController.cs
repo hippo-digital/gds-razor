@@ -7,10 +7,10 @@ public class WarningTextController : Controller
 {
     private static class Examples
     {
-        public static readonly WarningTextModel Default = new("You can be fined up to £5,000 if you don’t register.") {
+        public static readonly WarningTextModel Default = new("You can be fined up to £5,000 if you don't register.") {
             IconFallbackText = "Warning"
         };
-        public static readonly WarningTextModel Attributes = new("You can be fined up to £5,000 if you don’t register.") {
+        public static readonly WarningTextModel Attributes = new("You can be fined up to £5,000 if you don't register.") {
             IconFallbackText = "Warning",
             Attributes = new Dictionary<string, string?> {{"data-test", "attribute"}}
         };

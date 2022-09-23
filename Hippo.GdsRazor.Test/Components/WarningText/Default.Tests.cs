@@ -24,7 +24,7 @@ public class DefaultTests : ClientBase<Startup>
         var response = await Navigate("WarningText" ,nameof(WarningTextController.Default));
         var component = response.QuerySelector(".govuk-warning-text");
 
-        Assert.EndsWith("You can be fined up to £5,000 if you don’t register.", component!.TextContent.Trim());
+        Assert.EndsWith("You can be fined up to £5,000 if you don't register.", component!.TextContent.Trim());
     }
 
     [Fact]

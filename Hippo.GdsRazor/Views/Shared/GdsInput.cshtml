@@ -45,11 +45,11 @@
           @await Html.PartialAsync("GdsContent", Model.Prefix.Content)
         </div>
       }
-        
+
       <input id="@Model.Id" class="govuk-input @Model.Classes @(Model.ErrorMessage != null ? "govuk-input--error" : "")" name="@Model.Name" type="@(Model.Type ?? "text")"
              spellcheck="@Model.Spellcheck" value="@Model.Value" aria-describedby="@Model.DescribedBy"
              autocomplete="@Model.Autocomplete" pattern="@Model.Pattern" inputmode="@Model.Inputmode" @Html.Raw(Model.ExpandAttributes()) />
-      
+
       @if (Model.Suffix != null)
       {
         <div id="@Model.Suffix.Id" class="govuk-input__suffix @Model.Suffix.Classes" aria-hidden="true" @Html.Raw(Model.Suffix.ExpandAttributes())>

@@ -23,7 +23,7 @@ public class DefaultTests : ClientBase<Startup>
     {
         var response = await Navigate("Accordion" ,nameof(AccordionController.Default));
         var componentHeadingButton = response.QuerySelector(".govuk-accordion__section-button");
-        
+
         Assert.Equal("Section A", componentHeadingButton!.TextContent.Trim());
     }
 
@@ -32,8 +32,8 @@ public class DefaultTests : ClientBase<Startup>
     {
         var response = await Navigate("Accordion" ,nameof(AccordionController.Default));
         var componentContent  = response.QuerySelector(".govuk-accordion__section-content");
-        var expectedDefaultBody = "We need to know your nationality so we can work out which elections you’re entitled to vote in. " +
-                                  "If you cannot provide your nationality, you’ll have to send copies of identity documents through the post.";
+        var expectedDefaultBody = "We need to know your nationality so we can work out which elections you're entitled to vote in. " +
+                                  "If you cannot provide your nationality, you'll have to send copies of identity documents through the post.";
 
         Assert.Contains("govuk-body", componentContent!.QuerySelector("p")!.ClassList);
         Assert.Equal(expectedDefaultBody, componentContent.TextContent.Trim());

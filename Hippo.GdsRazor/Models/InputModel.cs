@@ -96,6 +96,5 @@ public class InputModel : GdsViewModel
         public const string Width4 = "govuk-input--width-4";
         public const string Width3 = "govuk-input--width-3";
         public const string Width2 = "govuk-input--width-2";
-        
     }
 }

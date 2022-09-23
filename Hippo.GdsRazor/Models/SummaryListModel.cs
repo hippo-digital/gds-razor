@@ -4,7 +4,7 @@ using Hippo.GdsRazor.Models.Content;
 namespace Hippo.GdsRazor.Models;
 
 /// <summary>
-/// Use the summary list to summarise information, for example, a user’s responses at the end of a form.
+/// Use the summary list to summarise information, for example, a user's responses at the end of a form.
 /// </summary>
 public class SummaryListModel : GdsViewModel
 {

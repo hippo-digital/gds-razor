@@ -15,7 +15,7 @@ public class TagModel : GdsWithContent
     public TagModel(GdsContent content) : base(content)
     {
     }
-    
+
     public static class Colors
     {
         public const string Grey = "govuk-tag--grey";

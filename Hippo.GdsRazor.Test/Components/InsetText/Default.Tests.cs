@@ -53,7 +53,7 @@ public class DefaultTests : ClientBase<Startup>
         var warningContent = response.QuerySelector(".govuk-inset-text .govuk-warning-text__text");
 
         Assert.Equal("It can take up to 8 weeks to register a lasting power of attorney if there are no mistakes in the application.", mainContent!.TextContent.Trim());
-        Assert.Equal("Warning\n                You can be fined up to £5,000 if you don’t register.", warningContent!.TextContent.Trim());
+        Assert.Equal("Warning\n                You can be fined up to £5,000 if you don't register.", warningContent!.TextContent.Trim());
     }
 
     [Fact]

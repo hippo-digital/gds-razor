@@ -4,7 +4,7 @@ using Hippo.GdsRazor.Models.Content;
 namespace Hippo.GdsRazor.Models;
 
 /// <summary>
-/// Use a notification banner to tell the user about something they need to know about, but that’s not directly related to the page content.
+/// Use a notification banner to tell the user about something they need to know about, but that's not directly related to the page content.
 /// </summary>
 public class NotificationBannerModel : GdsWithContent
 {

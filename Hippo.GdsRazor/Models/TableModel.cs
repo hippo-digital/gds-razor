@@ -66,7 +66,7 @@ public class TableModel : GdsViewModel
         public RowModel(params CellModel[] cells) : this(cells.ToList())
         {
         }
-        
+
         public static implicit operator RowModel(List<CellModel> s) => new() { Cells = s };
     }
 

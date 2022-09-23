@@ -29,7 +29,7 @@ public class ErrorSummaryModel : GdsViewModel
     /// Prevent moving focus to the error summary when the page loads.
     /// </summary>
     public bool? DisableAutoFocus { get; set; }
-    
+
     public ErrorSummaryModel()
     {
     }

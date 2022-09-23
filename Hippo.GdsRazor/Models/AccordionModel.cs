@@ -17,7 +17,7 @@ public class AccordionModel : GdsViewModel
     /// An array of sections within the accordion.
     /// </summary>
     public List<ItemModel>? Items { get; set; }
-    
+
     // i18n
     public string? HideAllSectionsText { get; set; }
     public string? HideSectionText { get; set; }
@@ -58,12 +58,12 @@ public class AccordionModel : GdsViewModel
         /// The summary line is inside the HTML &lt;button&gt; element, so you can only add phrasing content to it.
         /// </summary>
         public GdsContent? Summary { get; set; }
-        
+
         /// <summary>
         /// The content of each section, which is hidden when the section is closed.
         /// </summary>
         public GdsContent? Content { get; set; }
-        
+
         /// <summary>
         /// Sets whether the section should be expanded when the page loads for the first time.
         /// </summary>

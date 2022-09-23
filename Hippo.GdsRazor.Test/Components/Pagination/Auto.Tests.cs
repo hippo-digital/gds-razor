@@ -22,7 +22,7 @@ public class AutoTests : ClientBase<Startup>
             Assert.Contains(kv.Key, html);
             Assert.Contains(kv.Value, html);
         }
-        
+
         // Previous
         Assert.Contains(model.Previous!.Href, html);
         Assert.Contains(model.Previous.Text, html);

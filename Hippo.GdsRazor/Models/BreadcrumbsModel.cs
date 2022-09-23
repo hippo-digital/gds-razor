@@ -3,7 +3,7 @@ using Hippo.GdsRazor.Models.Base;
 namespace Hippo.GdsRazor.Models;
 
 /// <summary>
-/// The breadcrumbs component helps users to understand where they are within a website’s structure and move between levels.
+/// The breadcrumbs component helps users to understand where they are within a website's structure and move between levels.
 /// </summary>
 public class BreadcrumbsModel : GdsViewModel
 {

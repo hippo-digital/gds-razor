@@ -12,7 +12,6 @@ public abstract class GdsViewModel : GdsAttributes
     /// </summary>
     public string? Classes { get; set; }
 
-
     protected GdsViewModel(string? id, string? classes = "", Dictionary<string, string?>? attributes = null)
     {
         Id = id;

@@ -113,7 +113,7 @@ public class FooterModel : GdsViewModel
             }
         }
     }
-    
+
     public class ItemModel : GdsAttributes
     {
         /// <summary>

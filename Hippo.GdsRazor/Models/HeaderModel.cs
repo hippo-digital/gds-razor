@@ -19,7 +19,7 @@ public class HeaderModel : GdsViewModel
     public string? AssetsPath { get; set; }
 
     /// <summary>
-    /// Product name, used when the product name follows on directly from ‘GOV.UK’.
+    /// Product name, used when the product name follows on directly from 'GOV.UK'.
     /// For example, GOV.UK Pay or GOV.UK Design System.
     /// In most circumstances, you should use serviceName.
     /// </summary>
