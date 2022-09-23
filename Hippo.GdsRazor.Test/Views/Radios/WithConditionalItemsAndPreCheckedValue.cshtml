@@ -1,0 +1,29 @@
+@using Hippo.GdsRazor.Models
+
+@await Html.PartialAsync("GdsRadios", new RadiosModel(
+  "how-contacted-checked",
+  new RadiosModel.ItemModel("email", "Email") {
+    ConditionalContent = (HTML) (@<text>
+                                   <label class="govuk-label" for="context-email">Email address</label>
+                                   <input class="govuk-input govuk-!-width-one-third" name="context-email" type="text" id="context-email">
+    </text>)
+  },
+  new RadiosModel.ItemModel("phone", "Phone") {
+    ConditionalContent = (HTML) (@<text>
+                                   <label class="govuk-label" for="contact-phone">Phone number</label>
+                                   <input class="govuk-input govuk-!-width-one-third" name="contact-phone" type="text" id="contact-phone">
+    </text>)
+  },
+  new RadiosModel.ItemModel("text", "Text message") {
+    ConditionalContent = (HTML) (@<text>
+                                   <label class="govuk-label" for="contact-text-message">Mobile phone number</label>
+                                   <input class="govuk-input govuk-!-width-one-third" name="contact-text-message" type="text" id="contact-text-message">
+    </text>)
+  }
+) {
+  IdPrefix = "how-contacted-checked",
+  Fieldset = new FieldsetModel {
+    Legend = "How do you want to be contacted?"
+  },
+  Value = "text"
+})

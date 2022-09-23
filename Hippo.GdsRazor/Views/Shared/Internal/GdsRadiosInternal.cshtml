@@ -34,16 +34,17 @@
       }
       else if (obj is RadiosModel.ItemModel item)
       {
-        var id = item.Id ?? (idx == 0 ? Model.IdPrefix : $"{Model.IdPrefix}-{idx}");
+        var id = item.Id ?? (idx == 0 ? Model.IdPrefix : $"{Model.IdPrefix}-{idx+1}");
         var conditionalId = item.ConditionalContent != null ? $"conditional-{id}" : null;
-        var describedBy = Model.Hint != null ? $"{id}-item-hint" : "";
+        var describedBy = item.Hint != null ? $"{id}-item-hint" : "";
         <div class="govuk-radios__item">
-          <input id="@id" class="govuk-radios__input" name="@Model.Name" type="radio" value="@item.Value"
-                 @if (item.Checked || (Model.Value != null && Model.Value == item.Value)) { <text>checked</text> }
+          <input id="@id" class="govuk-radios__input @item.Classes" name="@Model.Name" type="radio" value="@item.Value"
+                 @if (item.Checked ?? (Model.Value != null && Model.Value == item.Value)) { <text>checked</text> }
                  @if (item.Disabled) { <text>disabled</text> } @if (conditionalId != null) { <text>data-aria-controls="@conditionalId"</text> }
                  @if (!string.IsNullOrWhiteSpace(describedBy)) { <text>aria-describedby="@describedBy"</text> } @Html.Raw(item.ExpandAttributes()) />
           @await Html.PartialAsync("GdsLabel", new LabelModel
           {
+            Id = item.Label?.Id,
             Content = item.Content,
             Classes = "govuk-radios__label " + (item.Label?.Classes ?? ""),
             Attributes = item.Label?.Attributes,
@@ -62,7 +63,7 @@
         </div>
         @if (item.ConditionalContent != null)
         {
-          <div class="govuk-radios__conditional @(item.Checked || (Model.Value != null && Model.Value == item.Value) ? "" : "govuk-checkboxes__conditional--hidden")" id="conditional-@id">
+          <div class="govuk-radios__conditional @(item.Checked ?? (Model.Value != null && Model.Value == item.Value) ? "" : "govuk-radios__conditional--hidden")" id="conditional-@id">
             @await Html.PartialAsync("GdsContent", item.ConditionalContent)
           </div>
         }

@@ -86,7 +86,7 @@ public class RadiosModel : GdsViewModel
         /// <summary>
         /// Whether the radio should be checked when the page loads. Takes precedence over the top-level value option.
         /// </summary>
-        public bool Checked { get; set; }
+        public bool? Checked { get; set; }
 
         /// <summary>
         /// Content provided will be revealed when the item is checked.

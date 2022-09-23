@@ -30,6 +30,7 @@ public class GdsAutoDataAttribute : AutoDataAttribute
             var fixture = new Fixture();
             fixture.Customizations.Add(new TypeRelay(typeof(GdsContent), typeof(GdsPlain)));
             fixture.Customizations.Add(new TypeRelay(typeof(CheckboxesModel.IItemModel), typeof(CheckboxesModel.ItemModel)));
+            fixture.Customizations.Add(new TypeRelay(typeof(RadiosModel.IItemModel), typeof(RadiosModel.ItemModel)));
             fixture.Customizations.Add(new TypeRelay(typeof(PaginationModel.IItemModel), typeof(PaginationModel.ItemModel)));
             return fixture;
         }) { }

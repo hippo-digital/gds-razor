@@ -3,7 +3,7 @@ using Hippo.GdsRazor.Test.Components.Internal;
 using Hippo.GdsRazor.Test.Controllers;
 using Xunit;
 
-namespace Hippo.GdsRazor.Test.Components.Checkboxes;
+namespace Hippo.GdsRazor.Test.Components.Radios;
 
 public class HintTests : ClientBase<Startup>
 {
@@ -14,8 +14,8 @@ public class HintTests : ClientBase<Startup>
     [Fact]
     public async void ItRendersTheHintText()
     {
-        var response = await Navigate("Checkboxes" ,nameof(CheckboxesController.WithHintsOnItems));
-        var component = response.QuerySelector(".govuk-checkboxes__hint");
+        var response = await Navigate("Radios" ,nameof(RadiosController.WithHintsOnItems));
+        var component = response.QuerySelector(".govuk-radios__hint");
 
         Assert.Equal("You'll have a user ID if you've registered for Self Assessment or filed a tax return online before.", component!.TextContent.Trim());
     }
@@ -23,30 +23,30 @@ public class HintTests : ClientBase<Startup>
     [Fact]
     public async void ItRendersTheCorrectIdAttributeForTheHint()
     {
-        var response = await Navigate("Checkboxes" ,nameof(CheckboxesController.WithHintsOnItems));
-        var component = response.QuerySelector(".govuk-checkboxes__hint");
+        var response = await Navigate("Radios" ,nameof(RadiosController.WithHintsOnItems));
+        var component = response.QuerySelector(".govuk-radios__hint");
 
-        Assert.Equal("government-gateway-item-hint", component!.Id);
+        Assert.Equal("gateway-item-hint", component!.Id);
     }
 
     [Fact]
     public async void TheInputDescribedByAttributeMatchesTheItemHintId()
     {
-        var response = await Navigate("Checkboxes" ,nameof(CheckboxesController.WithHintsOnItems));
-        var component = response.QuerySelector(".govuk-checkboxes__input");
+        var response = await Navigate("Radios" ,nameof(RadiosController.WithHintsOnItems));
+        var component = response.QuerySelector(".govuk-radios__input");
 
-        Assert.Equal("government-gateway-item-hint", component!.GetAttribute(AriaDescribedBy) ?? "");
+        Assert.Equal("gateway-item-hint", component!.GetAttribute(AriaDescribedBy) ?? "");
     }
 
     [Fact]
     public async void RendersTheHint()
     {
-        var response = await Navigate("Checkboxes" ,nameof(CheckboxesController.MultipleHints));
+        var response = await Navigate("Radios" ,nameof(RadiosController.WithHintsOnParentAndItems));
         var components = response.QuerySelectorAll(".govuk-hint");
 
-        const string expected1 = "<div id=\"example-multiple-hints-hint\" class=\"govuk-hint \">\n  \nIf you have dual nationality, select all options that are relevant to you.\n</div>";
-        const string expected2 = "<div id=\"example-multiple-hints-item-hint\" class=\"govuk-hint govuk-checkboxes__hint \">\n  \nHint for british option here\n</div>";
-        const string expected3 = "<div id=\"example-multiple-hints-3-item-hint\" class=\"govuk-hint govuk-checkboxes__hint \">\n  \nHint for other option here\n</div>";
+        const string expected1 = "<div id=\"example-multiple-hints-hint\" class=\"govuk-hint \">\n  \nThis includes changing your last name or spelling your name differently.\n</div>";
+        const string expected2 = "<div id=\"example-multiple-hints-item-hint\" class=\"govuk-hint govuk-radios__hint \">\n  \nHint for yes option here\n</div>";
+        const string expected3 = "<div id=\"example-multiple-hints-2-item-hint\" class=\"govuk-hint govuk-radios__hint \">\n  \nHint for no option here\n</div>";
 
         Assert.Equal(expected1, components[0].OuterHtml);
         Assert.Equal(expected2, components[1].OuterHtml);
@@ -56,7 +56,7 @@ public class HintTests : ClientBase<Startup>
     [Fact]
     public async void AssociatesTheFieldsetAsDescribedByTheHint()
     {
-        var response = await Navigate("Checkboxes" ,nameof(CheckboxesController.WithIdAndName));
+        var response = await Navigate("Radios" ,nameof(RadiosController.WithHintsOnParentAndItems));
         var hint = response.QuerySelector(".govuk-hint");
         var fieldset = response.QuerySelector(".govuk-fieldset");
 
@@ -66,7 +66,7 @@ public class HintTests : ClientBase<Startup>
     [Fact]
     public async void AssociatesTheFieldsetAsDescribedByTheHintAndParentFieldset()
     {
-        var response = await Navigate("Checkboxes" ,nameof(CheckboxesController.WithFieldsetDescribedBy));
+        var response = await Navigate("Radios" ,nameof(RadiosController.WithDescribedByAndHint));
         var hint = response.QuerySelector(".govuk-hint");
         var fieldset = response.QuerySelector(".govuk-fieldset");
 

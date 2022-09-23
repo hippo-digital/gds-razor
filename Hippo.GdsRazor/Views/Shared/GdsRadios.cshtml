@@ -6,6 +6,7 @@
   {
     @await Html.PartialAsync("GdsFieldset", new FieldsetModel
     {
+      Id = Model.Fieldset.Id,
       DescribedBy = Model.DescribedBy,
       Classes = Model.Fieldset.Classes,
       Role = Model.Fieldset.Role,
