@@ -70,6 +70,14 @@ public class SummaryListModel : GdsViewModel
 
     public class ItemModel : GdsWithContent
     {
+        public ItemModel()
+        {
+        }
+
+        public ItemModel(GdsContent content) : base(content)
+        {
+        }
+
         public static implicit operator ItemModel(string s) => new() { Content = s };
         public static implicit operator ItemModel(HTML h) => new() { Content = h };
     }

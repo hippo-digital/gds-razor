@@ -27,6 +27,7 @@ public class LinkTests : ClientBase<Startup>
         var response = await Navigate("Button" ,nameof(ButtonController.NoHref));
         var component = response.QuerySelector(".govuk-button");
 
+        Assert.IsAssignableFrom<IHtmlAnchorElement>(component);
         Assert.Equal("#", component!.GetAttribute("href"));
     }
 

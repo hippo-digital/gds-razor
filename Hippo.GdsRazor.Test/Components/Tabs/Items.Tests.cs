@@ -1,3 +1,4 @@
+using AngleSharp.Html.Dom;
 using Hippo.GdsRazor.Test.Components.Internal;
 using Hippo.GdsRazor.Test.Controllers;
 using Xunit;
@@ -24,6 +25,7 @@ public class ItemsTests : ClientBase<Startup>
         var firstTab = response.QuerySelector(".govuk-tabs .govuk-tabs__list-item:first-child .govuk-tabs__tab");
         var firstPanel = response.QuerySelector(".govuk-tabs .govuk-tabs__panel");
 
+        Assert.IsAssignableFrom<IHtmlAnchorElement>(firstTab);
         Assert.Equal("#past-day", firstTab!.GetAttribute("href"));
         Assert.Equal("past-day", firstPanel!.Id);
     }
@@ -35,6 +37,7 @@ public class ItemsTests : ClientBase<Startup>
         var firstTab = response.QuerySelector(".govuk-tabs .govuk-tabs__list-item:first-child .govuk-tabs__tab");
         var firstPanel = response.QuerySelector(".govuk-tabs .govuk-tabs__panel");
 
+        Assert.IsAssignableFrom<IHtmlAnchorElement>(firstTab);
         Assert.Equal("#custom-1", firstTab!.GetAttribute("href"));
         Assert.Equal("custom-1", firstPanel!.Id);
     }
@@ -56,7 +59,7 @@ public class ItemsTests : ClientBase<Startup>
         var p = lastTab.QuerySelector("p");
 
         Assert.Contains("govuk-body", p!.ClassList);
-        Assert.Equal("There is no data for this year yet, check back later", lastTab!.TextContent.Trim());
+        Assert.Equal("There is no data for this year yet, check back later", lastTab.TextContent.Trim());
     }
 
     [Fact]

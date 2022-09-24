@@ -40,7 +40,7 @@ public class ErrorMessageTests : ClientBase<Startup>
         var errorMessage = response.QuerySelector(".govuk-error-message");
 
         Assert.Matches(new Regex($"\\b{errorMessage!.Id}\\b"), textarea!.GetAttribute(AriaDescribedBy) ?? "");
-        Assert.Matches(new Regex("\\bsome-id\\b"), textarea!.GetAttribute(AriaDescribedBy) ?? "");
+        Assert.Matches(new Regex("\\bsome-id\\b"), textarea.GetAttribute(AriaDescribedBy) ?? "");
     }
 
     [Fact]

@@ -1,0 +1,8 @@
+@using Hippo.GdsRazor.Models
+
+@await Html.PartialAsync("GdsSummaryList", new SummaryListModel(
+  new SummaryListModel.RowModel(
+    (HTML) (@<b>Name</b>),
+    (HTML) (@<strong>Firstname Lastname</strong>)
+  )
+))

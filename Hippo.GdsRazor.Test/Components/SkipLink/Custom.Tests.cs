@@ -1,3 +1,4 @@
+using AngleSharp.Html.Dom;
 using Hippo.GdsRazor.Test.Components.Internal;
 using Hippo.GdsRazor.Test.Controllers;
 using Xunit;
@@ -14,6 +15,7 @@ public class CustomTests : ClientBase<Startup>
         var response = await Navigate("SkipLink" ,nameof(SkipLinkController.CustomHref));
         var component = response.QuerySelector(".govuk-skip-link");
 
+        Assert.IsAssignableFrom<IHtmlAnchorElement>(component);
         Assert.Equal("#custom", component!.GetAttribute("href"));
     }
 

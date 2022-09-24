@@ -1,0 +1,26 @@
+@using Hippo.GdsRazor.Models
+
+@await Html.PartialAsync("GdsSummaryList", new SummaryListModel(
+  new SummaryListModel.RowModel("Name", "Firstname Lastname") {
+    Actions = new List<SummaryListModel.ActionModel> {
+      new("#", "Edit") { VisuallyHiddenText = "name" },
+      new("#", "Delete") { VisuallyHiddenText = "name" }
+    }
+  },
+  new SummaryListModel.RowModel("Date of birth", "13/08/1980"),
+  new SummaryListModel.RowModel(
+      "Contact information",
+      (HTML) (@<text>
+                  <p class="govuk-body">
+                    email@email.com
+                  </p>
+                  <p class="govuk-body">
+                    Address line 1<br>
+                    Address line 2<br>
+                    Address line 3<br>
+                    Address line 4<br>
+                    Address line 5
+                  </p>
+      </text>)
+  )
+))

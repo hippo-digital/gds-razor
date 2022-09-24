@@ -26,7 +26,7 @@ public class ConditionalsTests : ClientBase<Startup>
         var response = await Navigate("Radios" ,nameof(RadiosController.WithConditionalItemsAndPreCheckedValue));
         var component = response.QuerySelectorAll(".govuk-radios__conditional").Last();
 
-        Assert.Equal("Mobile phone number", component!.TextContent.Trim());
+        Assert.Equal("Mobile phone number", component.TextContent.Trim());
         Assert.DoesNotContain("govuk-radios__conditional--hidden", component.ClassList);
     }
 
