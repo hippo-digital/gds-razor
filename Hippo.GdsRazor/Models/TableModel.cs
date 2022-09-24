@@ -67,7 +67,7 @@ public class TableModel : GdsViewModel
         {
         }
 
-        public static implicit operator RowModel(List<CellModel> s) => new() { Cells = s };
+        public static implicit operator RowModel(List<CellModel> s) => new(s);
     }
 
     public class CellModel : GdsWithContent

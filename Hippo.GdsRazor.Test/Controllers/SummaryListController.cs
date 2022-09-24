@@ -91,7 +91,6 @@ public class SummaryListController : Controller
     public IActionResult WithSomeActions() => View();
     public IActionResult ClassesOnItems() => PartialView(PartialName, Examples.ClassesOnItems);
     public IActionResult EmptyItemsArray() => PartialView(PartialName, Examples.EmptyItemsArray);
-
     public IActionResult Axe() => View("Axe", nameof(Default));
     public IActionResult AxeSomeActions() => View("Axe", nameof(WithSomeActions));
 }

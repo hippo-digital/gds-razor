@@ -1,0 +1,9 @@
+@using Hippo.GdsRazor.Models
+
+@await Html.PartialAsync("GdsTable", new TableModel(
+    new TableModel.RowModel(
+        (HTML) (@<text>Foo <span>bar</span></text>)
+    )
+) {
+    FirstCellIsHeader = true
+})
