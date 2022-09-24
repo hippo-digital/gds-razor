@@ -73,43 +73,46 @@ public class AutoTests : ClientBase<Startup>
             Assert.Contains(kv.Value, html);
         }
 
-        //Items
+        // Items
         foreach (var item in model.Items!.OfType<RadiosModel.ItemModel>())
+            AllItemPropertiesAreUsed(item, html);
+    }
+
+    private static void AllItemPropertiesAreUsed(RadiosModel.ItemModel item, string html)
+    {
+        Assert.Contains(item.Id, html);
+        Assert.Contains(item.Classes, html);
+        Assert.Contains(item.Value, html);
+        Assert.Contains(((GdsPlain) item.Content!).Text, html);
+        Assert.Contains(((GdsPlain) item.ConditionalContent!).Text, html);
+
+        foreach (var kv in item.Attributes!)
         {
-            Assert.Contains(item.Id, html);
-            Assert.Contains(item.Classes, html);
-            Assert.Contains(item.Value, html);
-            Assert.Contains(((GdsPlain) item.Content!).Text, html);
-            Assert.Contains(((GdsPlain) item.ConditionalContent!).Text, html);
+            Assert.Contains(kv.Key, html);
+            Assert.Contains(kv.Value, html);
+        }
 
-            foreach (var kv in item.Attributes!)
-            {
-                Assert.Contains(kv.Key, html);
-                Assert.Contains(kv.Value, html);
-            }
+        // Item Hint
+        // Assert.Contains(item.Hint!.Id, html); Overriden by Radios
+        Assert.Contains(item.Hint!.Classes, html);
+        Assert.Contains(((GdsPlain) item.Hint.Content!).Text, html);
 
-            // Item Hint
-            // Assert.Contains(item.Hint!.Id, html); Overriden by Radios
-            Assert.Contains(item.Hint!.Classes, html);
-            Assert.Contains(((GdsPlain) item.Hint.Content!).Text, html);
+        foreach (var kv in item.Hint.Attributes!)
+        {
+            Assert.Contains(kv.Key, html);
+            Assert.Contains(kv.Value, html);
+        }
 
-            foreach (var kv in item.Hint.Attributes!)
-            {
-                Assert.Contains(kv.Key, html);
-                Assert.Contains(kv.Value, html);
-            }
+        // Item Label
+        Assert.Contains(item.Label!.Id, html);
+        Assert.Contains(item.Label.Classes, html);
+        // Assert.Contains(item.Label.For, html); Overriden by Radios
+        // Assert.Contains(((GdsPlain) item.Label.Content!).Text, html); Overriden by Radios
 
-            // Item Label
-            Assert.Contains(item.Label!.Id, html);
-            Assert.Contains(item.Label.Classes, html);
-            // Assert.Contains(item.Label.For, html); Overriden by Radios
-            // Assert.Contains(((GdsPlain) item.Label.Content!).Text, html); Overriden by Radios
-
-            foreach (var kv in item.Label.Attributes!)
-            {
-                Assert.Contains(kv.Key, html);
-                Assert.Contains(kv.Value, html);
-            }
+        foreach (var kv in item.Label.Attributes!)
+        {
+            Assert.Contains(kv.Key, html);
+            Assert.Contains(kv.Value, html);
         }
     }
 }

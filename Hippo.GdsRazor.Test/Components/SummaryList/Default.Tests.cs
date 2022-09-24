@@ -34,7 +34,7 @@ public class DefaultTests : ClientBase<Startup>
         var component = response.QuerySelector(".govuk-summary-list");
 
         Assert.Equal("value-1", component!.GetAttribute("data-attribute-1"));
-        Assert.Equal("value-2", component!.GetAttribute("data-attribute-2"));
+        Assert.Equal("value-2", component.GetAttribute("data-attribute-2"));
     }
 
     [Fact]

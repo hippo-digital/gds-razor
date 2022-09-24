@@ -74,7 +74,7 @@ public class ActionsTests : ClientBase<Startup>
         var component = response.QuerySelector(".govuk-summary-list .govuk-summary-list__actions > a");
 
         Assert.Equal("value", component!.GetAttribute("data-test-attribute"));
-        Assert.Equal("value-2", component!.GetAttribute("data-test-attribute-2"));
+        Assert.Equal("value-2", component.GetAttribute("data-test-attribute-2"));
     }
 
     [Fact]

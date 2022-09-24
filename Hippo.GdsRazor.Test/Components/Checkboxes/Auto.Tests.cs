@@ -73,45 +73,48 @@ public class AutoTests : ClientBase<Startup>
             Assert.Contains(kv.Value, html);
         }
 
-        //Items
+        // Items
         foreach (var item in model.Items!.OfType<CheckboxesModel.ItemModel>())
+            AllItemPropertiesAreUsed(item, html);
+    }
+
+    private static void AllItemPropertiesAreUsed(CheckboxesModel.ItemModel item, string html)
+    {
+        Assert.Contains(item.Id, html);
+        Assert.Contains(item.Classes, html);
+        Assert.Contains(item.Name, html);
+        Assert.Contains(item.Value, html);
+        Assert.Contains(((GdsPlain) item.Content!).Text, html);
+        Assert.Contains(((GdsPlain) item.ConditionalContent!).Text, html);
+        Assert.Contains(item.Behaviour, html);
+
+        foreach (var kv in item.Attributes!)
         {
-            Assert.Contains(item.Id, html);
-            Assert.Contains(item.Classes, html);
-            Assert.Contains(item.Name, html);
-            Assert.Contains(item.Value, html);
-            Assert.Contains(((GdsPlain) item.Content!).Text, html);
-            Assert.Contains(((GdsPlain) item.ConditionalContent!).Text, html);
-            Assert.Contains(item.Behaviour, html);
+            Assert.Contains(kv.Key, html);
+            Assert.Contains(kv.Value, html);
+        }
 
-            foreach (var kv in item.Attributes!)
-            {
-                Assert.Contains(kv.Key, html);
-                Assert.Contains(kv.Value, html);
-            }
+        // Item Hint
+        // Assert.Contains(item.Hint!.Id, html); Overriden by checkboxes
+        Assert.Contains(item.Hint!.Classes, html);
+        Assert.Contains(((GdsPlain) item.Hint.Content!).Text, html);
 
-            // Item Hint
-            // Assert.Contains(item.Hint!.Id, html); Overriden by checkboxes
-            Assert.Contains(item.Hint!.Classes, html);
-            Assert.Contains(((GdsPlain) item.Hint.Content!).Text, html);
+        foreach (var kv in item.Hint.Attributes!)
+        {
+            Assert.Contains(kv.Key, html);
+            Assert.Contains(kv.Value, html);
+        }
 
-            foreach (var kv in item.Hint.Attributes!)
-            {
-                Assert.Contains(kv.Key, html);
-                Assert.Contains(kv.Value, html);
-            }
+        // Item Label
+        Assert.Contains(item.Label!.Id, html);
+        Assert.Contains(item.Label.Classes, html);
+        // Assert.Contains(item.Label.For, html); Overriden by checkboxes
+        // Assert.Contains(((GdsPlain) item.Label.Content!).Text, html); Overriden by checkboxes
 
-            // Item Label
-            Assert.Contains(item.Label!.Id, html);
-            Assert.Contains(item.Label.Classes, html);
-            // Assert.Contains(item.Label.For, html); Overriden by checkboxes
-            // Assert.Contains(((GdsPlain) item.Label.Content!).Text, html); Overriden by checkboxes
-
-            foreach (var kv in item.Label.Attributes!)
-            {
-                Assert.Contains(kv.Key, html);
-                Assert.Contains(kv.Value, html);
-            }
+        foreach (var kv in item.Label.Attributes!)
+        {
+            Assert.Contains(kv.Key, html);
+            Assert.Contains(kv.Value, html);
         }
     }
 }
