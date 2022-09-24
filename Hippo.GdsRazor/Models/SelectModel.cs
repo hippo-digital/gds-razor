@@ -74,7 +74,7 @@ public class SelectModel : GdsViewModel
         /// <summary>
         /// Whether the option should be selected when the page loads. Takes precedence over the top-level value option.
         /// </summary>
-        public bool Selected { get; set; }
+        public bool? Selected { get; set; }
 
         /// <summary>
         /// Sets the option item as disabled.

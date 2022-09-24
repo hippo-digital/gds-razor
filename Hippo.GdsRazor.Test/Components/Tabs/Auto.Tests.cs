@@ -24,7 +24,7 @@ public class AutoTests : ClientBase<Startup>
             Assert.Contains(kv.Key, html);
             Assert.Contains(kv.Value, html);
         }
-        
+
         // Items
         foreach (var item in model.Items!)
         {

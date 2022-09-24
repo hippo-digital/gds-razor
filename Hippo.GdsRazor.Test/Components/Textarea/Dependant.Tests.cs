@@ -32,7 +32,7 @@ public class DependantTests : ClientBase<Startup>
     }
 
     [Fact]
-    public async void RendersLabelWithForAttributeReferringTheTextareaId()
+    public async void RendersLabelWithForAttributeReferencingTheTextareaId()
     {
         var response = await Navigate("Textarea" ,nameof(TextareaController.Default));
         var component = response.QuerySelector(".govuk-label");

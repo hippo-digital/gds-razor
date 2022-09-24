@@ -7,6 +7,7 @@
   {
     @await Html.PartialAsync("GdsLabel", new LabelModel
     {
+      Id = Model.Label.Id,
       Content = Model.Label.Content,
       Classes = Model.Label.Classes,
       Attributes = Model.Label.Attributes,
@@ -40,7 +41,7 @@
     {
       foreach (var item in Model.Items)
       {
-        <option value="@item.Value" @if (item.Disabled) { <text>disabled</text> } @if (item.Selected || (Model.Value != null && Model.Value == item.Value)) { <text>selected</text> }
+        <option value="@item.Value" @if (item.Disabled) { <text>disabled</text> } @if (item.Selected ?? (Model.Value != null && Model.Value == item.Value)) { <text>selected</text> }
                 @Html.Raw(item.ExpandAttributes())>@item.Text</option>
       }
     }

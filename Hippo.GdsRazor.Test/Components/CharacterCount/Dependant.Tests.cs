@@ -32,7 +32,7 @@ public class DependantTests : ClientBase<Startup>
     }
 
     [Fact]
-    public async void RendersLabelWithForAttributeReferringTheCharacterCountId()
+    public async void RendersLabelWithForAttributeReferencingTheCharacterCountId()
     {
         var response = await Navigate("CharacterCount" ,nameof(CharacterCountController.Default));
         var component = response.QuerySelector(".govuk-label");
