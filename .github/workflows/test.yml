@@ -26,8 +26,10 @@ jobs:
         run: dotnet test --logger trx --results-directory "TestResults-${{ matrix.dotnet-version }}"
       - name: Test Report
         uses: phoenix-actions/test-reporting@v8
-        if: success() || failure()
+        if: always()
         with:
           name: xUnit Tests
           path: "TestResults-${{ matrix.dotnet-version }}/*.trx"
           reporter: dotnet-trx
+      - name: Publish
+        run: nuget push **\*.nupkg -Source 'https://api.nuget.org/v3/index.json' -ApiKey ${{secrets.NUGET_API_KEY}}
