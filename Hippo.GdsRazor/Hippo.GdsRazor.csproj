@@ -6,7 +6,7 @@
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <PackageVersion>0.0.1</PackageVersion>
+        <PackageVersion>0.0.2</PackageVersion>
         <Title>GdsRazor</Title>
         <Authors>Hippo Digital UK</Authors>
         <RepositoryUrl>https://github.com/hippo-digital/gds-razor</RepositoryUrl>

@@ -32,4 +32,4 @@ jobs:
           path: "TestResults-${{ matrix.dotnet-version }}/*.trx"
           reporter: dotnet-trx
       - name: Publish
-        run: nuget push **\*.nupkg -Source 'https://api.nuget.org/v3/index.json' -ApiKey ${{secrets.NUGET_API_KEY}}
+        run: nuget push **\*.nupkg -SkipDuplicate -Source 'https://api.nuget.org/v3/index.json' -ApiKey ${{secrets.NUGET_API_KEY}}
