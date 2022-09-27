@@ -11,7 +11,7 @@ public class TableModel : GdsViewModel
     /// <summary>
     /// Array of table rows.
     /// </summary>
-    public List<RowModel>? Rows { get; set; }
+    public IEnumerable<RowModel>? Rows { get; set; }
 
     /// <summary>
     /// Array of table head cells.
@@ -38,7 +38,7 @@ public class TableModel : GdsViewModel
     {
     }
 
-    public TableModel(List<RowModel> rows)
+    public TableModel(IEnumerable<RowModel> rows)
     {
         Rows = rows;
     }
@@ -52,13 +52,13 @@ public class TableModel : GdsViewModel
         /// <summary>
         /// Array of table cells.
         /// </summary>
-        public List<CellModel>? Cells { get; set; }
+        public IEnumerable<CellModel>? Cells { get; set; }
 
         public RowModel()
         {
         }
 
-        public RowModel(List<CellModel> cells)
+        public RowModel(IEnumerable<CellModel> cells)
         {
             Cells = cells;
         }

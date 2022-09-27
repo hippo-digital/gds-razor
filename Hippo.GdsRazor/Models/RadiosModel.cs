@@ -47,7 +47,7 @@ public class RadiosModel : GdsViewModel
     /// <summary>
     /// Array of radio items objects.
     /// </summary>
-    public List<IItemModel>? Items { get; set; }
+    public IEnumerable<IItemModel>? Items { get; set; }
 
     /// <summary>
     /// The value for the radio which should be checked when the page loads.
@@ -59,7 +59,7 @@ public class RadiosModel : GdsViewModel
     {
     }
 
-    public RadiosModel(string name, List<IItemModel> items)
+    public RadiosModel(string name, IEnumerable<IItemModel> items)
     {
         Name = name;
         Items = items;

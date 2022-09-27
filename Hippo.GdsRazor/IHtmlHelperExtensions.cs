@@ -75,4 +75,11 @@ public static class HtmlHelperExtensions {
         html.PartialAsync("GdsTextarea", model);
     public static Task<IHtmlContent> GdsWarningText(this IHtmlHelper html, WarningTextModel model) =>
         html.PartialAsync("GdsWarningText", model);
+
+    // Errors
+    public static ErrorMessageModel? ErrorMessageModel(this IHtmlHelper html, string name)
+    {
+        var modelState = html.ViewData.ModelState[name];
+        return modelState == null || !modelState.Errors.Any() ? null : new ErrorMessageModel((HTML) (_ => html.ValidationMessage(name)));
+    }
 }

@@ -12,7 +12,7 @@ public class SelectModel : GdsViewModel
     /// <summary>
     /// Array of option items for the select.
     /// </summary>
-    public List<ItemModel>? Items { get; set; }
+    public IEnumerable<ItemModel>? Items { get; set; }
 
     /// <summary>
     /// Value for the option which should be selected.
@@ -49,7 +49,7 @@ public class SelectModel : GdsViewModel
     {
     }
 
-    public SelectModel(string id, string name, List<ItemModel> items) : base(id)
+    public SelectModel(string id, string name, IEnumerable<ItemModel> items) : base(id)
     {
         Name = name;
         Items = items;

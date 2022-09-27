@@ -25,13 +25,13 @@ public class CookieBannerModel : GdsViewModel
     /// The different messages you can pass into the cookie banner.
     /// For example, the cookie message and the confirmation message.
     /// </summary>
-    public List<MessageModel>? Messages { get; set; }
+    public IEnumerable<MessageModel>? Messages { get; set; }
 
     public CookieBannerModel()
     {
     }
 
-    public CookieBannerModel(List<MessageModel> messages) : this()
+    public CookieBannerModel(IEnumerable<MessageModel> messages) : this()
     {
         Messages = messages;
     }

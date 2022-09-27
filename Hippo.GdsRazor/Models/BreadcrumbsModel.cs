@@ -10,7 +10,7 @@ public class BreadcrumbsModel : GdsViewModel
     /// <summary>
     /// Array of breadcrumbs item objects.
     /// </summary>
-    public List<LinkModel>? Items { get; set; }
+    public IEnumerable<LinkModel>? Items { get; set; }
 
     /// <summary>
     /// When true, the breadcrumbs will collapse to the first and last item only on tablet breakpoint and below.
@@ -21,7 +21,7 @@ public class BreadcrumbsModel : GdsViewModel
     {
     }
 
-    public BreadcrumbsModel(List<LinkModel> items) : this()
+    public BreadcrumbsModel(IEnumerable<LinkModel> items) : this()
     {
         Items = items;
     }

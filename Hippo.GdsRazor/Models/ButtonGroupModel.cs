@@ -4,13 +4,13 @@ namespace Hippo.GdsRazor.Models;
 
 public class ButtonGroupModel : GdsViewModel
 {
-    public List<ButtonModel>? Buttons { get; set; }
+    public IEnumerable<ButtonModel>? Buttons { get; set; }
 
     public ButtonGroupModel()
     {
     }
 
-    public ButtonGroupModel(List<ButtonModel> buttons) : this()
+    public ButtonGroupModel(IEnumerable<ButtonModel> buttons) : this()
     {
         Buttons = buttons;
     }

@@ -13,13 +13,13 @@ public class SummaryListModel : GdsViewModel
     /// <summary>
     /// Array of row item objects.
     /// </summary>
-    public List<RowModel>? Rows { get; set; }
+    public IEnumerable<RowModel>? Rows { get; set; }
 
     public SummaryListModel()
     {
     }
 
-    public SummaryListModel(List<RowModel> rows) : this()
+    public SummaryListModel(IEnumerable<RowModel> rows) : this()
     {
         Rows = rows;
     }

@@ -16,7 +16,7 @@ public class AccordionModel : GdsViewModel
     /// <summary>
     /// An array of sections within the accordion.
     /// </summary>
-    public List<ItemModel>? Items { get; set; }
+    public IEnumerable<ItemModel>? Items { get; set; }
 
     // i18n
     public string? HideAllSectionsText { get; set; }
@@ -28,7 +28,7 @@ public class AccordionModel : GdsViewModel
     {
     }
 
-    public AccordionModel(string id, List<ItemModel> items) : base(id)
+    public AccordionModel(string id, IEnumerable<ItemModel> items) : base(id)
     {
         Items = items;
     }

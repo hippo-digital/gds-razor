@@ -52,7 +52,7 @@ public class CheckboxesModel : GdsViewModel
     /// <summary>
     /// Array of checkbox items objects.
     /// </summary>
-    public List<IItemModel>? Items { get; set; }
+    public IEnumerable<IItemModel>? Items { get; set; }
 
     /// <summary>
     /// Array of values for checkboxes which should be checked when the page loads.
@@ -64,7 +64,7 @@ public class CheckboxesModel : GdsViewModel
     {
     }
 
-    public CheckboxesModel(string name, List<IItemModel> items) : this()
+    public CheckboxesModel(string name, IEnumerable<IItemModel> items) : this()
     {
         Name = name;
         Items = items;

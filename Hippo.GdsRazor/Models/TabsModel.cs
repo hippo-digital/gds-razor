@@ -22,13 +22,13 @@ public class TabsModel : GdsViewModel
     /// <summary>
     /// Array of tab items.
     /// </summary>
-    public List<ItemModel>? Items { get; set; }
+    public IEnumerable<ItemModel>? Items { get; set; }
 
     public TabsModel()
     {
     }
 
-    public TabsModel(List<ItemModel> items) : this()
+    public TabsModel(IEnumerable<ItemModel> items) : this()
     {
         Items = items;
     }

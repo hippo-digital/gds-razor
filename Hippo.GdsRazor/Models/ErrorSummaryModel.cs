@@ -23,7 +23,7 @@ public class ErrorSummaryModel : GdsViewModel
     /// <summary>
     /// The list of errors to include in the summary.
     /// </summary>
-    public List<ErrorModel>? ErrorList { get; set; }
+    public IEnumerable<ErrorModel>? ErrorList { get; set; }
 
     /// <summary>
     /// Prevent moving focus to the error summary when the page loads.
@@ -34,7 +34,7 @@ public class ErrorSummaryModel : GdsViewModel
     {
     }
 
-    public ErrorSummaryModel(GdsContent title, List<ErrorModel> errorList) : this()
+    public ErrorSummaryModel(GdsContent title, IEnumerable<ErrorModel> errorList) : this()
     {
         Title = title;
         ErrorList = errorList;
