@@ -6,7 +6,7 @@
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <PackageVersion>0.0.2</PackageVersion>
+        <PackageVersion>0.0.3</PackageVersion>
         <Title>GdsRazor</Title>
         <Authors>Hippo Digital UK</Authors>
         <RepositoryUrl>https://github.com/hippo-digital/gds-razor</RepositoryUrl>
@@ -25,4 +25,8 @@
     <PropertyGroup>
         <ActiveDebugProfile>IIS Express</ActiveDebugProfile>
     </PropertyGroup>
+
+    <ItemGroup>
+        <EmbeddedResource Include="Views\**\*.cshtml" />
+    </ItemGroup>
 </Project>
