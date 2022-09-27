@@ -6,8 +6,8 @@
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <PackageVersion>0.0.4</PackageVersion>
-        <Version>0.0.4</Version>
+        <PackageVersion>0.0.5</PackageVersion>
+        <Version>0.0.5</Version>
         <Title>GdsRazor</Title>
         <Authors>Hippo Digital UK</Authors>
         <RepositoryUrl>https://github.com/hippo-digital/gds-razor</RepositoryUrl>
@@ -17,6 +17,7 @@
         <PackageLicenseUrl>https://licenses.nuget.org/MIT</PackageLicenseUrl>
         <Description>Components from govuk-frontend packaged as ASP.NET partial views.</Description>
         <IsPackable>true</IsPackable>
+        <EnableDefaultContentItems>false</EnableDefaultContentItems>
     </PropertyGroup>
 
     <ItemGroup>
@@ -28,6 +29,8 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <EmbeddedResource Include="Views\**\*.cshtml" />
+        <Content Include="Views\**\*.cshtml">
+            <PackageCopyToOutput>true</PackageCopyToOutput>
+        </Content>
     </ItemGroup>
 </Project>
