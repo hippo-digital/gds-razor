@@ -23,7 +23,7 @@ jobs:
       - name: Install dependencies
         run: dotnet restore
       - name: Test with dotnet
-        run: dotnet test --logger trx --results-directory "TestResults-${{ matrix.dotnet-version }}"
+        run: dotnet test --configuration Release --logger trx --results-directory "TestResults-${{ matrix.dotnet-version }}"
       - name: Test Report
         uses: phoenix-actions/test-reporting@v8
         if: always()
