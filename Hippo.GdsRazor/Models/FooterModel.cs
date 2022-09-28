@@ -16,7 +16,7 @@ public class FooterModel : GdsViewModel
     /// <summary>
     /// Array of items for use in the navigation section of the footer.
     /// </summary>
-    public List<NavigationModel>? Navigation { get; set; }
+    public IEnumerable<NavigationModel>? Navigation { get; set; }
 
     /// <summary>
     /// Content to show in the license section of the footer.
@@ -64,7 +64,7 @@ public class FooterModel : GdsViewModel
         /// <summary>
         /// Array of items for use in the meta section of the footer.
         /// </summary>
-        public List<ItemModel>? Items { get; set; }
+        public IEnumerable<ItemModel>? Items { get; set; }
     }
 
     public class NavigationModel
@@ -87,7 +87,7 @@ public class FooterModel : GdsViewModel
         /// <summary>
         /// Array of items to display in the list in navigation section of the footer.
         /// </summary>
-        public List<ItemModel>? Items { get; set; }
+        public IEnumerable<ItemModel>? Items { get; set; }
 
         public NavigationModel()
         {

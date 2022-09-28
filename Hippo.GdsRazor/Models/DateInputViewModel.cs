@@ -16,7 +16,7 @@ public class DateInputModel : GdsViewModel
     /// <summary>
     /// An array of input objects with name, value and classes.
     /// </summary>
-    public List<ItemModel> Items { get; set; }
+    public IEnumerable<ItemModel> Items { get; set; }
 
     public HintModel? Hint { get; set; }
     public ErrorMessageModel? ErrorMessage { get; set; }

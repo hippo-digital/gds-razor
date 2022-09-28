@@ -58,7 +58,7 @@ public class CheckboxesModel : GdsViewModel
     /// Array of values for checkboxes which should be checked when the page loads.
     /// Use this as an alternative to setting the checked option on each individual item.
     /// </summary>
-    public List<string>? Values { get; set; }
+    public IEnumerable<string>? Values { get; set; }
 
     public CheckboxesModel()
     {

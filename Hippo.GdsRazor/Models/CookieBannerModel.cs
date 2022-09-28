@@ -51,7 +51,7 @@ public class CookieBannerModel : GdsViewModel
         /// The buttons and links that you want to display in the message.
         /// Actions defaults to button unless you set href, which renders the action as a link.
         /// </summary>
-        public List<ActionModel>? Actions { get; set; }
+        public IEnumerable<ActionModel>? Actions { get; set; }
 
         /// <summary>
         /// If you set it to true, the message is hidden.

@@ -38,7 +38,7 @@ public class HeaderModel : GdsViewModel
     /// <summary>
     /// An array of navigation item objects.
     /// </summary>
-    public List<ItemModel>? Navigation { get; set; }
+    public IEnumerable<ItemModel>? Navigation { get; set; }
 
     /// <summary>
     /// Classes for the navigation section of the header.

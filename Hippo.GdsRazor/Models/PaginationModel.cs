@@ -11,7 +11,7 @@ public class PaginationModel : GdsViewModel
     /// <summary>
     /// The array of link objects.
     /// </summary>
-    public List<IItemModel>? Items { get; set; }
+    public IEnumerable<IItemModel>? Items { get; set; }
 
     /// <summary>
     /// A link to the previous page, if there is a previous page.

@@ -16,7 +16,7 @@
         @if (row.Actions?.Any() == true)
         {
           <dd class="govuk-summary-list__actions @row.ActionsClasses">
-            @if (row.Actions.Count == 1)
+            @if (row.Actions.Count() == 1)
             {
               @await Html.PartialAsync("GdsLink", row.Actions.First())
             }

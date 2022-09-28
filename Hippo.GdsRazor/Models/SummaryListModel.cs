@@ -41,7 +41,7 @@ public class SummaryListModel : GdsViewModel
         /// <summary>
         /// Array of action item objects.
         /// </summary>
-        public List<ActionModel>? Actions { get; set; }
+        public IEnumerable<ActionModel>? Actions { get; set; }
 
         public RowModel()
         {

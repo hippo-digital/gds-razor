@@ -21,7 +21,7 @@
           </div>
         </div>
 
-        @if (message.Actions?.Count > 0)
+        @if (message.Actions?.Any() == true)
         {
           <div class="govuk-button-group">
             @foreach (var action in message.Actions)
