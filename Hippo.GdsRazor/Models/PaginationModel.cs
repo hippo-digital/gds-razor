@@ -71,7 +71,7 @@ public class PaginationModel : GdsViewModel
     {
     }
 
-    public class LinkModel : GdsAttributes
+    public class LinkModel : GdsViewModel
     {
         /// <summary>
         /// The link text.
