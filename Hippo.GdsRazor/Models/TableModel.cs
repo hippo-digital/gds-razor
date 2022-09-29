@@ -47,6 +47,14 @@ public class TableModel : GdsViewModel
     {
     }
 
+    public static class CaptionSizes
+    {
+        public const string Small = "govuk-table__caption--s";
+        public const string Medium = "govuk-table__caption--m";
+        public const string Large = "govuk-table__caption--l";
+        public const string ExtraLarge = "govuk-table__caption--xl";
+    }
+
     public class RowModel : GdsViewModel
     {
         /// <summary>

@@ -40,6 +40,7 @@ public class FieldsetModel : GdsWithContent
             public const string Small = "govuk-fieldset__legend--s";
             public const string Medium = "govuk-fieldset__legend--m";
             public const string Large = "govuk-fieldset__legend--l";
+            public const string ExtraLarge = "govuk-fieldset__legend--xl";
         }
 
         public static implicit operator LegendModel(string s) => new(s);

@@ -1,4 +1,5 @@
 using Hippo.GdsRazor.Models;
+using Hippo.GdsRazor.Models.Content;
 using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
@@ -75,6 +76,8 @@ public static class HtmlHelperExtensions {
         html.PartialAsync("GdsTextarea", model);
     public static Task<IHtmlContent> GdsWarningText(this IHtmlHelper html, WarningTextModel model) =>
         html.PartialAsync("GdsWarningText", model);
+    public static Task<IHtmlContent> GdsContent(this IHtmlHelper html, GdsContent? model) =>
+        html.PartialAsync("GdsContent", model);
 
     // Errors
     public static ErrorMessageModel? ErrorMessageModel(this IHtmlHelper html, string name)
